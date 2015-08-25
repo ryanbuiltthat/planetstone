@@ -1,0 +1,30 @@
+<template name="projectsindex">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-btns">
+                <!--<a href="" class="panel-close">x</a>-->
+                <a href="" class="minimize">&mdash;</a>
+            </div><!-- panel-btns -->
+            <h3 class="panel-title">Projects</h3>
+            <p>A list of all projects</p>
+        </div>
+        <div class="panel-body">
+            <h5 class="subtitle mb5">Basic Table</h5>
+            <p class="m20">DataTables has most features enabled by default, so all you need to do to use it with one of your own tables is to call the construction function.</p>
+            <br>
+            <div class="table-responsive">
+                {{> tabular table=TabularTables.Projects class=""}}
+            </div><!-- table-responsive -->
+            <div class="clearfix mb30"></div>
+        </div><!-- panel-body -->
+    </div>
+    <div class="panel">
+        <!--{{! #autoForm id="demo" collection="Projects" type="insert"}}-->
+            <!--{{!c> afFieldInput name="name" }}-->
+            <!--{{! > afFieldInput name="slug" }}-->
+            <!--{{! > afFieldInput name="category" }}-->
+            <!--{{! > afFieldInput name="desc" }}-->
+            <!--{{! > afFieldInput name="active" }}-->
+        <!--{{! /autoForm}}-->
+    </div>
+</template>

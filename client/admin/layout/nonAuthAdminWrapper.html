@@ -1,0 +1,39 @@
+<template name="nonAuthAdminWrapper">
+    <section>
+        <div class="signinpanel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="signin-info">
+                        <div class="logopanel breaker">
+                            <a href="/" title="" class="logo"><img src="/img/logo_53h.png" alt=""></a>
+                        </div><!-- logopanel -->
+                        <div class="mb20"></div>
+                        <h5><strong>You must be a registered user to continue.</strong></h5>
+                        <ul>
+                            <!--<li><i class="fa fa-arrow-circle-o-right mr5"></i> Fully Responsive Layout</li>-->
+                            <!--<li><i class="fa fa-arrow-circle-o-right mr5"></i> HTML5/CSS3 Valid</li>-->
+                            <!--<li><i class="fa fa-arrow-circle-o-right mr5"></i> Retina Ready</li>-->
+                            <!--<li><i class="fa fa-arrow-circle-o-right mr5"></i> WYSIWYG CKEditor</li>-->
+                            <!--<li><i class="fa fa-arrow-circle-o-right mr5"></i> and much more...</li>-->
+                        </ul>
+                        <div class="mb20"></div>
+                        <strong>Not a member? <a href="#" id="goToSignUp">Sign Up</a></strong>
+                        <div class="mb20"></div>
+                        <strong><a href="{{getPathFor "index" }}"><i class="fa fa-caret-square-o-left"></i> Return to Planet Stone</a></strong>
+                    </div><!-- signin0-info -->
+                </div><!-- col-sm-7 -->
+                <div class="col-md-6">
+                    {{>Template.dynamic template=view}}
+                </div><!-- col-sm-5 -->
+            </div><!-- row -->
+            <div class="signup-footer">
+                <div class="pull-left">
+                    &copy; 2015. All Rights Reserved. Planet Stone Marble &amp; Granite
+                </div>
+                <div class="pull-right">
+                    Created By: <a href="http://brandstoryexperts.com/" target="_blank">Brand Story Experts</a>
+                </div>
+            </div>
+        </div><!-- signin -->
+    </section>
+</template>

@@ -1,0 +1,283 @@
+/* General styles for all menus */
+
+.c-spmenu {
+    background: #37474f;
+    position: fixed;
+}
+
+.c-spmenu h3 {
+    color: #afdefa;
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    background: #546e7a;
+}
+
+.c-spmenu a {
+    display: block;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+.c-spmenu a:hover {
+    background: #455a64;
+}
+
+.c-spmenu a:active {
+    background: #afdefa;
+    color: #455a64;
+}
+/* Orientation-dependent styles for the content of the menu */
+
+.c-spmenu-vertical {
+    width: 240px;
+    height: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.c-spmenu-vertical a {
+    border-bottom: 1px solid #455a64;
+    padding: 1em;
+}
+
+.c-spmenu-horizontal {
+    width: 100%;
+    height: 150px;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.c-spmenu-horizontal h3 {
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+
+.c-spmenu-horizontal a {
+    float: left;
+    width: 20%;
+    padding: 0.8em;
+    border-left: 1px solid #455a64;
+}
+
+/* Vertical menu that slides from the left or right */
+
+.c-spmenu-left {
+    left: -240px;
+}
+
+.c-spmenu-right {
+    right: -240px;
+}
+
+.c-spmenu-left.c-spmenu-open {
+    left: 0px;
+}
+
+.c-spmenu-right.c-spmenu-open {
+    right: 0px;
+}
+
+/* Horizontal menu that slides from the top or bottom */
+
+.c-spmenu-top {
+    top: -150px;
+}
+
+.c-spmenu-bottom {
+    bottom: -150px;
+}
+
+.c-spmenu-top.c-spmenu-open {
+    top: 0px;
+}
+
+.c-spmenu-bottom.c-spmenu-open {
+    bottom: 0px;
+}
+
+/* Push classes applied to the body */
+
+.c-spmenu-push {
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+}
+
+.c-spmenu-push-toright {
+    left: 240px;
+}
+
+.c-spmenu-push-toleft {
+    left: -240px;
+}
+
+/* Transitions */
+
+.c-spmenu,
+.c-spmenu-push {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* Example media queries */
+
+@media screen and (max-width: 55.1875em){
+
+    .c-spmenu-horizontal {
+        font-size: 75%;
+        height: 180px;
+    }
+
+    .c-spmenu-top {
+        top: -110px;
+    }
+
+    .c-spmenu-bottom {
+        bottom: -60px;
+    }
+
+}
+
+@media screen and (max-height: 26.375em){
+
+    .c-spmenu-vertical {
+        font-size: 90%;
+        width: 190px;
+    }
+
+    .c-spmenu-left,
+    .c-spmenu-push-toleft {
+        left: -190px;
+    }
+
+    .c-spmenu-right {
+        right: -190px;
+    }
+
+    .c-spmenu-push-toright {
+        left: 190px;
+    }
+}
+
+/*
+    Quick form drawer settings
+*/
+.quickFormDrawer{
+    width:80%;
+    float:right;
+}
+.quickFormDrawer .search-hide{visibility:hidden;}
+.quickFormDrawer .u-wrap div{
+    width:25%;
+    float:left;
+}
+.quickFormDrawer .button.medium{
+    height:46px;
+}
+header.o-header{
+    top:50px;
+}
+#superHeader{
+    height: 50px;
+    line-height:50px;
+    background: #333;
+    color: #fff;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    text-align: right;
+    font-size:90%;
+}
+#superHeader .wrapper {
+    width:100%;
+    margin:0 auto;
+    font-size:1.2em;
+    line-height:50px;
+}
+#superHeader .wrapper.o-footer {
+    padding-top:5px;
+}
+#superHeader .wrapper ul{
+    margin:0;
+    padding:0;
+    list-style-type: none;
+    float:right;
+    margin-left:2rem;
+    margin-right:2rem;
+    /*font-size:1.2em;*/
+}
+#superHeader .wrapper ul li{
+    margin:0 10px;
+    padding:0;
+    float:right;
+    height:24px;
+    width:24px;
+}
+#superHeader .wrapper ul li:before{
+    content:"";
+}
+#superHeader .wrapper ul li a,#superHeader .wrapper ul li a span{
+    /*color:#fff;*/
+}
+#superHeader .wrapper ul li a{
+
+    /*background: #515E64;*/
+    /*font-size: 14px;*/
+    /*width: 24px;*/
+    /*height: 24px;*/
+    /*-webkit-border-radius: 12px;*/
+    /*-moz-border-radius: 12px;*/
+    /*border-radius: 12px;*/
+    /*line-height: 40px;*/
+    /*margin: 0 5px 2px 0;*/
+}
+#superHeader .wrapper ul li a:hover{
+    /*background: #8fb6e1;*/
+    /*color: #fff;*/
+}
+#superHeader .wrapper ul li a:hover{
+    /*color:#fff;*/
+}
+.jetmenu > li > .megamenu{
+    top:130px;
+}
+.c-spmenu-bottom{
+    bottom: -190px;
+}
+.c-spmenu-bottom.c-spmenu-open{
+    bottom:0px;
+}
+.c-spmenu-horizontal{
+    height:190px;
+}
+.quickFormDrawer .drawerPromo .button.medium{
+    line-height: 1 !important;
+}
+.quickFormDrawer .wrap div.drawerPromo{
+    width:100%;
+}
+.drawerPromo a.drawerPromoImg{
+    float:left;
+    width: 300px;
+    height:auto;
+    overflow:hidden;
+    max-height:170px
+}
+.drawerPromo h2{
+    margin:0;
+    color:#fff;
+    padding-top:1rem;
+    padding-bottom:0;
+}
+.drawerPromo p{
+    color:#fff;
+    opacity:0.6;
+}

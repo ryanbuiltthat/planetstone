@@ -1,0 +1,48 @@
+<template name="colorsindex">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-dark panel-alt widget-quick-status-post">
+                <div class="panel-heading">
+                    <div class="panel-btns">
+                        <!--<a href="" class="panel-close">×</a>-->
+                        <!--<a href="" class="minimize">?</a>-->
+                    </div><!-- panel-btns -->
+                    <h3 class="panel-title">Add Colors</h3>
+                </div>
+                <div class="panel-body">
+                    {{#autoForm collection="Colors" id="afColorsInsert" type="insert"}}
+                        {{> afFieldInput name="title" placeholder="Add Color" }}
+                        <button type="submit" class="btn btn-primary btn-block mt10">Save</button>
+                {{/autoForm}}
+                </div><!-- panel-body -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-dark panel-alt widget-todo">
+                <div class="panel-heading">
+                    <div class="panel-btns">
+                        <!--<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Settings"><i class="glyphicon glyphicon-cog"></i></a>-->
+                        <!--<a href="" id="addnewtodo" class="tooltips" data-toggle="tooltip" title="" data-original-title="Add New"><i class="glyphicon glyphicon-plus"></i></a>-->
+                    </div><!-- panel-btns -->
+                    <h3 class="panel-title">Current Colors</h3>
+                </div>
+                <div class="panel-body nopadding">
+                    {{#if subsReady }}
+                    <ul class="todo-list">
+                        {{#each colors}}
+                        <li>
+                            <div class="ckbox ckbox-success">
+                                <input type="checkbox" value="1" id="color{{title}}">
+                                <label for="color{{title}}">{{title}}</label>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                        <img src="../img/loaders/loader19.gif" style="display:block;margin:1rem auto;" />
+                    {{/if}}
+                </div><!-- panel-body -->
+            </div>
+        </div>
+    </div>
+</template>

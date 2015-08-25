@@ -1,0 +1,117 @@
+<template name="frontProductsIndex">
+    <main class="o-main" role="main">
+        <aside class="full-width sidebar sidebar-top fixed">
+            <!-- Refine search results -->
+            <div class="search-filter">
+                <div class="wrap">
+                    <!-- Column -->
+                    <div class="one-fourth">
+                        <p>Stone Type</p>
+                        {{#if subsReady}}
+                            {{#each types}}
+                                <div class="checkbox" >
+                                    <input type="checkbox" data-filter-group="type" id="chk{{_id}}" data-filter=".{{_id}}" class="filter-chk" />
+                                    <label for="chk{{_id}}">{{title}}</label>
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                        <!--<div class="checkbox" >-->
+                            <!--<input type="checkbox" data-filter-group="type" id="chkgranite" data-filter=".granite" class="filter-chk" />-->
+                            <!--<label for="chkgranite">Granite</label>-->
+                        <!--</div>-->
+                        <!--<div class="checkbox" >-->
+                            <!--<input type="checkbox" data-filter-group="type" id="chkmarble" data-filter=".marble" class="filter-chk" />-->
+                            <!--<label for="chkmarble">Marble</label>-->
+                        <!--</div>-->
+
+                    </div>
+                    <!-- //Column -->
+
+                    <!-- Column -->
+                    <div class="one-fourth filter-group">
+                        <p>Color of Stone</p>
+                        {{#if subsReady }}
+                            {{#each getColors }}
+                        <div class="checkbox">
+                            <input type="checkbox" id="ch{{_id}}" data-filter=".{{title}}"  data-filter-group="color{{_id}}"/>
+                            <label for="ch{{_id}}">{{title}}</label>
+                        </div>
+                            {{/each}}
+                        <!--<div class="checkbox">-->
+                            <!--<input type="checkbox" id="ch4" data-filter=".rose"  data-filter-group="color505"/>-->
+                            <!--<label for="ch4">Rose</label>-->
+                        <!--</div>-->
+                        <!--<div class="checkbox">-->
+                            <!--<input type="checkbox" id="ch5" data-filter=".white"  data-filter-group="color583"/>-->
+                            <!--<label for="ch5">White</label>-->
+                        <!--</div>-->
+                        {{/if}}
+                    </div>
+                    <!-- //Column -->
+
+                    <!-- Column -->
+                    <!--<div class="one-fourth filter-group">-->
+                    <!---->
+                        <!--<div class="checkbox">-->
+                            <!--<input type="checkbox" id="ch6" data-filter=".green"  data-filter-group="color510"/>-->
+                            <!--<label for="ch6">Green</label>-->
+                        <!--</div>-->
+                        <!--<div class="checkbox">-->
+                            <!--<input type="checkbox" id="ch7" data-filter=".dark-blue"  data-filter-group="color880"/>-->
+                            <!--<label for="ch7">Dark Blue</label>-->
+                        <!--</div>-->
+                        <!--<div class="checkbox">-->
+                            <!--<input type="checkbox" id="ch8" data-filter=".beige"  data-filter-group="color87"/>-->
+                            <!--<label for="ch8">Beige</label>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!-- //Column -->
+
+                    <!-- Column -->
+                    <div class="one-fourth">
+                        <p>Sort by</p>
+                        <div>
+                            <select class="sort-select">
+                                <option value="name" selected>Name</option>
+                                <option value="type">Type</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- //Column -->
+
+                    <a href="javascript:void(0)" title="Hide this box" class="filter-hide">Hide this box</a>
+                </div>
+            </div>
+            <!-- //Refine search results -->
+        </aside>
+        <!-- //Filters -->
+        <a class="filter-show" title="Show search filters" href="javascript:void(0)" style="display: block;">+</a>
+        <!-- begin products gallery -->
+        <div class="results offset" id="products">
+            {{#if subsReady}}
+                {{#each product}}
+                    <figure class="one-fourth item {{type}}">
+                        {{#each getImages images }}
+                        <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}">
+                        {{/each}}
+                        <figcaption>
+                            <dl>
+                                <dt class="name">{{name}}</dt>
+                                <dd>{{desc}}</dd>
+                                <dd class="att left color"><strong>Color:</strong> {{ getColors color }}</dd>
+                                <dd class="att right type"><strong>Type:</strong> {{productType type}}</dd>
+                                <dd>
+                                    <!--<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fpsmg.betabuild.io%2Fproducts%2F&media=http%3A%2F%2Fpsmg.betabuild.io%2Fimg/products/CreamaBordeaux1.jpg&description=Creama Bordeaux" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="white"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>-->
+                                    <!--<a class="houzz-share-button" data-url="http://psmg.betabuild.io/products.html" data-hzid="33569" data-locale="en-US" data-img="http://psmg.betabuild.io/img/products/CreamaBordeaux1.jpg" data-title="Planet Stone Marble & Granite - Creama Bordeaux" data-desc="Creama Bordeaux would be considered a cream base with beautiful rose waves.  Black specs enchance the stone, but don&#x27;t overpower." data-category="Kitchen" data-showcount="0" href="https://www.houzz.com">Houzz</a>-->
+                                </dd>
+                            </dl>
+                            <!--<div class="price">Asking price  <strong>50.000.000$</strong></div>-->
+                            <a href="{{_id}}" title="Creama Bordeaux" class="button gold small">Learn more</a>
+                        </figcaption>
+                    </figure>
+                {{/each}}
+            {{/if}}
+        </div>
+    </main>
+</template>

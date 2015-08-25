@@ -1,0 +1,58 @@
+<template name="productsindex">
+
+<div class="row">
+    <div class="col-xs-12 col-lg-9">
+        <div class="panel panel-dark panel-alt">
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <!--<a href="" class="panel-close">×</a>-->
+                    <a href="" class="minimize">&mdash;</a>
+                </div><!-- panel-btns -->
+                <h3 class="panel-title">Products</h3>
+                <p>Below is a list of all products currently registered in the site.</p>
+            </div>
+            <div class="panel-body">
+                <!--<h5 class="subtitle mb5">Basic Table</h5>-->
+                <!--<p class="m20">DataTables has most features enabled by default, so all you need to do to use it with one of your own tables is to call the construction function.</p>-->
+                <br>
+                <div class="table-responsive">
+                    {{> tabular table=TabularTables.Products class=""}}
+                </div><!-- table-responsive -->
+                <div class="clearfix mb30"></div>
+            </div><!-- panel-body -->
+        </div>
+    </div>
+    <div class="col-xs-12 col-lg-3">
+        <div class="panel panel-success panel-stat">
+            <div class="panel-heading">
+                <div class="stat">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-tags fa-3x"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <small class="stat-label">Total Products</small>
+                                <h1>{{getPublishedCount 'products-counter'}}</h1>
+                          </div>
+                    </div><!-- row -->
+
+                    <div class="mb15"></div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <small class="stat-label">Active</small>
+                            <h4>--</h4>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <small class="stat-label">Inactive</small>
+                            <h4>--</h4>
+                        </div>
+                    </div><!-- row -->
+                </div><!-- stat -->
+            </div><!-- panel-heading -->
+        </div>
+            <a href="#" class="btn btn-primary addProduct">Add Product</a>
+    </div>
+</div>
+</template>

@@ -1,0 +1,104 @@
+<template name="productsadd">
+    {{#autoForm id="addProductForm" type="method" meteormethod="addProduct" collection="Products"  }}
+    <div class="row">
+        <div class="col-md-4">
+        <div class="panel panel-dark">
+            {{#if types }}
+                <div class="panel-heading">
+                    <div class="panel-btns">
+                        {{#if afFieldIsInvalid name='type'}}<span class="badge badge-danger pull-right"><i class="fa fa-exclamation-circle"></i></span>{{/if}}
+                    </div>
+                    <h3 class="panel-title {{#if afFieldIsInvalid name='type'}}text-danger{{/if}}">Type</h3>
+                </div>
+                <div class="panel-body">
+                {{#if afFieldIsInvalid name='type'}}<label for="type" class="error">The type of product must be defined</label>{{/if}}
+                {{! > afFieldInput name="type" options=types label=false noselect=true}}
+                    {{> afFieldInput name="type" type="bracketRadioSuccess" options=types }}
+                </div>
+            {{/if}}
+        </div>
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+            <div class="panel panel-dark">
+                {{#if colors }}
+                    <div class="panel-heading">
+                        <div class="panel-btns">
+                            {{#if afFieldIsInvalid name='color'}}<span class="badge badge-danger pull-right"><i class="fa fa-exclamation-circle"></i></span>{{/if}}
+                        </div>
+                        <h3 class="panel-title {{#if afFieldIsInvalid name='color'}}text-danger{{/if}}">Colors</h3>
+                    </div>
+                    <div class="panel-body form-group">
+                        {{#if afFieldIsInvalid name='color'}}<label for="color" class="error">Please select a color for the product</label>{{/if}}
+                        {{! > afFieldInput name="color" options=colors label=false noselect=true}}
+                        {{> afFieldInput name="color" type="bracketCheckboxDefault" options=colors label=false}}
+                    </div>
+                {{/if}}
+            </div>
+            <!-- image uploader -->
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Product Images</h3>
+                </div>
+                <div class="panel-body">
+                    {{> afFieldInput  name="images" }}
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+    <!--<div class="row">-->
+        <div class="col-md-8">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <div class="panel-btns">
+
+                    </div>
+                    <h4 class="panel-title">Info</h4>
+                    <!--<p>This is an example of form with block styled label.</p>-->
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afFieldInput name="active"}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="error" style="display: block;">
+                            {{#if afFieldIsInvalid name='name'}}<label for="name" class="error">You have to name the product</label>{{/if}}
+                            {{#if afFieldIsInvalid name='slug'}}<label for="slug" class="error">The product must have a slug for proper SEO</label>{{/if}}
+                            {{#if afFieldIsInvalid name='desc'}}<label for="desc" class="error">Please add a description</label>{{/if}}
+                            <!--{{! #if afFieldIsInvalid name='color'}}<label for="color" class="error">Please list the colors in the product</label>{{! /if}}-->
+                            <!--{{! #if afFieldIsInvalid name='type'}}<label for="type" class="error">The type of product must be defined</label>{{! /if}}-->
+                            <!--<label for="email" class="error">Your email address is required!</label>-->
+                            <!--<label for="comment" class="error">Please type a comment at least 6 characters long!</label>-->
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group {{#if afFieldIsInvalid name='name'}}has-error{{/if}}">
+                                <span class=""></span>
+                                <label class="control-label">{{afFieldLabelText name='name'}}</label>
+                                {{> afFieldInput name='name' class="form-control"}}
+                            </div>
+                        </div><!-- col-sm-6 -->
+                        <div class="col-sm-6">
+                            <div class="form-group {{#if afFieldIsInvalid name='slug'}}has-error{{/if}}">
+                                <label class="control-label">{{afFieldLabelText name='slug'}}</label>
+                                {{> afFieldInput name='slug' class="form-control" }}
+                            </div>
+                        </div><!-- col-sm-6 -->
+                    </div><!-- row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-groups {{#if afFieldIsInvalid name='desc'}}has-error{{/if}}">
+                                <label class="control-label">{{afFieldLabelText name='desc'}}</label>
+                                {{> afFieldInput name='desc' class="form-control" }}
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- panel-body -->
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/autoForm}}
+</template>

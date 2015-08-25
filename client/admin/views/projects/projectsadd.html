@@ -1,0 +1,107 @@
+<template name="projectsadd">
+    {{! #autoForm id="addProjectForm" type="method" meteormethod="addProject" collection="Projects"}}
+
+        <div class="row">
+            {{#autoForm id="addProjectForm" type="method" meteormethod="addProject" collection="Projects"}}
+            <div class="col-md-9">
+        <div class="panel panel-dark">
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a href="" class="panel-close">&mdash;</a>
+                    <a href="" class="minimize">x</a>
+                </div>
+                <h4 class="panel-title">Add Project</h4>
+                <p>You can add works in progress and uncheck the <code>Active</code> box to save this project as a draft.</p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="error" style="display: block;">
+                        {{#if afFieldIsInvalid name='name'}}<label for="title" class="error">You have to name the project</label>{{/if}}
+                        {{#if afFieldIsInvalid name='slug'}}<label for="slug" class="error">The slug should be filled in for SEO</label>{{/if}}
+                        {{#if afFieldIsInvalid name='assccolor'}}<label for="assccolor" class="error">What colors of stone were used here?</label>{{/if}}
+                        {{#if afFieldIsInvalid name='asscprod'}}<label for="asscprod" class="error">It helps if you can associate what the picture is showing with the products we offer</label>{{/if}}
+                        {{#if afFieldIsInvalid name='category'}}<label for="category" class="error">Please select a category</label>{{/if}}
+                        {{#if afFieldIsInvalid name='desc'}}<label for="desc" class="error">Please say a little about this project</label>{{/if}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{> afFieldInput name='active'}}
+                    </div>
+                </div>
+                <div class="row mb40">
+                    <div class="col-sm-6">
+                        <div class="form-group  {{#if afFieldIsInvalid name='name'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='name'}}</label>
+                            {{> afFieldInput name='name'}}
+                            {{! > afQuickField name='name' autofocus='' label=false }}
+                        </div>
+                    </div><!-- col-sm-6 -->
+                    <div class="col-sm-6">
+                        <div class="form-group  {{#if afFieldIsInvalid name='slug'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='slug'}}</label>
+                            {{> afFieldInput name='slug'}}
+                        </div>
+                    </div><!-- col-sm-6 -->
+                </div><!-- row -->
+                <div class="row mb40">
+                    <div class="col-sm-4">
+                        <div class="form-group  {{#if afFieldIsInvalid name='category'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='category'}}</label>
+                            {{#if subsReady }}
+                                {{> afFieldInput name='category' type='select' options=categories}}
+                            {{/if}}
+                        </div>
+                    </div><!-- col-sm-4 -->
+                    <div class="col-sm-4">
+                        <div class="form-group  {{#if afFieldIsInvalid name='asscprod'}}has-error{{/if}}">
+                            <label class="control-label">{{afFieldLabelText name='asscprod'}}</label>
+                            {{#if subsReady }}
+                            {{> afFieldInput name='asscprod' type='select-multiple' options=products}}
+                            {{/if}}
+                        </div>
+                    </div><!-- col-sm-4 -->
+                    <div class="col-sm-4">
+                        <div class="form-group  {{#if afFieldIsInvalid name='assccolor'}}has-error{{/if}}">
+                            <label class="control-label" for="assccolor">{{afFieldLabelText name='assccolor'}}</label>
+                            {{#if subsReady }}
+                                {{> afFieldInput name='assccolor' type='select-multiple' options=colors}}
+                            {{/if}}
+                        </div>
+                    </div><!-- col-sm-4 -->
+                </div><!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group  {{#if afFieldIsInvalid name='desc'}}has-error{{/if}}">
+                            <label class="control-label" for="desc">{{afFieldLabelText name='desc'}}</label>
+                            {{> afFieldInput name='desc' }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group {{#if afFieldIsInvalid name='images'}}has-error{{/if}}">
+                            <label class="control-label" for="images">{{afFieldLabelText name='images'}}</label>
+                            {{> afFieldInput  name="images" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">Reset</button>
+            </div><!-- panel-footer -->
+        </div><!-- panel-default -->
+        </div>
+    {{/autoForm}}
+            <div class="col-md-3">
+                <div class="panel panel-dark">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Category</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{> quickForm type="insert" id="qfAddCategories" collection="Categories"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</template>

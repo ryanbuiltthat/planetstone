@@ -1,0 +1,10 @@
+<template name="bracketCheckboxDefault">
+    <div class="af-checkbox-group" data-schema-key="color">
+        {{#each this.items}}
+        <div class="col-sm-4 ckbox ckbox-default">
+            <input type="checkbox" value="{{this.value}}" id="chk_{{this.value}}" />
+            <label for="chk_{{this.value}}">{{this.label}}</label>
+        </div>
+        {{/each}}
+    </div>
+</template>

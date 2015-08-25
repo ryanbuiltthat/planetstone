@@ -1,0 +1,10 @@
+<template name="bracketRadioSuccess">
+    <div class="af-radio-group" {{dsk}}>
+        {{#each this.items}}
+            <div class="col-xs-4 rdio rdio-success">
+                <input type="radio" name="type" value="{{this.value}}" id="type_{{this.value}}" />
+                <label for="type_{{this.value}}">{{this.label}}</label>
+            </div>
+        {{/each}}
+    </div>
+</template>

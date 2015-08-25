@@ -1,0 +1,18 @@
+<template name="addProductImage">
+    <main class="o-main" role="main">
+        <div class="o-row">
+            <div class="one-half">
+                <h2>Add Product</h2>
+                {{#autoForm id="insertImages" type="insert" collection="Products" }}
+                    {{> afQuickField name="name"}}
+                    {{> afQuickField name="color"}}
+                    {{> afQuickField name="type"}}
+                    {{> afQuickField name="desc"}}
+                    {{> afQuickField name="images" type="cfs-file" collection="productImages"}}
+                    <hr />
+                        <button type="submit">Submit</button>
+                {{/autoForm}}
+            </div>
+        </div>
+    </main>
+</template>

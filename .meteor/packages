@@ -1,0 +1,47 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+kadira:flow-router
+fortawesome:fontawesome
+kadira:blaze-layout
+aldeed:simple-schema
+aldeed:collection2
+aldeed:autoform
+cfs:standard-packages
+cfs:s3
+cfs:gridfs
+msavin:jetsetter
+isotope:isotope
+aldeed:tabular
+cfs:filesystem
+less
+mizzao:user-status
+accounts-base
+accounts-password
+mizzao:timesync
+tmeasday:publish-counts
+kadira:dochead
+dburles:collection-helpers
+reactive-var
+reywood:publish-composite
+meteorhacks:unblock
+alanning:roles
+service-configuration
+http
+email
+meteorhacks:ssr
+adain:meteor-server-file
+cfs:ui
+cfs:graphicsmagick
+ongoworks:security
+cfs:autoform
+cfs:access-point
+momentjs:moment
+msavin:mongol
+meteorhacks:subs-manager
+iamkevingreen:imagesloaded
+underscore
