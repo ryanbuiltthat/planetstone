@@ -72,7 +72,7 @@ Schemas.Project = new SimpleSchema({
         autoform: {
             afFieldInput: {
                 type: "cfs-files",
-                collection: "images"
+                collection: "projectimages"
             }
         },
         optional: true

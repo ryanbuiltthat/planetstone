@@ -785,7 +785,7 @@ body.s-front{
     }
     figcaption {
       text-align: center;
-      padding: 30px;
+      padding: 20px;
       position: absolute;
       top: 0;
       left: 0;
@@ -800,11 +800,23 @@ body.s-front{
       -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
       box-shadow: 0 0 10px rgba(0, 0, 0, .4);
       dt {
-        padding: 0 0 27px;
+        padding: 0 0 13px;
       }
       dd {
         width: 100%;
         float: left;
+      }
+      dd.att {
+        width: 45%;
+      }
+      dd.att.left{
+        float: left;
+      }
+      dd.att.right {
+        float: right;
+      }
+      dd:first-of-type {
+        opacity: 0.65;
       }
       dd:last-of-type {
         padding-left: 10px;
@@ -813,7 +825,7 @@ body.s-front{
         position: absolute;
         left: 0;
         height: 23px;
-        border-left: 1px solid #ddd;
+        //border-left: 1px solid #ddd;
       }
     }
     figcaption:before {
@@ -1562,7 +1574,7 @@ body.s-front{
     }
   }
   .hentry .meta, .item dd {
-    border-top: 1px solid #ddd;
+    //border-top: 1px solid #ddd;
   }
   .summary dd, .summary dt {
     float: left;

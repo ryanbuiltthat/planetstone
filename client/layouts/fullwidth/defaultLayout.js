@@ -7,7 +7,7 @@ Template.defaultLayout.onCreated(function(){
 });
 Template.defaultLayout.onRendered(function() {
     //
-    sailor.load();
+    //sailor.load();
 
     // Hide preloader
     //$(document).on('ready', function(){

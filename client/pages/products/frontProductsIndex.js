@@ -10,7 +10,12 @@ Template.frontProductsIndex.onCreated(function(){
     })
 });
 Template.frontProductsIndex.onRendered(function(){
-       Meteor.setTimeout(function() {
+    // Need to set a small delay for sub to init
+    Meteor.setTimeout(function(){
+        return $('input[type=checkbox]').uniform();
+    },800);
+
+    Meteor.setTimeout(function() {
             $("#products").isotope({
                 itemSelector: '.item',
                 layoutMode: 'fitRows',
@@ -20,14 +25,13 @@ Template.frontProductsIndex.onRendered(function(){
                 },
                 sortBy: "name",
             });
-        }, 5500);
-    //});
+        }, 2500);
+
+    // Style select
+    this.$('select').uniform();
 
     // Hide Filter show button
     $('.filter-show').hide(500);
-
-
-
 
 
 });
@@ -39,7 +43,7 @@ Template.frontProductsIndex.helpers({
 
         return Template.instance().ready.get();
     },
-    'getColors': function(colors){
+    'getDisplayColors': function(colors){
         //console.log(JSON.stringify(color));
         var out = "";
         var colorOut = "";
@@ -47,6 +51,17 @@ Template.frontProductsIndex.helpers({
             colorOut = Colors.findOne({_id: color}, {fields: {title: 1}});
             out += ", "+colorOut.title;
         });
+        out = out.replace(/^,/, '');
+        return out;
+    },
+    getClassColors: function(colors){
+        var out = "";
+        var colorOut = "";
+        _.each(colors, function (color) {
+            colorOut = Colors.findOne({_id: color}, {fields: {title: 1}});
+            out += colorOut.title.replace(/ /g,"_")+" ";
+        });
+        //out = out.replace(/^,/, '');
         return out;
     },
     'product':function(){
@@ -55,9 +70,12 @@ Template.frontProductsIndex.helpers({
     'types': function(){
         return Types.find();
     },
-    'productColors': function(product){
+    'filterColors': function(){
         //console.log("product "+product);
-        return Colors.find({_id: product.color},{fields: {title: 1}});
+        return Colors.find();
+    },
+    filterTitleHelper: function(str){
+        return str.replace(/ /g,"_");
     },
     'productType':function(id){
         var productType = Types.findOne({_id: id});
@@ -71,44 +89,21 @@ Template.frontProductsIndex.events({
     'change [type="checkbox"]':function(e){
         var self = $(e.currentTarget);
         //console.log(self.attr("data-filter"));
-        $checkboxes = $(".search-filter").find("input[type='checkbox']");
-        $checkboxes.change(function(){
+        //$checkboxes = $(".search-filter").find("input[type='checkbox']");
+        self.change(function(){
             var filters = [];
             // get checked checkboxes values
-            $checkboxes.filter(':checked').each(function(){
+            self.filter(':checked').each(function(){
+                var filterValue = self.attr("data-filter");
+                /**
+                 * TODO: exclusionary filter setup for types
+                 */
                 filters.push( self.attr("data-filter") );
             });
-            // ['.red', '.blue'] -> '.red, .blue'
             filters = filters.join(', ');
             $("#products").isotope({ filter: filters });
         });
     },
-    //'load #products':function(e){
-        //var self = $(e.currentTarget);
-        //self.isotope({
-        //    // options
-        //    itemSelector: '.item',
-        //    layoutMode: 'fitRows',
-        //    getSortData: {
-        //        name: ".name",
-        //        type: ".type",
-        //    },
-        //    sortBy: "name",
-        //
-        //    // slow transitions
-        //    transitionDuration: '0.45s',
-        //    hiddenStyle: {
-        //        opacity: 0,
-        //        //transform: 'scale(0.5)'
-        //    },
-        //    visibleStyle: {
-        //        opacity: 1,
-        //        //transform: 'scale(1)'
-        //    }
-        //});
-        //self.isotope('layout');
-        //console.log("grid loaded");
-    //},
     'change .sort-select':function(e){
         //console.log("sort-select: "+ e.currentTarget.value);
         var sortValue = e.currentTarget.value;

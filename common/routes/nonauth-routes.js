@@ -14,6 +14,12 @@ nonauth.route('/products', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProductsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/projects', {
+    name: 'projects',
+    action: function(params) {
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsIndex", footer: "defaultFooter" });
+    }
+});
 nonauth.route('/contact', {
     name: 'contact',
     action: function(params) {
