@@ -42,13 +42,12 @@ Template.frontProductsIndex.helpers({
     'getColors': function(colors){
         //console.log(JSON.stringify(color));
         var out = "";
-        var colorIn = colors.split(",");
-        //var colorArr = [];
-        //_.each(colorIn, function (color) {
-        //    colorArr.push(Colors.find({_id: color}, {fields: {title: 1}}));
-        //});
-        console.log(colorIn);
-        return;
+        var colorOut = "";
+        _.each(colors, function (color) {
+            colorOut = Colors.findOne({_id: color}, {fields: {title: 1}});
+            out += ", "+colorOut.title;
+        });
+        return out;
     },
     'product':function(){
         return Products.find();
@@ -71,7 +70,7 @@ Template.frontProductsIndex.events({
 
     'change [type="checkbox"]':function(e){
         var self = $(e.currentTarget);
-        console.log(self.attr("data-filter"));
+        //console.log(self.attr("data-filter"));
         $checkboxes = $(".search-filter").find("input[type='checkbox']");
         $checkboxes.change(function(){
             var filters = [];
@@ -110,11 +109,8 @@ Template.frontProductsIndex.events({
         //self.isotope('layout');
         //console.log("grid loaded");
     //},
-    'load img':function(e){
-      console.log("image loaded ");
-    },
     'change .sort-select':function(e){
-        console.log("sort-select: "+ e.currentTarget.value);
+        //console.log("sort-select: "+ e.currentTarget.value);
         var sortValue = e.currentTarget.value;
         $("#products").isotope({ sortBy: sortValue });
     },
