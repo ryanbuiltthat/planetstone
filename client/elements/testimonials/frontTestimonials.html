@@ -1,0 +1,17 @@
+<template name="frontTestimonials">
+    <section class="testimonials">
+        <div id="cbp-qtrotator" class="cbp-qtrotator">
+        {{#if subsReady }}
+            {{#each testimonial }}
+            <div class="cbp-qtcontent">
+                <div class="wrap">
+                    <!--<h6>WOW – This is the Best Theme I have ever seen.</h6>-->
+                    <blockquote><p>{{body}}</p></blockquote>
+                    <footer>{{author}}</footer>
+                </div>
+                </div>
+            {{/each}}
+        {{/if}}
+            </div>
+    </section>
+</template>

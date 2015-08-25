@@ -1,0 +1,43 @@
+<template name="frontstonesquad">
+    <main class="o-main" role="main">
+        <header class="intro">
+            <div class="wrap" style="text-align: center;">
+                <h1>The Stone Squad</h1>
+                <p>Our expertise in stone products and design comes naturally. We simply love creating beautiful environments &mdash; either residential or commercial &mdash; by combining lustrous marble, granite or the newest in man-made specialty stone with our quality craftsmanship for a stunning result.</p>
+            </div>
+        </header>
+        <div class="content crew">
+            {{#if subsReady}}
+            {{#each member}}
+                <!-- Item -->
+            <article class="one-fourth item heightfix">
+                <figure><img src="http://placehold.it/760x760" alt="crew"></figure>
+                <div class="box-white">
+                    <h2>{{name}}</h2>
+                    <span class="sub">Position/Quote Placeholder{{position}}</span>
+                    <p>{{bio}}</p>
+                    <!--<div class="skills">-->
+                        <!--<h3>Language proficiency</h3>-->
+                        <!--<div class="skill">English</div>-->
+                        <!--<div class="meter"><span style="width: 100%">100%</span></div>-->
+                        <!--<div class="skill">Italian</div>-->
+                        <!--<div class="meter"><span style="width: 80%">80%</span></div>-->
+                        <!--<div class="skill">German</div>-->
+                        <!--<div class="meter"><span style="width: 70%">70%</span></div>-->
+                    <!--</div>-->
+                    <!--<h3>Get in touch</h3>-->
+                    <!--<a class="circle small" href="#" title="phone"><i class="fa fa-phone fa-fw"></i></a>-->
+                    <!--<a class="circle small" href="#" title="email"><i class="fa fa-envelope fa-fw"></i></a>-->
+                    <!--<a class="circle small" href="#" title="googleplus"><i class="fa fa-google-plus fa-fw"></i></a>-->
+                    <!--<a class="circle small" href="#" title="twitter"><i class="fa fa-twitter fa-fw"></i></a>-->
+                    <!--<a class="circle small" href="#" title="linkedin"><i class="fa fa-linkedin fa-fw"></i></a>-->
+                </div>
+            </article>
+            <!-- //Item -->
+                {{/each}}
+            {{/if}}
+
+        </div>
+        {{> frontTestimonials }}
+    </main>
+</template>

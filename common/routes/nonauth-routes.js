@@ -20,6 +20,18 @@ nonauth.route('/projects', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/about-us/stone-squad', {
+    name: 'stonesquad.html',
+    action: function(params){
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
+    }
+});
+//nonauth.route('/about-us/customer-experiences', {
+//    name: 'tesetimonials',
+//    action: function(params){
+//        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
+//    }
+//});
 nonauth.route('/contact', {
     name: 'contact',
     action: function(params) {

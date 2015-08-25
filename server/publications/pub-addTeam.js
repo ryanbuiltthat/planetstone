@@ -4,3 +4,6 @@
 Meteor.publish('addTeams', function(){
     return Teams.find();
 });
+Meteor.publish('frontTeam', function(){
+    return Teams.find();
+});
