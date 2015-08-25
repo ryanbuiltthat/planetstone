@@ -25,6 +25,7 @@ Schemas.Project = new SimpleSchema({
     category: {
         label: "Category",
         type: String,
+        optional: true
     },
     desc: {
         type: String,
