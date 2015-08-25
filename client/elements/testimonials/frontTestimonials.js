@@ -1,9 +1,6 @@
 /**
  * Created by Ryan on 8/25/2015.
  */
-
-
-
 Template.frontTestimonials.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
