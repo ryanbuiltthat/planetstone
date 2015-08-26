@@ -10,17 +10,15 @@ Template.frontProductsIndex.onCreated(function(){
     });
 });
 Template.frontProductsIndex.onRendered(function(){
+
     // Need to set a small delay for sub to init
     Meteor.setTimeout(function(){
         // Run Houzz script
         //return $('input[type=checkbox]').uniform();
         planet_stone.init();
         planet_stone.load();
+
     },600);
-
-
-
-
 
     // Isotope
     Meteor.setTimeout(function() {
@@ -36,10 +34,13 @@ Template.frontProductsIndex.onRendered(function(){
         }, 2500);
 
     // Style select
-    this.$('select').uniform();
+    //this.$('select').uniform();
 
     // Hide Filter show button
     $('.filter-show').hide(500);
+
+    // Get the effects running
+    new WOW().init();
 
 
 });
@@ -49,7 +50,6 @@ Template.frontProductsIndex.helpers({
         return imageOut;
     },
     'subsReady':function() {
-
         return Template.instance().ready.get();
     },
     'getTitle':function(){
@@ -87,7 +87,7 @@ Template.frontProductsIndex.helpers({
     'product':function(){
         return Products.find();
     },
-    'types': function(){
+    'filterTypes': function(){
         return Types.find();
     },
     'filterColors': function(){
@@ -97,9 +97,18 @@ Template.frontProductsIndex.helpers({
     filterTitleHelper: function(str){
         return str.replace(/ /g,"_");
     },
-    'productType':function(id){
+    'getDisplayType':function(id){
         var productType = Types.findOne({_id: id});
         var out = productType.title;
+        return out;
+    },
+    // Get the product types that do NOT match
+    'excludeTypes': function(id){
+        var out = "";
+        var ex =  Types.find( { _id: { $ne: id } }).map(function(c){
+            out += ":not(."+ c._id+")";
+        });
+        if(ex)
         return out;
     },
     'getSharePageURL': function(){
@@ -113,15 +122,11 @@ Template.frontProductsIndex.helpers({
         return imgURL;
     }
 });
-
+filters = [];
 Template.frontProductsIndex.events({
-
-    'change [type="checkbox"]':function(e){
+    'change input[type="checkbox"]':function(e){
         var self = $(e.currentTarget);
-        //console.log(self.attr("data-filter"));
-        //$checkboxes = $(".search-filter").find("input[type='checkbox']");
-        self.change(function(){
-            var filters = [];
+            filters = [];
             // get checked checkboxes values
             self.filter(':checked').each(function(){
                 var filterValue = self.attr("data-filter");
@@ -130,25 +135,13 @@ Template.frontProductsIndex.events({
                  */
                 filters.push( self.attr("data-filter") );
             });
+            //filters.push ( Session.get("excludedFilter" ) );
             filters = filters.join(', ');
+            console.log(filters);
             $("#products").isotope({ filter: filters });
-        });
     },
     'change .sort-select':function(e){
-        //console.log("sort-select: "+ e.currentTarget.value);
         var sortValue = e.currentTarget.value;
         $("#products").isotope({ sortBy: sortValue });
-    },
-    'click .filter-hide':function(e){
-        e.preventDefault();
-        $('aside.fixed').slideUp(500);
-        $('.filter-show').show(500);
-        $('.offset').css('margin-top', '0');
-    },
-    'click .filter-show': function(e){
-        e.preventDefault();
-        $('aside.fixed').slideDown(500);
-        $('.filter-show').hide(500);
-        $('.offset').css('margin-top', '197px');
     }
 });

@@ -11,20 +11,14 @@ Template.frontSingleProduct.onCreated(function(){
 });
 
 Template.frontSingleProduct.onRendered(function(){
-    // TABS
-    //$('.content .tab-content').hide().first().show();
-    //$('.content .tabs li:first').addClass('current');
-    //
-    //$('.content .tabs a').on('click', function(e) {
-    //    e.preventDefault();
-    //    $(this).closest('li').addClass('current').siblings().removeClass('current');
-    //    $($(this).attr('href')).show().siblings('.tab-content').hide();
-    //});
-    //
-    //var hash = $.trim(window.location.hash);
-    //if (hash) $('.content .tabs a[href$="' + hash + '"]').trigger('click');
-    planet_stone.init();
-    planet_stone.load();
+
+    Meteor.setTimeout(function(){
+        // Run Houzz script
+        //return $('input[type=checkbox]').uniform();
+        planet_stone.init();
+        planet_stone.load();
+
+    },250);
 });
 
 Template.frontSingleProduct.helpers({

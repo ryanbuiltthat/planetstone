@@ -2,7 +2,7 @@
  * Created by Ryan on 8/21/2015.
  */
 
-loggedIn.route('/dashboard', {
+loggedIn.route('/', {
     name: 'dashboard',
     action: function() {
         return BlazeLayout.render('defaultAdminLayout', { main: '' });

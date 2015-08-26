@@ -1,9 +1,45 @@
 /* 21 FAQ */
-.accordion 					{background:#fff;border:1px solid #ddd;display:inline-block;width:100%;margin:10px 0 45px;}
-.accordion:last-child		{margin-bottom:0;}
-.accordion dt 				{padding:25px 30px;color:#515E64;font:500 17px 'Raleway',Arial,Helvetica,sans-serif;border-top:1px solid #ddd;cursor:pointer;position:relative;}
-.accordion dt:after			{content:"+";position:absolute;top:15px;right:30px;font:normal 35px 'Times New Roman', serif;color:rgba(189,189,174,.7);}
-.accordion .expanded			{color:#BA9B6E;}
-.accordion .expanded:after	{content:"\2013";top:12px;color:#1b589b;}
-.accordion dt:first-of-type 	{border:none;}
-.accordion dd				{padding:0 25px 10px;font:15px/1.5 'Raleway',Arial,Helvetica,sans-serif;color:#515E64;}
+.s-front {
+  .accordion {
+    background: #fff;
+    border: 1px solid #ddd;
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0 45px;
+  }
+  .accordion:last-child {
+    margin-bottom: 0;
+  }
+  .accordion dt {
+    padding: 25px 30px;
+    color: #515E64;
+    font: 500 17px 'Raleway', Arial, Helvetica, sans-serif;
+    border-top: 1px solid #ddd;
+    cursor: pointer;
+    position: relative;
+  }
+  .accordion dt:after {
+    content: "+";
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    font: normal 35px 'Times New Roman', serif;
+    color: rgba(189, 189, 174, .7);
+  }
+  .accordion .expanded {
+    color: #BA9B6E;
+  }
+  .accordion .expanded:after {
+    content: "\2013";
+    top: 12px;
+    color: #1b589b;
+  }
+  .accordion dt:first-of-type {
+    border: none;
+  }
+  .accordion dd {
+    padding: 0 25px 10px;
+    font: 15px/1.5 'Raleway', Arial, Helvetica, sans-serif;
+    color: #515E64;
+  }
+}
