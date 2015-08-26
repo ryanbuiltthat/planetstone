@@ -14,12 +14,30 @@ nonauth.route('/products', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProductsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/products/:id', {
+   //name: 'singleproduct'
+    action: function(params) {
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontSingleProduct", footer: "defaultFooter" });
+    }
+});
 nonauth.route('/projects', {
     name: 'projects',
     action: function(params) {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/about-us/stone-squad', {
+    name: 'stonesquad',
+    action: function(params){
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
+    }
+});
+//nonauth.route('/about-us/customer-experiences', {
+//    name: 'tesetimonials',
+//    action: function(params){
+//        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
+//    }
+//});
 nonauth.route('/contact', {
     name: 'contact',
     action: function(params) {

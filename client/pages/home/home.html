@@ -1,7 +1,7 @@
 <template name="home">
-    <main class="o-main" role="main">
+    <main class="main" role="main">
     <!-- Hero -->
-    <div class="c-hero">
+    <div class="hero">
         <article>
             <h1 class="wow fadeInDown">Where Your Vision Becomes Reality</h1>
             <a id="heroCTAab" href="#" title="" class="anchor button white medium wow fadeInUp">CTA Label</a>
@@ -9,8 +9,8 @@
     </div>
     <!-- //Hero -->
     <!-- Tab navigation -->
-    <nav class="o-nav c-tabs four" role="navigation">
-        <ul class="u-wrap">
+    <nav class="nav tabs four" role="navigation">
+        <ul class="wrap">
             <li><a href="#" title="">
                 <img src="img/samples/lineicons/measure.png" alt="" /> Our Story<br ><span style="margin:0;opacity:0.6;font-size:1em;font-weight:200;line-height:1;">Custom Design Service</span>
             </a></li>
@@ -31,5 +31,95 @@
             <h2>Plan It with Planet</h2>
         </div>
     </section>
+        <!-- planet it section -->
+        <section class="white icons">
+            <div class="wrap" style="width:1170px;max-width:94%;display:block;">
+                <div class="row">
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_comment_dream"></span>
+                        </a>
+                        <h4><a href="#">Drawing. Dimensions. Vision.</a></h4>
+                        <p>First step in our "Plan It with Planet" process is for you to come into the showroom.  It's an exciting time and we love hearing and seeing everything about your vision. </p>
+                        <!--<a href="#">Learn More</a>-->
+                    </div>
+                    <!-- //Item -->
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn" data-wow-delay=".2s">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_geography_earth"></span>
+                        </a>
+                        <h4><a href="#">Inspiration Overview</a></h4>
+                        <p>This is where we consult with our customers to decipher what it is that YOU like.  Bring in your <a href="http://pinterest.com">Pinterest</a> ideas, <a href="http://houzz.com">Houzz</a> photos and any other images that inspire you - and a member of our Stone Squad will help you begin to organize it into a feasible plan.</p>
+                    </div>
+                    <!-- //Item -->
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn" data-wow-delay=".4s">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_tags_2"></span>
+                        </a>
+                        <h4><a href="#">Expert Estimate</a></h4>
+                        <p>Here's where the Stone Squad brings the knowledge.  Our team will present you with all of your options.  Our Expert Estimate will educate YOU on the details - sink configuration, edge detail, faucet, sealer and the care for your stone.</p>
+                    </div>
+                    <!-- //Item -->
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn" data-wow-delay=".6s">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_favorite_add_2"></span>
+                        </a>
+                        <h4><a href="#">Loving Your Custom Plan</a></h4>
+                        <p>We go into every project with the goal of creating custom success.  This means that the customer gets a result that is tailored to their needs.  We aren't happy unless you are happy with the price, your selections, be and your space.   <strong>We want you to be inspired by your custom plan and finished product.</strong></p>
+                    </div>
+                    <!-- //Item -->
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_drill_perforator"></span>
+                        </a>
+                        <h4><a href="#">Fabrication</a></h4>
+                        <p>Our fabricating is done in house by our natural stone artisans.  Our team looks for any issues or quarks in your stone and every cut is important.  Our Stone Squad truly cares about the finished job -- we cut for precision and we pay attention to every detail.  Once the stone is cut and ready for fabrication, our in-house inspection team reviews the project.  Each department double-checks the department before and if any member of the Stone Squad feels that we need to make adjustments or more cuts -- we do so at this time.</p>
+                    </div>
+                    <!-- //Item -->
+
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn" data-wow-delay=".2s">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_truck_3"></span>
+                        </a>
+                        <h4><a href="#">Delivery and Installation</a></h4>
+                        <p>The Stone Squad gets ready for delivery and installation by sealing your stone before we arrive at your home.  Sealing your stone before we enter your home allows for perfect application and it also minimizes the fumes in your home.  We also perform one last quality control check before the stone arrives.  Generally Planet Stone can install your countertops within 10 days, from template to install.  Once the countertops are installed, our Stone Squad installer walks you through the final installation and makes sure that you happy with the end result.</p>
+                    </div>
+                    <!-- //Item -->
+
+                    <!-- Item -->
+                    <div class="one-third wow fadeIn" data-wow-delay=".2s">
+                        <a href="#" class="circle large border">
+                            <span class="icojam_sun"></span>
+                        </a>
+                        <h4><a href="#">Care and Maintenance</a></h4>
+                        <p>Taking care of natural stone is a necessity.  Planet Stone offers Dry Treat sealer.  You seal one time and it is warrantied.</p>
+                    </div>
+                    <!-- //Item -->
+                </div>
+            </div>
+        </section>
+        <!-- //Services -->
+        <!-- photo cta -->
+        <section class="photo">
+            <div class="wrap center">
+                <h2>"We touch every job that comes through".</h2>
+                <p>No job gets passed the saw without me touching it.</p>
+                <a href="#" title="Find out more" class="button white medium">Start Your Plan</a>
+            </div>
+        </section>
+        <!-- testimonials begin -->
+        {{> frontTestimonials }}
         </main>
 </template>

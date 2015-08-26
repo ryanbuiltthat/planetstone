@@ -1,5 +1,5 @@
 <template name="frontProductsIndex">
-    <main class="o-main" role="main">
+    <main class="main" role="main">
         <aside class="full-width sidebar sidebar-top fixed">
             <!-- Refine search results -->
             <div class="search-filter">
@@ -109,11 +109,54 @@
                                 <!--</dd>-->
                             </dl>
                             <!--<div class="price">Asking price  <strong>50.000.000$</strong></div>-->
-                            <a href="{{_id}}" title="Creama Bordeaux" class="button gold small">Learn more</a>
+                            <a href="/products/{{_id}}" title="{{title}}" class="button gold btn btn-xs">Learn more</a>
+                            <ul class="item-share">
+                                    <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-question"></i></a></li>
+                                    <li>
+                                    {{#each getImages images }}
+                                        <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
+                                    {{/each}}
+                                    </li>
+                                    <li>
+                                        {{#each getImages images }}
+                                        <a class="houzz-share-button"
+                                           data-url="http://planet.betabuild.com/products/{{ getId }}/"
+                                           data-hzid="33569"
+                                            data-locale="en-US"
+                                           data-title="{{ getTitle }}"
+                                           data-img="https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/{{_id}}-{{name}}" alt="{{name}}"
+                                           data-desc="{{ getDesc }}"
+                                           data-category="Kitchen Countertops"
+                                           data-showcount="0"
+                                           href="https://www.houzz.com"><i class="fa fa-houzz"></i></a>
+                                        {{/each}}
+                                        </li>
+
+                            </ul>
                         </figcaption>
                     </figure>
                 {{/each}}
             {{/if}}
         </div>
     </main>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Like What You See?</h4>
+                </div>
+                <div class="modal-body">
+                    Enter your email below and let us help you find your inspiration. We'll help you turn a slab of {PRODUCT_NAME} into the countertop of your dreams!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button btn btn-small" data-dismiss="modal">Close</button>
+                    <button type="button" class="button gold btn btn-small">Get Inspired!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

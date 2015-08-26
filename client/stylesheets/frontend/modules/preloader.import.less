@@ -1,0 +1,133 @@
+/* 27 PRELOADER */
+.preloader 			{position:fixed;z-index:999999;background:#fff;width:100%;height:100%;text-align:center;}
+.preloader div		{position:relative;top:50%;left:47%;}
+.preloader div span	{display:block;bottom:0;width: 9px;height: 5px;background:#567aa8;position:absolute;-webkit-animation: preloader 1.5s infinite ease-in-out;-moz-animation: preloader 1.5s infinite ease-in-out;-ms-animation: preloader 1.5s infinite ease-in-out;-o-animation: preloader 1.5s infinite ease-in-out;animation: preloader 1.5s infinite ease-in-out;}
+.preloader div span:nth-child(2)	{left:11px;-webkit-animation-delay: .2s;-moz-animation-delay: .2s;-ms-animation-delay: .2s;-o-animation-delay: .2s;animation-delay: .2s;}
+.preloader div span:nth-child(3)	{left:22px;-webkit-animation-delay: .4s;-moz-animation-delay: .4s;-ms-animation-delay: .4s;-o-animation-delay: .4s;animation-delay: .4s;}
+.preloader div span:nth-child(4)	{left:33px;-webkit-animation-delay: .6s;-moz-animation-delay: .6s;-ms-animation-delay: .6s;-o-animation-delay: .6s;animation-delay: .6s;}
+.preloader div span:nth-child(5)	{left:44px;-webkit-animation-delay: .8s;-moz-animation-delay: .8s;-ms-animation-delay: .8s;-o-animation-delay: .8s;animation-delay: .8s;}
+
+/* Demo 3 from Codrops */
+.preloader h4{
+  font-family: 'Roboto-Slab';
+  font-weight: 200;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  text-transform:capitalize;
+  opacity: 0.6;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.preloader .spinner {
+  /* Size and position */
+  font-size: 100px; /* 1em */
+  width: 1em;
+  height: 1em;
+  margin: 15vh auto;
+  position: relative;
+  top:50%;
+  -o-transform:translateY(-65%);
+  -moz-transform:translateY(-65%);
+  -webkit-transform:translateY(-65%);
+  transform:translateY(-65%);
+
+  /* Styles */
+  list-style: none;
+  border-radius: 50%;
+  border: .01em solid rgba(143,182,225,0.7); /* Subtle white line circling the dots */
+}
+.preloader .spinner li {
+  width: .2em;
+  height: .2em;
+  position: absolute;
+  border-radius: 50%;
+}
+.preloader .spinner li:nth-child(1) {
+  background: #0c6390; /* Blue */
+  top: 0;
+  left: 50%;
+  margin-left: -.1em; /* Width/2 */
+  transform-origin: 50% 250%;
+  animation:
+  rota 1.13s linear infinite,
+  opa 3.67s ease-in-out infinite alternate;
+}
+.preloader .spinner li:nth-child(2) {
+  background: #008589; /* Green */
+  top: 50%;
+  right: 0;
+  margin-top: -.1em; /* Height/2 */
+  transform-origin: -150% 50%;
+  animation:
+  rota 1.86s linear infinite,
+  opa 4.29s ease-in-out infinite alternate;
+}
+.preloader .spinner li:nth-child(3) {
+  background: #2c62a7; /* Med Blue */
+  bottom: 0;
+  left: 50%;
+  margin-left: -.1em; /* Width/2 */
+  transform-origin: 50% -150%;
+  animation:
+  rota 1.45s linear infinite,
+  opa 5.12s ease-in-out infinite alternate;
+}
+.preloader .spinner li:nth-child(4) {
+  background: #0c6390; /* Med+ Blue */
+  top: 50%;
+  left: 0;
+  margin-top: -.1em; /* Height/2 */
+  transform-origin: 250% 50%;
+  animation:
+  rota 1.72s linear infinite,
+  opa 5.25s ease-in-out infinite alternate;
+}
+@keyframes rota {
+  to { transform: rotate(360deg); }
+}
+@keyframes opa {
+  12.0% { opacity: 0.80; }
+  19.5% { opacity: 0.88; }
+  37.2% { opacity: 0.64; }
+  40.5% { opacity: 0.52; }
+  52.7% { opacity: 0.69; }
+  60.2% { opacity: 0.60; }
+  66.6% { opacity: 0.52; }
+  70.0% { opacity: 0.63; }
+  79.9% { opacity: 0.60; }
+  84.2% { opacity: 0.75; }
+  91.0% { opacity: 0.87; }
+}
+
+
+
+
+@-webkit-keyframes preloader {
+  0% 		{height:5px;-webkit-transform:translateY(0px);}
+  25% 	{height:30px;-webkit-transform:translateY(15px);}
+  50% 	{height:5px;-webkit-transform:translateY(0px);}
+  100% 	{height:5px;-webkit-transform:translateY(0px);}
+}
+
+@-moz-keyframes preloader {
+  0% 		{height:5px;-moz-transform:translateY(0px);}
+  25% 	{height:30px;-moz-transform:translateY(15px);}
+  50% 	{height:5px;-moz-transform:translateY(0px);}
+  100% 	{height:5px;-moz-transform:translateY(0px);}
+}
+
+@-ms-keyframes preloader {
+  0% 		{height:5px;-ms-transform:translateY(0px);}
+  25% 	{height:30px;-ms-transform:translateY(15px);}
+  50% 	{height:5px;-ms-transform:translateY(0px);}
+  100% 	{height:5px;-ms-transform:translateY(0px);}
+}
+
+@keyframes preloader {
+  0% 		{height:5px;transform:translateY(0px);}
+  25% 	{height:30px;transform:translateY(15px);}
+  50% 	{height:5px;transform:translateY(0px);}
+  100% 	{height:5px;transform:translateY(0px);}
+}

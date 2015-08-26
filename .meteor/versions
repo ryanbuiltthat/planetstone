@@ -111,6 +111,7 @@ tmeasday:publish-counts@0.7.0
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3
+underscorestring:underscore.string@3.2.0
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3

@@ -1,0 +1,49 @@
+/* 19 DESTINATIONS */
+.boxed 				{text-align:left;overflow:hidden;}
+.boxed figure 			{overflow:hidden;}
+.heightfix img 		{max-width:none;width:100%;height:100%;}
+
+.boxed > article > div 				{position:relative;}
+.boxed > article > div:before 		{content:"";position:absolute;top:10%;left:-15px;width: 0;height: 0;border-style: solid;border-width: 15px 15px 15px 0;border-color: transparent #f1f1f1 transparent transparent;}
+
+.noarrow > article > div:before			{display:none;}
+
+.boxed header 				{width:100%;background:#F4F4F4;padding:15px 7%;color:#787878;font-size:19px;font-weight:300;}
+.details 					{display:table;width:100%;border:1px solid #ddd;border-bottom:none;margin:30px 0;}
+.details div 					{float:left;display:table-cell;width:50%;height:63px;border-bottom:1px solid #ddd;line-height:61px;}
+.details div:nth-child(2n) 	{border-left:1px solid #ddd;}
+.details i,
+.details span 				{color:#5688c6;border-right:1px solid #ddd;height:100%;line-height:61px;padding:0 14px;float:left;font-size:1.4em;width:15%;}
+.details p 					{  min-height: 61px;padding: 15px 15px;float: left;font-size: 0.9rem;line-height: 1;display: block;width: 85%;}
+.details .price 			{color:#2B3A42;font-size:30px;padding:0 16px;font-weight:300;position:relative;}
+.details .price a 			{float:left;position:relative;left:auto;top:50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);margin:0 2px;}
+.details .price a img 		{height:20px;width:auto;}
+.details .price iframe 		{border: none;float: left;position: relative;display: inline-block;height: 20px;width: auto;left: 46px;}
+.details .button 			{min-width:0;width:100%;height:100%;line-height:61px;}
+
+.text 			{overflow:hidden;padding:20px 25px 15px;}
+.text h3 		{font-family:'Raleway',Arial,Helvetica,sans-serif;font-weight:500;}
+.text h3 a 		{color:#444;font-weight:500;}
+.text h3 a:hover,
+.text h3 a:focus 	{color:#006868;}
+.text h4			{font-family:'Raleway',Arial,Helvetica,sans-serif;font-weight:500;padding-bottom:6%;}
+
+.text fieldset > div {padding-bottom:30px;}
+
+.grid2 .text 	{padding:6% 7% 0 !important;}
+.grid2 .text h3 	{padding-bottom:6%;}
+.grid4 .text 	{padding:10% 10% 0 !important;}
+.grid4 .text h3 	{padding-bottom:10%;font-size:inherit;}
+
+.grid4 > article:nth-child(4n) figure,
+.grid4 > article:nth-child(4n-1) figure			{float:right;}
+.grid4 > article:nth-child(4n) > div:before,
+.grid4 > article:nth-child(4n-1) > div:before	{left:auto;right:-15px;border-width: 15px 0 15px 15px;border-color: transparent transparent transparent #f1f1f1;}
+
+.grid2 > article:nth-child(2n) figure 			{float:right;}
+.grid2 > article:nth-child(2n) > div:before		{left:auto;right:-15px;border-width: 15px 0 15px 15px;border-color: transparent transparent transparent #f1f1f1;}
+
+.highlight 			{background:#fff;margin:15px -8% 28px;padding:5% 8% !important;-webkit-box-shadow:0 0 2px rgba(0,0,0,.2);-moz-box-shadow:0 0 2px rgba(0,0,0,.2);box-shadow:0 0 2px rgba(0,0,0,.2);}
+.highlight h4		{font:500 18px 'Raleway',Arial,Helvetica,sans-serif;padding:0 0 4%;}
+.highlight h4 span 	{font-size:22px;float:left;margin:0 8px 0 0;}
+.highlight ul 		{margin:0;}

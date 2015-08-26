@@ -7,14 +7,22 @@ Template.frontProductsIndex.onCreated(function(){
     self.autorun(function(){
         var handle = self.subscribe('frontAllProducts');
         self.ready.set(handle.ready());
-    })
+    });
 });
 Template.frontProductsIndex.onRendered(function(){
     // Need to set a small delay for sub to init
     Meteor.setTimeout(function(){
-        return $('input[type=checkbox]').uniform();
-    },800);
+        // Run Houzz script
+        //return $('input[type=checkbox]').uniform();
+        planet_stone.init();
+        planet_stone.load();
+    },600);
 
+
+
+
+
+    // Isotope
     Meteor.setTimeout(function() {
             $("#products").isotope({
                 itemSelector: '.item',
@@ -37,14 +45,26 @@ Template.frontProductsIndex.onRendered(function(){
 });
 Template.frontProductsIndex.helpers({
     getImages: function (id) {
-        return ProductImages.find({ _id: { $in: id }});
+        var imageOut = ProductImages.find({ _id: { $in: id }});
+        return imageOut;
     },
     'subsReady':function() {
 
         return Template.instance().ready.get();
     },
+    'getTitle':function(){
+        var parent = Template.parentData(1);
+        return parent.name;
+    },
+    'getDesc': function(){
+        var parent = Template.parentData(1);
+        return parent.desc;
+    },
+    'getId': function(){
+      var parent = Template.parentData(1);
+        return parent._id;
+    },
     'getDisplayColors': function(colors){
-        //console.log(JSON.stringify(color));
         var out = "";
         var colorOut = "";
         _.each(colors, function (color) {
@@ -81,6 +101,16 @@ Template.frontProductsIndex.helpers({
         var productType = Types.findOne({_id: id});
         var out = productType.title;
         return out;
+    },
+    'getSharePageURL': function(){
+        var parent = Template.parentData(1);
+        var pageURL = encodeURIComponent("http://planet.betabuild.io/products/"+parent._id);
+        return pageURL;
+    },
+    'getShareImageURL': function(id, name){
+        var parent = Template.parentData(1);
+        var imgURL = encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+id+"-"+name);
+        return imgURL;
     }
 });
 
