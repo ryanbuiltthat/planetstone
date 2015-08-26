@@ -14,6 +14,12 @@ nonauth.route('/products', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProductsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/products/:id', {
+   //name: 'singleproduct'
+    action: function(params) {
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontSingleProduct", footer: "defaultFooter" });
+    }
+});
 nonauth.route('/projects', {
     name: 'projects',
     action: function(params) {
@@ -21,7 +27,7 @@ nonauth.route('/projects', {
     }
 });
 nonauth.route('/about-us/stone-squad', {
-    name: 'stonesquad.html',
+    name: 'stonesquad',
     action: function(params){
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
     }

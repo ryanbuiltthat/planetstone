@@ -173,7 +173,7 @@
     float:right;
 }
 .quickFormDrawer .search-hide{visibility:hidden;}
-.quickFormDrawer .u-wrap div{
+.quickFormDrawer .wrap div{
     width:25%;
     float:left;
 }
