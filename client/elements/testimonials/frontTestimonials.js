@@ -22,5 +22,9 @@ Template.frontTestimonials.helpers({
     },
     'testimonial': function(){
         return Testimonials.find({});
+    },
+    'shortText': function(txt){
+        var out = s.truncate(txt, 350);
+        return out;
     }
 });
