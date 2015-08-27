@@ -1,0 +1,101 @@
+<template name="frontSingleProject">
+    <main class="main" role="main">
+        {{#if subsReady }}
+        {{#each project }}
+            <header class="intro dark">
+            <h1>{{ title }}</h1>
+            <p>{{ desc }}</p>
+            <a href="#tab-navigation" title="" class="button white medium">Get More Info</a>
+        </header>
+        <div class="gallery" id="gallery">
+            {{#each projectImage images }}
+            <!-- Item -->
+            <figure class="one-fourth" data-src="https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/{{_id}}-{{name}}">
+                <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/projectimages/{{_id}}-{{name}}" alt="{{name}}">
+                <figcaption>
+                    <span class="icojam_zoom_in"></span>
+                    <div>
+                        <!--<h5></h5>-->
+                        <!--<p></p>-->
+                    </div>
+                </figcaption>
+            </figure>
+            <!-- //Item -->
+            {{/each}}
+        </div>
+            <!-- /gallery -->
+            <!-- Content -->
+        <div class="content">
+            <!-- Tab navigation -->
+            <nav class="tabs one" role="navigation" id="tab-navigation">
+                <ul class="wrap">
+                    <li><a href="#tab1" title="Contact Stone Squad">
+                        <span class="icojam_target"></span> Contact Stone Squad
+                    </a></li>
+                </ul>
+            </nav>
+            <!-- //Tab navigation -->
+
+            <!-- Wrapper -->
+            <div class="wrap">
+
+            <!-- Tab Content-->
+            <article class="tab-content" id="tab1">
+                <div class="row">
+                    <!-- ThreeFourth -->
+                    <div class="one-half">
+                        <h2>Contact the Stone Squad</h2>
+                        <p>We know you have questions. Just ask a Planet Stone Design Consultant for advice. We are happy to discuss your project, explain our materials and services, and ensure a successful result.</p>
+                        <p><strong><em>All fields are required.</em></strong></p>
+
+                        <form class="row">
+                            <fieldset>
+                                <div class="full-width">
+                                    <label for="name">First Name</label>
+                                    <input type="text" id="name">
+                                </div>
+
+                                <!--<div class="one-half">-->
+                                <!--<label for="lastname">Last Name</label>-->
+                                <!--<input type="text" id="lastname" />-->
+                                <!--</div>-->
+
+                                <div class="one-half">
+                                    <label for="phone">Phone</label>
+                                    <input type="number" id="phone" class="uniform-input number">
+                                </div>
+
+                                <div class="one-half">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" id="email">
+                                </div>
+
+                                <div class="full-width">
+                                    <label>Your message</label>
+                                    <textarea></textarea>
+                                </div>
+
+                                <div class="full-width">
+                                    <a href="#" title="Send inquiry" class="button gold large">Send inquiry</a>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!-- //OneHalf -->
+
+                    <!-- OneFourth -->
+                    <aside class="one-half sidebar sidebar-right">
+                        <div class="widget">
+                            <div class="border"><img src="/img/stone-squad.jpg" alt="Planet Stone Marble &amp; Granite Stone Squad!">
+                            </div>    </div>
+                    </aside>
+                    <!-- //OneFourth -->
+                </div>
+            </article>
+            <!-- //Tab Content-->
+            </div>
+            </div>
+            {{/each}}
+        {{/if}}
+    </main>
+</template>

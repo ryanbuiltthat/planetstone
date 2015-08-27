@@ -4,7 +4,12 @@
 Schemas.Category = new SimpleSchema({
     title: {
         type: String,
-        label: "Product Category",
+        label: "Category",
+        optional: true,
+    },
+    slug: {
+        type: String,
+        label: "Slug",
         optional: true,
     },
     createdAt: {

@@ -26,6 +26,7 @@ planet_stone = {
         });
     },
     init: function () {
+        console.log("ps init");
         //SEARCH FILTER
         $('.filter-show').hide(500);
 
@@ -144,10 +145,10 @@ planet_stone = {
         });
 
         //MAIN MENU
-        $().jetmenu();
+        //$().jetmenu();
     },
     load: function () {
-
+        console.log("ps load");
         // Houzz
         (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
         // Pinterest

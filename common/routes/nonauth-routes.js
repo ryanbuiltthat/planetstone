@@ -8,6 +8,8 @@ nonauth.route('/', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "home", footer: "defaultFooter" });
     }
 });
+
+// Products
 nonauth.route('/products', {
     name: 'products',
     action: function(params) {
@@ -16,16 +18,40 @@ nonauth.route('/products', {
 });
 nonauth.route('/products/:id', {
    //name: 'singleproduct'
+    triggersEnter: [function(){
+        planet_stone.init();
+        planet_stone.load();
+    }],
     action: function(params) {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontSingleProduct", footer: "defaultFooter" });
     }
 });
+
+// Projects
 nonauth.route('/projects', {
-    name: 'projects',
+    name: 'projectindex',
     action: function(params) {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsIndex", footer: "defaultFooter" });
     }
 });
+nonauth.route('/projects/:category', {
+    name: 'projectcategory',
+    action: function(params) {
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsCategory", footer: "defaultFooter" });
+    }
+});
+nonauth.route('/projects/:category/:projectSlug', {
+    name: 'projectsingle',
+    triggersEnter: [function(){
+        planet_stone.init();
+        planet_stone.load();
+    }],
+    action: function(params) {
+        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontSingleProject", footer: "defaultFooter" });
+    }
+});
+
+// About Us
 nonauth.route('/about-us/stone-squad', {
     name: 'stonesquad',
     action: function(params){
@@ -44,6 +70,8 @@ nonauth.route('/contact', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "contact", footer: "defaultFooter" });
     }
 });
+
+// Login
 nonauth.route('/login', {
     name: 'login',
     action: function() {
@@ -51,12 +79,12 @@ nonauth.route('/login', {
     }
 });
 
-nonauth.route('/signup', {
-    name: 'signup',
-    action: function() {
-        return BlazeLayout.render("nonAuthAdminWrapper", { view: "signup"} );
-    }
-});
+//nonauth.route('/signup', {
+//    name: 'signup',
+//    action: function() {
+//        return BlazeLayout.render("nonAuthAdminWrapper", { view: "signup"} );
+//    }
+//});
 nonauth.route('/404-not-found', {
     name: 'not-found',
     action: function(){

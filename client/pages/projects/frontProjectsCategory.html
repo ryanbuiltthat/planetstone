@@ -1,0 +1,49 @@
+<template name="frontProjectsCategory">
+    <main class="main" role="main">
+        <div class="results" id="projects">
+            {{#if subsReady}}
+                {{#each project}}
+                    <figure class="one-fourth item">
+                        {{#each getImages images }}
+                            <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/projectimages/{{_id}}-{{name}}" alt="{{name}}">
+                        {{/each}}
+                        <figcaption>
+                            <dl>
+                                <dt class="name">{{name}}</dt>
+                                <dd>{{desc}}</dd>
+                                <dd class="att left color"><strong>Build Type:</strong> {{ getDisplayCategory category }}</dd>
+                                {{#if asscprod }}
+                                <dd class="att right type"><strong>Stone Used:</strong> {{{ getDisplayProducts asscprod }}}</dd>
+                                {{/if}}
+                            </dl>
+                            <a href="/projects/{{ getDisplayCategorySlug category }}/{{ slug }}" title="{{title}}" class="button gold btn btn-xs">Learn more</a>
+                            <ul class="item-share">
+                                <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
+                                <li>
+                                    {{#each getImages images }}
+                                        <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
+                                    {{/each}}
+                                </li>
+                                <li>
+                                    {{#each getImages images }}
+                                        <a class="houzz-share-button"
+                                           data-url="http://planet.betabuild.com/products/{{ getId }}/"
+                                           data-hzid="33569"
+                                           data-locale="en-US"
+                                           data-title="{{ getTitle }}"
+                                           data-img="https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/{{_id}}-{{name}}" alt="{{name}}"
+                                           data-desc="{{ getDesc }}"
+                                           data-category="Kitchen Countertops"
+                                           data-showcount="0"
+                                           href="https://www.houzz.com"><i class="fa fa-houzz"></i></a>
+                                    {{/each}}
+                                </li>
+
+                            </ul>
+                        </figcaption>
+                    </figure>
+                {{/each}}
+            {{/if}}
+        </div>
+    </main>
+</template>

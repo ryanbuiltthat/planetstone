@@ -100,6 +100,7 @@
   .offset {
     margin-top: 197px;
   }
+
   .results {
     float: left;
     width: 100%;
@@ -151,6 +152,32 @@
   .results figure:hover figcaption {
     opacity: 1;
     -ms-opacity: 1;
+    .item-share{
+      list-style: none;
+      margin:0;
+      padding: 0;
+      position: inherit;
+      bottom: 0.5em;
+      right: 0.5em;
+      font-size: 1.4em;
+      li{
+        margin: 0 4px;
+        padding:0;
+        list-style-type: none;
+        float: left;
+        text-align: center;
+        width: auto;
+        height: 20px;
+        line-height: 20px;
+
+        iframe {
+          width: 52px;
+        }
+      }
+      li:before {
+        content: "";
+      }
+    }
   }
   .results figcaption dl {
   }
@@ -161,18 +188,19 @@
     padding: 0 0 27px;
   }
   .results figcaption dd {
-    width: 50%;
+    width: 100%;
     float: left;
+    font-size: 0.85em;
   }
   .results figcaption dd:last-of-type {
-    padding-left: 10px;
+    //padding-left: 10px;
   }
   .results figcaption dd:last-of-type:after {
     content: "";
     position: absolute;
     left: 0;
     height: 23px;
-    border-left: 1px solid #ddd;
+    //border-left: 1px solid #ddd;
   }
   .results .price {
     padding: 0 0 20px;

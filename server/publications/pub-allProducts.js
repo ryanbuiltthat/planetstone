@@ -3,7 +3,7 @@
  */
 Meteor.publishComposite("frontAllProducts", {
     find: function() {
-        // Let's go ahead and find those ten newest articles
+        //
         return Products.find({active: true}, {});
     },
     children: [
@@ -24,7 +24,6 @@ Meteor.publishComposite("frontAllProducts", {
         }
     ]
 });
-
 
 
 Meteor.publishComposite("frontSingleProduct", function(productId) {

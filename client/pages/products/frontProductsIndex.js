@@ -18,7 +18,7 @@ Template.frontProductsIndex.onRendered(function(){
         planet_stone.init();
         planet_stone.load();
 
-    },600);
+    },800);
 
     // Isotope
     Meteor.setTimeout(function() {
