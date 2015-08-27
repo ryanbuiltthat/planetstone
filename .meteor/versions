@@ -61,8 +61,8 @@ isotope:isotope@2.1.0_1
 jquery@1.11.3_2
 json@1.0.3
 jsx@0.1.5
-kadira:blaze-layout@2.0.0
-kadira:dochead@1.0.0
+kadira:blaze-layout@2.0.1
+kadira:dochead@1.1.0
 kadira:flow-router@2.3.0
 lai:collection-extensions@0.1.4
 launch-screen@1.0.2
@@ -107,7 +107,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
 templating@1.1.1
-tmeasday:publish-counts@0.7.0
+tmeasday:publish-counts@0.7.1
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3
