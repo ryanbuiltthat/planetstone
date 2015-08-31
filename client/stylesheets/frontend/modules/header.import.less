@@ -3,7 +3,23 @@
   #superHeader {
     height: 45px;
     line-height: 45px;
-
+    overflow: hidden;
+    .hashtaglogo {
+      position: absolute;
+      left: 5vw;
+      top: 0;
+      height: inherit;
+      width: auto;
+      img {
+        margin: 10px 0;
+        height: 30px;
+        width: auto;
+        opacity: 0;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+    }
     .wrapper.footer {
       padding: 4px 0;
       font-size: 1em;
@@ -14,7 +30,32 @@
         height: 35px;
         line-height: 35px;
         border-radius: 100%;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        transition: all 0.2s;
       }
+    }
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
+  }
+  #superHeader.shrink {
+    height: 0;
+    .circle {
+      height: 0;
+      line-height: 0;
+    }
+  }
+  #superHeader.topframe {
+    height: 50px;
+    .hashtaglogo {
+      img {
+        opacity: 0.7;
+      }
+    }
+    .circle {
+      height: inherit;
+      line-height: 50px;
     }
   }
   .header {
@@ -25,11 +66,18 @@
     left: 0;
     width: 100%;
     z-index: 99999;
+    overflow: visible;
     border-bottom: 1px solid #ddd;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
   }
   .header > .wrap {
     display: table;
-    height: 80px;
+    height: inherit;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
   }
   .header .logo {
     display: table-cell;
@@ -45,6 +93,15 @@
     margin: 2px 5px 0 0;
   }
 
+  .header.shrink {
+    height: 0;
+    top: -80px;
+    overflow: hidden;
+    border-bottom: none;
+    .wrap {
+      height: 0;
+    }
+  }
   .main-nav {
     float: right;
   }

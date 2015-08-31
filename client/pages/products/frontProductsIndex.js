@@ -11,30 +11,33 @@ Template.frontProductsIndex.onCreated(function(){
 });
 Template.frontProductsIndex.onRendered(function(){
 
-    // Need to set a small delay for sub to init
+
     Meteor.setTimeout(function(){
-        // Run Houzz script
-        //return $('input[type=checkbox]').uniform();
+        // Init Light Gallery
+        $("#products").lightGallery({
+            //selector: this + ' figcaption button'
+        });
+        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+
+        // Init base scripts
         planet_stone.init();
         planet_stone.load();
 
-    },800);
+    }, 1500);
 
     // Isotope
-    Meteor.setTimeout(function() {
-            $("#products").isotope({
-                itemSelector: '.item',
-                layoutMode: 'fitRows',
-                getSortData: {
-                    name: ".name",
-                    type: ".type",
-                },
-                sortBy: "name",
-            });
-        }, 2500);
+    //$("#products").isotope({
+    //    itemSelector: '.item',
+    //    layoutMode: 'fitRows',
+    //    getSortData: {
+    //        name: ".name",
+    //        type: ".type"
+    //    },
+    //    sortBy: "name"
+    //});
 
-    // Style select
-    //this.$('select').uniform();
+    // Houzz
+
 
     // Hide Filter show button
     $('.filter-show').hide(500);
@@ -45,81 +48,20 @@ Template.frontProductsIndex.onRendered(function(){
 
 });
 Template.frontProductsIndex.helpers({
-    getImages: function (id) {
-        var imageOut = ProductImages.find({ _id: { $in: id }});
-        return imageOut;
-    },
-    'subsReady':function() {
+    subsReady:function() {
         return Template.instance().ready.get();
     },
-    'getTitle':function(){
-        var parent = Template.parentData(1);
-        return parent.name;
-    },
-    'getDesc': function(){
-        var parent = Template.parentData(1);
-        return parent.desc;
-    },
-    'getId': function(){
-      var parent = Template.parentData(1);
-        return parent._id;
-    },
-    'getDisplayColors': function(colors){
-        var out = "";
-        var colorOut = "";
-        _.each(colors, function (color) {
-            colorOut = Colors.findOne({_id: color}, {fields: {title: 1}});
-            out += ", "+colorOut.title;
-        });
-        out = out.replace(/^,/, '');
-        return out;
-    },
-    getClassColors: function(colors){
-        var out = "";
-        var colorOut = "";
-        _.each(colors, function (color) {
-            colorOut = Colors.findOne({_id: color}, {fields: {title: 1}});
-            out += colorOut.title.replace(/ /g,"_")+" ";
-        });
-        //out = out.replace(/^,/, '');
-        return out;
-    },
-    'product':function(){
+    product:function(){
         return Products.find();
     },
-    'filterTypes': function(){
+    getFilterTypes: function(){
         return Types.find();
     },
-    'filterColors': function(){
-        //console.log("product "+product);
+    getFilterColors: function(){
         return Colors.find();
     },
     filterTitleHelper: function(str){
         return str.replace(/ /g,"_");
-    },
-    'getDisplayType':function(id){
-        var productType = Types.findOne({_id: id});
-        var out = productType.title;
-        return out;
-    },
-    // Get the product types that do NOT match
-    'excludeTypes': function(id){
-        var out = "";
-        var ex =  Types.find( { _id: { $ne: id } }).map(function(c){
-            out += ":not(."+ c._id+")";
-        });
-        if(ex)
-        return out;
-    },
-    'getSharePageURL': function(){
-        var parent = Template.parentData(1);
-        var pageURL = encodeURIComponent("http://planet.betabuild.io/products/"+parent._id);
-        return pageURL;
-    },
-    'getShareImageURL': function(id, name){
-        var parent = Template.parentData(1);
-        var imgURL = encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+id+"-"+name);
-        return imgURL;
     }
 });
 filters = [];

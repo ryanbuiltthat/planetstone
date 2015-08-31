@@ -19,14 +19,14 @@ resizeEnd = function() {
 
 planet_stone = {
     rebind_menu_events: function() {
-        $('.advanced-search').hide();
-        $('.search-trigger').off('click');
-        $('.search-trigger').on('click', function () {
-            $('.advanced-search').slideToggle(500);
-        });
+        //$('.advanced-search').hide();
+        //$('.search-trigger').off('click');
+        //$('.search-trigger').on('click', function () {
+        //    $('.advanced-search').slideToggle(500);
+        //});
     },
     init: function () {
-        console.log("ps init");
+        //console.log("ps init");
         //SEARCH FILTER
         $('.filter-show').hide(500);
 
@@ -43,65 +43,65 @@ planet_stone = {
         });
 
         //ADVANCED SEARCH
-        $('.advanced-search').hide();
-        $('.search-trigger').off('click');
-        $('.search-trigger').on('click', function () {
-            $('.advanced-search').slideToggle(500);
-        });
+        //$('.advanced-search').hide();
+        //$('.search-trigger').off('click');
+        //$('.search-trigger').on('click', function () {
+        //    $('.advanced-search').slideToggle(500);
+        //});
 
-        $('.search-hide').on('click', function () {
-            $('.advanced-search').hide(500);
-        });
+        //$('.search-hide').on('click', function () {
+        //    $('.advanced-search').hide(500);
+        //});
 
-        $('#startDate').datepicker();
-
-        $('#birthDate').datepicker({
-            changeMonth: true,
-            changeYear: true,
-            yearRange: '1920:2000',
-            minDate: new Date(1920, 1 - 1, 25),
-            maxDate: '+80Y'
-        });
+        //$('#startDate').datepicker();
+        //
+        //$('#birthDate').datepicker({
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    yearRange: '1920:2000',
+        //    minDate: new Date(1920, 1 - 1, 25),
+        //    maxDate: '+80Y'
+        //});
 
         // CUSTOM FORM ELEMENTS
         $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
 
         // ACCORDION
-        $('.accordion dd').hide();
-        $('.accordion dt').on('click', function () {
-            $(this).next('.accordion dd').slideToggle(500);
-            $(this).toggleClass('expanded');
-        });
+        //$('.accordion dd').hide();
+        //$('.accordion dt').on('click', function () {
+        //    $(this).next('.accordion dd').slideToggle(500);
+        //    $(this).toggleClass('expanded');
+        //});
 
-        $('.accordion .next-step').on('click', function (e) {
-            $(this).closest('.accordion dd').next('.accordion dt').next('.accordion dd').slideToggle(500);
-            $(this).closest('.accordion dd').next('.accordion dt').toggleClass('expanded');
-            e.preventDefault();
-        });
+        //$('.accordion .next-step').on('click', function (e) {
+        //    $(this).closest('.accordion dd').next('.accordion dt').next('.accordion dd').slideToggle(500);
+        //    $(this).closest('.accordion dd').next('.accordion dt').toggleClass('expanded');
+        //    e.preventDefault();
+        //});
 
-        $('.bookingSteps .thank-you-note').hide();
-        $('.accordion .submit-step').on('click', function (e) {
-            $(this).closest('.accordion').slideToggle(500);
-            $('.bookingSteps .thank-you-note').slideToggle(500);
-
-            $('html, body').animate({
-                scrollTop: parseInt($("#tab-navigation").position().top, 10)
-            }, 1000);
-
-            e.preventDefault();
-        });
+        //$('.bookingSteps .thank-you-note').hide();
+        //$('.accordion .submit-step').on('click', function (e) {
+        //    $(this).closest('.accordion').slideToggle(500);
+        //    $('.bookingSteps .thank-you-note').slideToggle(500);
+        //
+        //    $('html, body').animate({
+        //        scrollTop: parseInt($("#tab-navigation").position().top, 10)
+        //    }, 1000);
+        //
+        //    e.preventDefault();
+        //});
 
         // BOOKING STEPS
-        $('.booking').hide();
-        $('.availability .button').on('click', function () {
-            $('.availability').hide();
-            $('.selectDates').show(500);
-        });
-
-        $('.selectDates .button').on('click', function () {
-            $('.selectDates').hide();
-            $('.bookingSteps').show(500);
-        });
+        //$('.booking').hide();
+        //$('.availability .button').on('click', function () {
+        //    $('.availability').hide();
+        //    $('.selectDates').show(500);
+        //});
+        //
+        //$('.selectDates .button').on('click', function () {
+        //    $('.selectDates').hide();
+        //    $('.bookingSteps').show(500);
+        //});
 
         // TABS
         $('.content .tab-content').hide().first().show();
@@ -148,9 +148,8 @@ planet_stone = {
         //$().jetmenu();
     },
     load: function () {
-        console.log("ps load");
-        // Houzz
-        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+        //console.log("ps load");
+
         // Pinterest
         (function(d){
             var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
@@ -173,18 +172,3 @@ planet_stone = {
         $('.preloader').fadeOut();
     }
 };
-
-//
-//Template.dynamic.onRendered(function(){
-//    (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
-//    // Pinterest
-//    (function(d){
-//        var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
-//        p.type = 'text/javascript';
-//        p.async = true;
-//        p.src = '//assets.pinterest.com/js/pinit.js';
-//        f.parentNode.insertBefore(p, f);
-//    }(document));
-//    planet_stone.init();
-//    planet_stone.load();
-//});

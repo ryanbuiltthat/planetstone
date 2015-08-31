@@ -37,7 +37,7 @@ Template.frontProjectsCategory.helpers({
         return Template.instance().ready.get();
     },
     'project':function(){
-        return Projects.find();
+        return Projects.find({ active: true });
     },
     getImages: function (id) {
         return ProjectImages.find({ _id: { $in: id }}, { limit: 1 });
@@ -80,6 +80,9 @@ Template.frontProjectsCategory.helpers({
     'getShareImageURL': function(id, name){
         var parent = Template.parentData(1);
         return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/"+id+"-"+name);
+    },
+    'shortText': function(txt){
+        return s.truncate(txt, 250);
     }
 });
 Template.frontProjectsCategory.events({});

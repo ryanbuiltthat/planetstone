@@ -25,6 +25,9 @@ Meteor.publishComposite("frontAllProducts", {
     ]
 });
 
+Meteor.publish('frontSingleProductTitle', function(product){
+    return Products.find({_id: product});
+});
 
 Meteor.publishComposite("frontSingleProduct", function(productId) {
     return {

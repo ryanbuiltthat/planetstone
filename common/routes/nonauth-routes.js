@@ -4,6 +4,14 @@
 // Public routes
 nonauth.route('/', {
     name: 'index',
+    triggersEnter: [function(){
+        //Meteor.setTimeout(function() {
+        //    var btn = document.getElementsByTagName("body")[0];
+        //    var typ = document.createAttribute("class");
+        //    typ.value = "s-front page-index";
+        //    btn.attributes.setNamedItem(typ);
+        //}, 150);
+    }],
     action: function(params) {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "home", footer: "defaultFooter" });
     }
@@ -13,7 +21,12 @@ nonauth.route('/', {
 nonauth.route('/products', {
     name: 'products',
     action: function(params) {
-        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProductsIndex", footer: "defaultFooter" });
+        return BlazeLayout.render('defaultLayout', {
+            superHeader: "superHeader",
+            header: "defaultHeader",
+            main: "frontProductsIndex",
+            //galleryItem: "productIndexGalleryItem",
+            footer: "defaultFooter" });
     }
 });
 nonauth.route('/products/:id', {

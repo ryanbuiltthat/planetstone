@@ -10,13 +10,14 @@
                         <figcaption>
                             <dl>
                                 <dt class="name">{{name}}</dt>
-                                <dd>{{desc}}</dd>
+                                <dd>{{  shortText desc }}</dd>
                                 <dd class="att left color"><strong>Build Type:</strong> {{ getDisplayCategory category }}</dd>
                                 {{#if asscprod }}
                                 <dd class="att right type"><strong>Stone Used:</strong> {{{ getDisplayProducts asscprod }}}</dd>
                                 {{/if}}
                             </dl>
                             <a href="/projects/{{ getDisplayCategorySlug category }}/{{ slug }}" title="{{title}}" class="button gold btn btn-xs">Learn more</a>
+                            <div id="share{{_id}}" style="display:none;">
                             <ul class="item-share">
                                 <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
                                 <li>
@@ -40,6 +41,7 @@
                                 </li>
 
                             </ul>
+                            </div>
                         </figcaption>
                     </figure>
                 {{/each}}
