@@ -17,7 +17,7 @@ Template.frontSingleProject.onRendered(function(){
         // Init base scripts
         planet_stone.init();
         planet_stone.load();
-    }, 850);
+    }, 950);
 });
 Template.frontSingleProject.helpers({
     'subsReady': function(){
@@ -50,13 +50,22 @@ Template.frontSingleProject.helpers({
         return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/"+id+"-"+name);
     },
     getAssociatedProduct: function(id){
-        console.log("asscprodid: "+id);
+        //console.log("asscprodid: "+id);
         Template.instance().subscribe('frontSingleProductTitle', id);
         if(id && id!=="undefined") {
             return Products.findOne({_id: {$in: id}});
         }else {
             return false;
         }
+    },
+    getAssociatedProductThumbnail: function(images){
+        Template.instance().subscribe('productImages');
+        var thumbs = ProductImages.findOne({ _id: {$in:images}});
+        return thumbs;
+    },
+    getAssociatedProductColors: function(colors){
+        Template.instance().subscribe('allColors', colors);
+        return Colors.find({ _id: { $in: colors } });
     }
 });
 

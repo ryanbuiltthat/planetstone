@@ -82,7 +82,7 @@ Template.frontProjectsCategory.helpers({
         return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/"+id+"-"+name);
     },
     'shortText': function(txt){
-        return s.truncate(txt, 250);
+        return s.truncate(txt, 200);
     }
 });
 Template.frontProjectsCategory.events({});

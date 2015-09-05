@@ -73,23 +73,26 @@
                         <!-- //OneHalf -->
 
                         <!-- OneFourth -->
-                        <aside class="one-half sidebar sidebar-right">
-                            <table>
-                                <tbody><tr>
-                                    <th colspan="2">What's Pictured</th>
-                                </tr>
-                                <tr>
-                                    <td>Stone</td>
-                                    {{#with getAssociatedProduct asscprod }}
-                                        <td>{{ name }}</td>
-                                    {{/with}}
-                                </tr>
-                                <tr>
-                                    <td>Colors</td>
-                                    <td>{{ assccolor }}</td>
-                                </tr>
-                                </tbody></table>
-                        </aside>
+                        <div class="one-half sidebar sidebar-right">
+                            {{#if asscprod }}
+                            <div class="widget">
+                            <h3>In This Project</h3>
+                                {{#with getAssociatedProduct asscprod }}
+                                    <ul class="latest-posts">
+                                        <li>
+                                            <a href="#">
+                                        {{#with getAssociatedProductThumbnail images }}
+                                            <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/thumbs/productimages/{{_id}}-{{name}}" alt="{{name}}" width="90" />
+                                        {{/with}}
+                                                <h4>{{ name }}</h4>
+                                                <span class="date"><strong>Colors:</strong> {{#each getAssociatedProductColors color }}{{ title }}, {{/each}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                {{/with}}
+                            </div>
+                            {{/if}}
+                        </div>
                         <!-- //OneFourth -->
                     </div>
                 </article>
