@@ -1,6 +1,30 @@
 /**
- * Created by Ryan on 8/25/2015.
+ * Created by Ryan on 9/6/2015.
  */
+Meteor.publishComposite("addProjectView", {
+    find: function() {
+        return Projects.find({}, {
+            sort: { createdAt: -1 }
+        });
+    },
+    children: [
+        {
+            find: function(product) {
+                return Colors.find({});
+            }
+        },
+        {
+            find: function(product) {
+                return Categories.find({});
+            }
+        },
+        {
+            find: function(product){
+                return Products.find();
+            }
+        }
+    ]
+});
 Meteor.publishComposite("frontProjectsIndex", {
     find: function() {
         // Let's go ahead and find those ten newest articles
@@ -65,14 +89,17 @@ Meteor.publishComposite("frontSingleProject", function(project) {
             },
             {
                 find: function (project) {
-                    return Products.find({});
+                    return Products.find( { _id: { $in: project.asscprod } } );
                 }
             },
             {
                 find: function (project) {
-                    return ProjectImages.find({});
+                    return ProjectImages.find({ _id: { $in: project.images }});
                 }
             }
         ]
     }
+});
+Meteor.publish('projectTestimonial', function(projectCategoryId){
+    return Testimonials.find({ _id: projectCategoryId });
 });

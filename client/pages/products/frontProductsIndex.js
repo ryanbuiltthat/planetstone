@@ -4,20 +4,41 @@
 Template.frontProductsIndex.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
+    self.productsReady = new ReactiveVar();
     self.autorun(function(){
         var handle = self.subscribe('frontAllProducts');
         self.ready.set(handle.ready());
     });
 });
 Template.frontProductsIndex.onRendered(function(){
+    Session.setDefault('imgLoaded', 0);
+    this.autorun(function(){
+        if(Template.instance().ready.get()){
+            Session.set('imgCount', Products.find().count());
+            var imagesLoaded = Session.get('imgLoaded');
+            var totalProducts = Session.get('imgCount');
+            if( imagesLoaded == totalProducts ){
+                return Template.instance().productsReady.set(true);
+            }
+        }
+    });
 
 
+    this.autorun(function(){
+        if(Template.instance().productsReady.get()){
+            Session.set('imgLoaded', 0);
+            $("#products").lightGallery({
+                //selector: this + ' figcaption button'
+            });
+            // Houzz script
+            (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+        }
+    });
     Meteor.setTimeout(function(){
         // Init Light Gallery
-        $("#products").lightGallery({
+        //$("#products").lightGallery({
             //selector: this + ' figcaption button'
-        });
-        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+        //});
 
         // Init base scripts
         planet_stone.init();
@@ -85,5 +106,6 @@ Template.frontProductsIndex.events({
     'change .sort-select':function(e){
         var sortValue = e.currentTarget.value;
         $("#products").isotope({ sortBy: sortValue });
-    }
+    },
+
 });

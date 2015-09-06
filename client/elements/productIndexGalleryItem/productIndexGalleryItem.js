@@ -62,3 +62,12 @@ Template.productIndexGalleryItem.onRendered(function(){
     planet_stone.init();
     //planet_stone.load();
 });
+
+Template.productIndexGalleryItem.events({
+    'load img.productThumb': function(){
+        //
+        var il = Session.get('imgLoaded');
+        il++;
+        Session.set('imgLoaded', il);
+    }
+});

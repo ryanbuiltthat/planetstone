@@ -1,18 +1,18 @@
 /* 13 HOMEPAGE */
-.s-front {
+.s-front.page-index {
   section {
     float: left;
     width: 100%;
   }
-  .home section {
+  section {
     position: relative;
   }
-  .home section h2 {
+  section h2 {
     font-weight: normal;
     font-size: 31px;
     padding: 0 0 25px;
   }
-  .home .hentry h3 {
+  .hentry h3 {
     font-size: 30px;
     font-weight: 400;
   }
@@ -32,6 +32,7 @@
     width: 100%;
     color: #fff;
     display: table;
+    text-align: center;
     //noinspection CssUnknownTarget
     background: url(../../img/planet-stone-marble-granite-hero.jpg) 50% 50% no-repeat;
     background-size: cover;
@@ -57,11 +58,16 @@
     text-shadow: none;
   }
 
-  .home nav.tabs {
+  nav.tabs {
     height: 280px;
     margin: 0;
+    ul{
+      display: block;
+      margin:0 auto;
+    }
   }
-  .home nav.tabs li {
+  nav.tabs li {
+    padding: 0 1em;
     font-size: 19px;
     line-height: 1.32;
   }
@@ -100,6 +106,8 @@
   }
   .photo .wrap.center {
     position: relative;
+    display: block;
+    margin: 0 auto;
     z-index: 2;
     max-width: 50%;
     text-shadow: #222 3px 3px 4px;

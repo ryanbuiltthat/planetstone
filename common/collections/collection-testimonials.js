@@ -24,6 +24,10 @@ Schemas.Testimonial = new SimpleSchema({
         type: String,
         optional: true,
     },
+    category:{
+        type: String,
+        optional: true,
+    },
     createdAt: {
         type: Date,
         autoValue: function() {

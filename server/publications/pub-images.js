@@ -3,5 +3,9 @@
  */
 Meteor.publish('productImages', function () {
     // `this` provides a context similar to Meteor.publish
-    return [Images.find(),ProductImages.find()];
+    return ProductImages.find();
+});
+
+Meteor.publish('singleProductImages', function( images ){
+   return ProductImages.find( { _id: { $in: images } } );
 });

@@ -59,7 +59,7 @@ Template.frontSingleProject.helpers({
         }
     },
     getAssociatedProductThumbnail: function(images){
-        Template.instance().subscribe('productImages');
+        Template.instance().subscribe('singleProductImages', images);
         var thumbs = ProductImages.findOne({ _id: {$in:images}});
         return thumbs;
     },

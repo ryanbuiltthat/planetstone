@@ -2,7 +2,7 @@
 
     <figure class="one-fourth item {{ getClassColors color }} {{type}}"  data-src="{{ getFullSrc images }}"  data-sub-html="#share{{ _id }}">
         {{#with getImages images }}
-            <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}">
+            <img class="productThumb" src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}">
         {{/with}}
         <figcaption>
             <dl>
