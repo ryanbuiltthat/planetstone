@@ -1,11 +1,15 @@
 /* 02 GLOBAL STYLES */
 .s-front {
+  margin:0;
+  padding:0;
+
   p {
     line-height: 1.5;
     padding: 0 0 20px;
   }
 
   a {
+    color: @blue-primary;
     text-decoration: none;
     -webkit-transition: all 0.2s ease-in;
     -moz-transition: all 0.2s ease-in;
@@ -14,16 +18,16 @@
     transition: all 0.2s ease-in;
   }
   .content a {
-    color: @tan-primary;
+    color: @blue-secondary;
     font-weight: 600;
   }
 
   ::-moz-selection {
-    background: #2b3a42;
+    background: @green-primary;
     color: #fff;
   }
   ::selection {
-    background: #2b3a42;
+    background: @green-primary;
     color: #fff;
   }
 

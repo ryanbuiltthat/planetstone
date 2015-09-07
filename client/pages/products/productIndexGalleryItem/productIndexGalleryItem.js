@@ -69,5 +69,9 @@ Template.productIndexGalleryItem.events({
         var il = Session.get('imgLoaded');
         il++;
         Session.set('imgLoaded', il);
+    },
+    'click .btn-favorite': function(event, tpl){
+        //event.preventDefault();
+        //$('#productInfo').modal('toggle')
     }
 });

@@ -10,19 +10,11 @@
                 <dd>{{desc}}</dd>
                 <dd class="att left color"><strong>Color:</strong> {{ getDisplayColors color }}</dd>
                 <dd class="att right type"><strong>Type:</strong> {{ getDisplayType type}}</dd>
-                <!--<dd>-->
-                <!--<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fpsmg.betabuild.io%2Fproducts%2F&media=http%3A%2F%2Fpsmg.betabuild.io%2Fimg/products/CreamaBordeaux1.jpg&description=Creama Bordeaux" data-pin-do="buttonPin" data-pin-config="none" data-pin-color="white"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>-->
-                <!--<a class="houzz-share-button" data-url="http://psmg.betabuild.io/products.html" data-hzid="33569" data-locale="en-US" data-img="http://psmg.betabuild.io/img/products/CreamaBordeaux1.jpg" data-title="Planet Stone Marble & Granite - Creama Bordeaux" data-desc="Creama Bordeaux would be considered a cream base with beautiful rose waves.  Black specs enchance the stone, but don&#x27;t overpower." data-category="Kitchen" data-showcount="0" href="https://www.houzz.com">Houzz</a>-->
-                <!--</dd>-->
             </dl>
-            <!--<div class="price">Asking price  <strong>50.000.000$</strong></div>-->
-            {{! #with getImages images }}
-                <!--<a href="https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/{{! _id}}-{{! name}}" class="button gold btn btn-xs">View Larger</a>-->
                 <button class="button gold btn btn-xs">View Larger</button>
-            {{! /with}}
             <div  id="share{{ _id }}" style="display:none;">
                 <ul class="item-share gallery-share">
-                    <li><a href="#" data-toggle="modal" data-target="#productInfo"><i class="fa fa-heart"></i></a></li>
+                    <li><a href="#" class="btn-favorite"  data-toggle="modal" data-target="#productInfo"><i class="fa fa-heart"></i></a></li>
                     <li>
                     {{#with getImages images }}
                         <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
@@ -45,7 +37,7 @@
                 </ul>
             </div>
             <ul class="item-share" style="display:none">
-                <li><a href="#" data-toggle="modal" data-target="#productInfo"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#" class="btn-favorite" data-target="#productInfo"><i class="fa fa-heart"></i></a></li>
                 <li>
                     {{#with getImages images }}
                         <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
