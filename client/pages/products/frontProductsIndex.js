@@ -11,6 +11,7 @@ Template.frontProductsIndex.onCreated(function(){
     });
 });
 Template.frontProductsIndex.onRendered(function(){
+    $(".loaderMsg").delay(150).fadeIn('slow');
     Session.setDefault('imgLoaded', 0);
     this.autorun(function(){
         if(Template.instance().ready.get()){
@@ -27,11 +28,28 @@ Template.frontProductsIndex.onRendered(function(){
     this.autorun(function(){
         if(Template.instance().productsReady.get()){
             Session.set('imgLoaded', 0);
+            $( ".loaderMsg" ).delay( 700 ).fadeOut( 'fast', function() {
+                $( ".results" ).fadeIn( 'slow' );
+                $( ".sidebar").delay(250).fadeIn( 'slow' );
+
+            });
             $("#products").lightGallery({
                 //selector: this + ' figcaption button'
             });
+            //Meteor.wrapAsync(function(){
             // Houzz script
-            (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+            Meteor.wrapAsync(function(d,s,id){
+                if(!d.getElementById(id)){
+                    var js=d.createElement(s);
+                    js.id=id;
+                    js.async=true;
+                    js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());
+                    var ss=d.getElementsByTagName(s)[0];
+                    ss.parentNode.insertBefore(js,ss);
+                }
+            }
+            )(document,"script","houzzwidget-js");
+            //});// wrapAsync
         }
     });
     Meteor.setTimeout(function(){
@@ -71,6 +89,9 @@ Template.frontProductsIndex.onRendered(function(){
 Template.frontProductsIndex.helpers({
     subsReady:function() {
         return Template.instance().ready.get();
+    },
+    productLoad: function(){
+      return Template.instance().productsReady.get();
     },
     product:function(){
         return Products.find();

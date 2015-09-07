@@ -5,12 +5,6 @@
 nonauth.route('/', {
     name: 'index',
     triggersEnter: [function(){
-        //Meteor.setTimeout(function() {
-        //    var btn = document.getElementsByTagName("body")[0];
-        //    var typ = document.createAttribute("class");
-        //    typ.value = "s-front page-index";
-        //    btn.attributes.setNamedItem(typ);
-        //}, 150);
     }],
     action: function(params) {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "home", footer: "defaultFooter" });
@@ -25,12 +19,10 @@ nonauth.route('/products', {
             superHeader: "superHeader",
             header: "defaultHeader",
             main: "frontProductsIndex",
-            //galleryItem: "productIndexGalleryItem",
             footer: "defaultFooter" });
     }
 });
 nonauth.route('/products/:id', {
-   //name: 'singleproduct'
     triggersEnter: [function(){
         planet_stone.init();
         planet_stone.load();
@@ -53,6 +45,7 @@ nonauth.route('/projects/:category', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontProjectsCategory", footer: "defaultFooter" });
     }
 });
+
 nonauth.route('/projects/:category/:projectSlug', {
     name: 'projectsingle',
     triggersEnter: [function(){
@@ -71,12 +64,7 @@ nonauth.route('/about-us/stone-squad', {
         return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
     }
 });
-//nonauth.route('/about-us/customer-experiences', {
-//    name: 'tesetimonials',
-//    action: function(params){
-//        return BlazeLayout.render('defaultLayout', { superHeader: "superHeader", header: "defaultHeader", main: "frontstonesquad", footer: "defaultFooter" });
-//    }
-//});
+
 nonauth.route('/contact', {
     name: 'contact',
     action: function(params) {
@@ -92,12 +80,6 @@ nonauth.route('/login', {
     }
 });
 
-//nonauth.route('/signup', {
-//    name: 'signup',
-//    action: function() {
-//        return BlazeLayout.render("nonAuthAdminWrapper", { view: "signup"} );
-//    }
-//});
 nonauth.route('/404-not-found', {
     name: 'not-found',
     action: function(){
