@@ -17,7 +17,7 @@ Template.frontSingleProject.onRendered(function(){
         // Init base scripts
         planet_stone.init();
         planet_stone.load();
-    }, 950);
+    }, 1150);
 });
 Template.frontSingleProject.helpers({
     'subsReady': function(){
