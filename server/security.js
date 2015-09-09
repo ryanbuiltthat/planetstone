@@ -35,4 +35,9 @@ Projects.permit('update').ifLoggedIn().apply();
 Projects.permit('remove').ifLoggedIn().apply();
 
 Teams.permit('insert').ifLoggedIn().apply();
+Teams.permit('update').ifLoggedIn().apply();
+Teams.permit('remove').ifLoggedIn().apply();
+
 Testimonials.permit('insert').ifLoggedIn().apply();
+Testimonials.permit('update').ifLoggedIn().apply();
+Testimonials.permit('remove').ifLoggedIn().apply();

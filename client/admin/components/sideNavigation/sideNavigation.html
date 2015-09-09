@@ -19,11 +19,11 @@
             <ul class="children">
                 <li><a href="{{buildPathFor "products" "add" }}"><span class="pull-right badge badge-info">{{getPublishedCount 'products-counter'}}</span><i class="fa fa-caret-right"></i> Add Products</a></li>
                 <li><a href="#"><i class="fa fa-caret-right"></i> Gallery</a></li>
-                <li><a href="{{buildPathFor "types" "" }}"><span class="pull-right badge badge-danger">BETA</span><i class="fa fa-caret-right"></i> Edit Types</a></li>
-                <li><a href="{{buildPathFor "colors" "" }}"><span class="pull-right badge badge-danger">BETA</span><i class="fa fa-caret-right"></i> Edit Colors</a></li>
+                <li><a href="{{buildPathFor "types" "" }}"><i class="fa fa-caret-right"></i> Edit Types</a></li>
+                <li><a href="{{buildPathFor "colors" "" }}"><i class="fa fa-caret-right"></i> Edit Colors</a></li>
             </ul>
         </li>
-        <li class="nav-parent"><a href=""><i class="fa fa-smile-o"></i> <span>Testimonials</span></a>
+        <li class="nav-parent"><a href="{{buildPathFor "testimonials" "" }}"><i class="fa fa-smile-o"></i> <span>Testimonials</span></a>
             <ul class="children">
                 <li><a href="{{buildPathFor "testimonials" "add"}}"><i class="fa fa-caret-right"></i> Add Testimonial</a></li>
             </ul>

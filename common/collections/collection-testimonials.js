@@ -61,7 +61,7 @@ Schemas.Testimonial = new SimpleSchema({
         optional: true,
     },
     category:{
-        type: String,
+        type: [String],
         optional: true,
     },
     createdAt: {

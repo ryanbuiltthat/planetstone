@@ -1,6 +1,6 @@
-<template name="testimonialsadd">
+<template name="testimonialedit">
     <div class="row">
-        {{#autoForm id="afAddTestimonialForm" type="insert" collection="Testimonials"}}
+        {{#autoForm id="afUpdateTestimonialForm" type="update" collection="Testimonials" doc=testimonial}}
             <div class="col-md-9">
                 <div class="panel panel-dark">
                     <div class="panel-heading">
@@ -8,7 +8,7 @@
                             <a href="" class="panel-close">&mdash;</a>
                             <a href="" class="minimize">x</a>
                         </div>
-                        <h4 class="panel-title">Add Testimonial</h4>
+                        <h4 class="panel-title">Edit Testimonial</h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -38,7 +38,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group  {{#if afFieldIsInvalid name='category'}}has-error{{/if}}">
                                     <label class="control-label">{{afFieldLabelText name='category'}}</label>
-                                        {{> afFieldInput name='category' type='select-multiple' options=pullCategories}}
+                                    {{> afFieldInput name='category' type='select-multiple' options=pullCategories}}
                                 </div>
                             </div><!-- col-sm-4 -->
                         </div><!-- row -->
@@ -59,14 +59,7 @@
             </div>
         {{/autoForm}}
         <div class="col-md-3">
-            <div class="panel panel-dark">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Add Category</h3>
-                </div>
-                <div class="panel-body">
-                    {{> quickForm type="insert" id="qfAddCategories" collection="Categories"}}
-                </div>
-            </div>
+
         </div>
     </div>
 </template>

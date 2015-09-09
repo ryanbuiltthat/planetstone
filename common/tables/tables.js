@@ -32,10 +32,25 @@ TabularTables.Projects = new Tabular.Table({
     name: "ProjectList",
     collection: Projects,
     scrollY: 400,
+    autoWidth: false,
     columns: [
         {data: "name", title: "Title"},
         {data: "desc", title: "Desc"},
-        {data: "category", title: "Category"}
+        {data: "category", title: "Category"},
     ],
     //sub: new SubsManager()
+});
+
+TabularTables.Testimonials = new Tabular.Table({
+    name: "TestimonialList",
+    collection: Testimonials,
+    scrollY: 400,
+    autoWidth: false,
+    columns: [
+        {data: "title", title: "Title"},
+        {data: "author", title: "Author"},
+        {data: "category", title: "Category"},
+        {data: "body", title: "Text"}
+    ],
+    sub: new SubsManager()
 });

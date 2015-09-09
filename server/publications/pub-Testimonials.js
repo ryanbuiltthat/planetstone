@@ -7,3 +7,6 @@ Meteor.publish('addTestimonial', function(){
 Meteor.publish('frontTestimonials', function(){
     return Testimonials.find();
 });
+Meteor.publish('editTestimonial', function(testimonial){
+    return Testimonials.find({_id: testimonial});
+});
