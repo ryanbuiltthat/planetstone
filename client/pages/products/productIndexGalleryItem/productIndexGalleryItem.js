@@ -7,8 +7,11 @@ Template.productIndexGalleryItem.onCreated(function(){
 Template.productIndexGalleryItem.helpers({
     getFullSrc: function(id){
         var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
-        var s3Url = "https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+fullResSrc._id+"-"+fullResSrc.original.name;
-        return s3Url;
+        return "https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+fullResSrc._id+"-"+fullResSrc.original.name;
+    },
+    getThumbSrc: function(id){
+        var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
+        return "https://s3.amazonaws.com/com.planetstonemarblegranite/thumbs/productimages/"+fullResSrc._id+"-"+fullResSrc.original.name;
     },
     getImages: function (id) {
         return ProductImages.findOne({ _id: { $in: id }});
@@ -70,8 +73,7 @@ Template.productIndexGalleryItem.events({
         il++;
         Session.set('imgLoaded', il);
     },
-    'click .btn-favorite': function(event, tpl){
-        //event.preventDefault();
-        //$('#productInfo').modal('toggle')
+    'click':function(e){
+        console.log("click");
     }
 });

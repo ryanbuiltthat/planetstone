@@ -155,4 +155,26 @@
         }
         return this;
     };
+
+
+    // Drawer setup
+    //var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+    //    menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+    //    showBottom = document.getElementById( 'heroCTAab' ),
+    //    body = document.body;
+    //showBottom.onclick = function(e) {
+    //    e.preventDefault();
+    //    classie.toggle( this, 'active' );
+    //    classie.toggle( menuBottom, 'cbp-spmenu-open' );
+        //disableOther( 'showBottom' );
+        //Abba('Hero').complete();
+    //};
+    //function disableOther( button ) {
+    //    if( button !== 'showBottom' ) {
+    //        classie.toggle( showBottom, 'disabled' );
+    //    }
+    //}
+
+
 } )( jQuery, window );
+

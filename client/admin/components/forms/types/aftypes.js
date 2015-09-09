@@ -11,8 +11,10 @@ Template.typesindex.onCreated(function(){
 });
 Template.typesindex.helpers({
     subsReady: function(){
-        return Template.instance().ready.get();
+        //return Template.instance().ready.get();
+        return true;
     },
+
     types: function(){
         return Types.find({},{ fields: { title: 1 }});
     }

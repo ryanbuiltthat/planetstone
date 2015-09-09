@@ -105,21 +105,41 @@
   }
   .loaderMsg {
     display: none;
-    text-align: center;
+    text-align: left;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #fff;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999999999999;
-    h4 {
-      margin-top: 3em;
-      font-weight: 700;
+    z-index: 9999;
+    .text{
+      position: relative;
+      width: 40vw;
+      margin: 0 auto;
+      top: 35vh;
+      -webkit-transform: translateY(-50%);
+      tranform: translateY(-50%);
+      .left-pic {
+        margin:0;
+      }
+      h2 {
+        //font-family: 'Roboto Condensed', sans-serif;
+        color: @blue-alt;
+        padding: 0;
+        margin: 0;
+      }
+      h4{
+        font-family: 'Roboto', sans-serif;
+        color: @grey-100;
+        margin: 0;
+        padding: 0;
+        opacity: 0.8;
+      }
     }
   }
   .results {
-    display: none;
+    //display: none;
     float: left;
     width: 100%;
     //position: relative;
@@ -163,28 +183,59 @@
     border: 1px solid rgba(189, 189, 189, .7);
     content: "";
     position: absolute;
-    top: 5px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
   }
   .results figure:hover figcaption {
     opacity: 1;
     -ms-opacity: 1;
+    cursor: pointer;
 
   }
   .results figcaption dl {
+
+    dt{
+      font-size: 21px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0 0 7px;
+      color: @blue-alt;
+    }
+
+    dd{
+      border-top: none;
+      width: 100%;
+      float: left;
+      font-size: 0.85em;
+      font-family: 'Roboto', sans-serif;
+    }
+    dd:first-of-type {
+      font: 200 14px 'Raleway', Arial, Helvetica, sans-serif;
+      border-bottom: solid 1px #ddd;
+      padding-bottom: 3em;
+      color: @grey-90;
+    }
+    .att {
+      margin: 0;
+      margin-right: 1%;
+      padding: 1em 0;
+      float: left !important;
+      width: 48%;
+      strong{
+        font-family: 'Roboto Slab', serif;
+        color: @grey-100;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
   }
   .results figcaption dt {
-    font-size: 21px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 0 0 27px;
-  }
-  .results figcaption dd {
-    width: 100%;
-    float: left;
-    font-size: 0.85em;
+    //font-size: 21px;
+    //font-weight: 700;
+    //text-transform: uppercase;
+    //padding: 0 0 7px;
   }
   .results figcaption dd:last-of-type {
     //padding-left: 10px;
@@ -203,7 +254,29 @@
     font-size: 21px;
     font-weight: 700;
   }
-
+  .gallery-caption{
+    max-width: 90%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 75%;
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Roboto', sans-serif;
+    h3{
+      font-size: 14px;
+      margin: 0;
+      padding:0;
+    }
+    p {
+      padding: 0;
+      margin: 0;
+      opacity: 0.7 !important;
+    }
+  }
   .item-share{
     list-style: none;
     margin:0;

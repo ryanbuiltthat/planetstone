@@ -1,7 +1,3 @@
-
-
-/********** 14. FIXED WIDTH **********/
-/*************************************/
 .s-admin {
 
   .fixed {
@@ -36,9 +32,6 @@
   .fixed-noleft.chat-view .logopanel {
     display: block;
   }
-
-  /********** 15. MODALS **********/
-  /********************************/
 
   .bs-example-modal-panel .modal-content {
     background: none;
@@ -112,11 +105,6 @@
     }
   }
 
-  /********** 17. ADDITIONAL STYLES **********/
-  /*******************************************/
-
-  /***** 17.1 DROPDOWN *****/
-
   .dropdown-menu-head {
     background: #ffffff;
     .title {
@@ -129,7 +117,6 @@
     }
   }
 
-  /***** 17.2 ICON *****/
 
   .tp-icon {
     padding: 10px 20px;
@@ -149,13 +136,11 @@
     }
   }
 
-  /***** 17.3 TIME PICKER *****/
 
   .bootstrap-timepicker-widget.dropdown-menu {
     width: 230px;
   }
 
-  /***** 17.4 COLOR PICKER *****/
 
   .colorpicker-input {
     width: 200px;
@@ -166,7 +151,6 @@
     margin-top: 4px;
   }
 
-  /***** 17.5 STICKY HEADER */
 
   .stickyheader .logopanel {
     position: fixed;
@@ -216,8 +200,6 @@
     right: 240px;
     width: auto;
   }
-
-  /***** 17.6 CUSTOM STYLES *****/
 
   .mb5 {
     margin-bottom: 5px;
@@ -326,5 +308,25 @@
   .inblock {
     display: inline-block;
   }
+  // datatables
+  .dataTable {
+    font-size: 84%;
+    line-height: 1.3;
+    tbody{
+      tr{
+        cursor: pointer;
 
+        td{
+          padding: 6px 3px;
+          cursor: pointer;
+        }
+      }
+      tr:hover{
+        background: #567aa8;
+        td{
+          color: #fff;
+        }
+      }
+    }
+  }
 }

@@ -1,16 +1,8 @@
-/********** 2. RESET STYLES **********/
-/*************************************/
-.s-admin {
-  body {
-    background: @main-bg-color;
+body.s-admin {
+    background-color: #1d2939 !important;
     font-family: @font-family;
     line-height: 21px;
     color: @main-text-color;
-  }
-
-  body.notfound, body.signin {
-    background: @sub-bg-color;
-  }
 
   input, select, textarea {
     font-family: @font-family;
@@ -49,4 +41,7 @@
     margin: -15px 0 0 -15px;
     font-size: 32px;
   }
+}
+body.notfound, body.signin {
+  background: @sub-bg-color;
 }

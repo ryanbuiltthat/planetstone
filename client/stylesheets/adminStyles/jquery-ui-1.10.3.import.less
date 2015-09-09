@@ -1,10 +1,5 @@
-/*! jQuery UI - v1.10.3 - 2013-11-20
-* http://jqueryui.com
-* Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css
-* Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
 .s-admin {
-  /* Layout helpers
-----------------------------------*/
+
   .ui-helper-hidden {
 	display: none;
   }
@@ -54,16 +49,13 @@
 	z-index: 100;
   }
 
-  /* Interaction Cues
-----------------------------------*/
+
   .ui-state-disabled {
 	cursor: default !important;
   }
 
-  /* Icons
-----------------------------------*/
 
-  /* states and images */
+
   .ui-icon {
 	display: block;
 	text-indent: -99999px;
@@ -71,10 +63,6 @@
 	background-repeat: no-repeat;
   }
 
-  /* Misc visuals
-----------------------------------*/
-
-  /* Overlays */
   .ui-widget-overlay {
 	position: fixed;
 	top: 0;
@@ -207,11 +195,9 @@
   .ui-button:active {
 	text-decoration: none;
   }
-  /* to make room for the icon, a width needs to be set here */
   .ui-button-icon-only {
 	width: 2.2em;
   }
-  /* button elements seem to need a little more width */
   button.ui-button-icon-only {
 	width: 2.4em;
   }
@@ -222,7 +208,6 @@
 	width: 3.7em;
   }
 
-  /* button text element */
   .ui-button .ui-button-text {
 	display: block;
 	line-height: normal;
@@ -247,12 +232,10 @@
 	padding-left: 2.1em;
 	padding-right: 2.1em;
   }
-  /* no icon support for input elements, provide padding by default */
   input.ui-button {
 	padding: .4em 1em;
   }
 
-  /* button icon element(s) */
   .ui-button-icon-only .ui-icon,
   .ui-button-text-icon-primary .ui-icon,
   .ui-button-text-icon-secondary .ui-icon,
@@ -277,7 +260,6 @@
 	right: .5em;
   }
 
-  /* button sets */
   .ui-buttonset {
 	margin-right: 7px;
   }
@@ -286,9 +268,7 @@
 	margin-right: -.3em;
   }
 
-  /* workarounds */
-  /* reset extra padding in Firefox, see h5bp.com/l */
-  input.ui-button::-moz-focus-inner,
+    input.ui-button::-moz-focus-inner,
   button.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: 0;
@@ -393,7 +373,6 @@
 	float: left;
   }
 
-  /* with multiple calendars */
   .ui-datepicker.ui-datepicker-multi {
 	width: auto;
   }
@@ -425,8 +404,6 @@
 	width: 100%;
 	font-size: 0;
   }
-
-  /* RTL support */
   .ui-datepicker-rtl {
 	direction: rtl;
   }
@@ -535,7 +512,6 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	/* support: IE10, see #8844 */
 	list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
   }
   .ui-menu .ui-menu-divider {
@@ -550,7 +526,7 @@
 	display: block;
 	padding: 2px .4em;
 	line-height: 1.5;
-	min-height: 0; /* support: IE7 */
+	min-height: 0;
 	font-weight: normal;
   }
   .ui-menu .ui-menu-item a.ui-state-focus,
@@ -568,7 +544,6 @@
 	cursor: default;
   }
 
-  /* icon support */
   .ui-menu-icons {
 	position: relative;
   }
@@ -577,14 +552,12 @@
 	padding-left: 2em;
   }
 
-  /* left-aligned */
   .ui-menu .ui-icon {
 	position: absolute;
 	top: .2em;
 	left: .2em;
   }
 
-  /* right-aligned */
   .ui-menu .ui-menu-icon {
 	position: static;
 	float: right;
@@ -627,7 +600,6 @@
 	background-position: 0 0;
   }
 
-  /* For IE8 - See #6727 */
   .ui-slider.ui-state-disabled .ui-slider-handle,
   .ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
@@ -700,13 +672,11 @@
 	overflow: hidden;
 	right: 0;
   }
-  /* more specificity required here to overide default borders */
   .ui-spinner a.ui-spinner-button {
 	border-top: none;
 	border-bottom: none;
 	border-right: none;
   }
-  /* vertical centre icon */
   .ui-spinner .ui-icon {
 	position: absolute;
 	margin-top: -8px;
@@ -720,13 +690,12 @@
 	bottom: 0;
   }
 
-  /* TR overrides */
   .ui-spinner .ui-icon-triangle-1-s {
-	/* need to fix icons sprite */
+
 	background-position: -65px -16px;
   }
   .ui-tabs {
-	position: relative; /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	position: relative;
 	padding: .2em;
   }
   .ui-tabs .ui-tabs-nav {
@@ -757,7 +726,7 @@
   .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
 	cursor: text;
   }
-  .ui-tabs .ui-tabs-nav li a, /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+  .ui-tabs .ui-tabs-nav li a,
   .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
 	cursor: pointer;
   }
@@ -779,7 +748,7 @@
 	border-width: 2px;
   }
 
-  /* JQUERY UI THEME */
+
 
   .ui-datepicker {
 	background: #1D2939;
@@ -836,7 +805,7 @@
   }
 
   .ui-datepicker-next {
-	background: url(../images/calendar-arrow.png) no-repeat 10px 5px;
+	background: url(/img/calendar-arrow.png) no-repeat 10px 5px;
   }
 
   .ui-datepicker-next:hover {
@@ -847,7 +816,7 @@
   }
 
   .ui-datepicker-prev {
-	background: url(../images/calendar-arrow.png) no-repeat 8px -80px;
+	background: url(/img/calendar-arrow.png) no-repeat 8px -80px;
   }
 
   .ui-datepicker-prev:hover {
@@ -886,7 +855,7 @@
 	border-left: 1px solid #ccc;
 	width: 32px;
 	background-repeat: no-repeat;
-	background-image: url(../images/dropdown-arrow.png);
+	background-image: url(/img/dropdown-arrow.png);
 	cursor: pointer;
   }
 

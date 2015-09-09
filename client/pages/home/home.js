@@ -12,3 +12,11 @@ Template.home.onRendered(function(){
     new WOW().init();
 
 });
+
+Template.home.events({
+    'click #heroCTAab': function(e){
+        toggleBottomDrawer( 'cbp-spmenu-s4' );
+        return false;
+    },
+
+});

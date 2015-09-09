@@ -46,5 +46,15 @@ Template.singleproductedit.helpers({
         var params = { category: FlowRouter.getParam('category'), itemId: id};
         var path  = FlowRouter.path("edits", params);
         return path;
+    },
+    pullColors: function(){
+        return Colors.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
+            return {label: c.title, value: c._id};
+        });
+    },
+    pullTypes: function(){
+        return Types.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
+            return {label: c.title, value: c._id};
+        });
     }
 });

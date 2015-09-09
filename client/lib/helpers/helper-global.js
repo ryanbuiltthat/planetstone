@@ -24,11 +24,14 @@ planet_stone = {
         //$('.search-trigger').on('click', function () {
         //    $('.advanced-search').slideToggle(500);
         //});
+        //$('.houzz-share-button').on('click', function(){
+        //    alert('test');
+        //});
     },
     init: function () {
         //console.log("ps init");
         //SEARCH FILTER
-        $('.filter-show').hide(500);
+        //$('.filter-show').hide(500);
 
         $('.filter-hide').on('click', function () {
             $('aside.fixed').slideUp(500);

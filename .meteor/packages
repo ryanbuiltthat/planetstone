@@ -43,7 +43,7 @@ cfs:access-point
 momentjs:moment
 msavin:mongol
 meteorhacks:subs-manager
-iamkevingreen:imagesloaded
 underscore
 underscorestring:underscore.string
-peppelg:bootstrap-3-modal
+twbs:bootstrap
+donchess:autoform-froala

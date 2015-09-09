@@ -6,13 +6,22 @@ Template.frontProductsIndex.onCreated(function(){
     self.ready = new ReactiveVar();
     self.productsReady = new ReactiveVar();
     self.autorun(function(){
-        var handle = self.subscribe('frontAllProducts');
+        //self.applyFilters.set({color: ["apu62LNsQKPdDYWHp","RyAPSYhSHtc48HRbK"], type:["4L26WKnhepvCLWh89"] });
+        var filters = Session.get('applyFilters') || null;
+        var handle = self.subscribe('frontAllProductsFilter', filters);
         self.ready.set(handle.ready());
+        self.subscribe('productColors');
+        self.subscribe('productTypes');
     });
 });
 Template.frontProductsIndex.onRendered(function(){
-    $(".loaderMsg").delay(150).fadeIn('slow');
+    // Show loading message
+    $(".loaderMsg").delay(350).fadeIn('slow');
+
+    // Reset the loaded image count
     Session.setDefault('imgLoaded', 0);
+
+    // Check whether or not all of our (product) images are loaded
     this.autorun(function(){
         if(Template.instance().ready.get()){
             Session.set('imgCount', Products.find().count());
@@ -24,67 +33,75 @@ Template.frontProductsIndex.onRendered(function(){
         }
     });
 
-
+    // If our product images are loaded, hide the loading message and show
+    // the grid
     this.autorun(function(){
         if(Template.instance().productsReady.get()){
-            Session.set('imgLoaded', 0);
-            $( ".loaderMsg" ).delay( 700 ).fadeOut( 'fast', function() {
-                $( ".results" ).fadeIn( 'slow' );
-                $( ".sidebar").delay(250).fadeIn( 'slow' );
 
-            });
+            // Init base scripts
+            planet_stone.init();
+            planet_stone.load();
+
+            // Hide the filters to start
+            $('aside.fixed').slideUp(500);
+            //$('.filter-show').show(500);
+            $('.offset').css('margin-top','0');
+            // Initialize lightGallery
             $("#products").lightGallery({
-                //selector: this + ' figcaption button'
+                //appendSubHtmlTo: '.lg-item',
+                preload: 2,
+                currentPagePosition: 'left',
+                exThumbImage: 'data-exthumbimage',
+                thumbWidth: 120,
+                cssEasing:  'easeInOutExpo'
             });
-            //Meteor.wrapAsync(function(){
-            // Houzz script
-            Meteor.wrapAsync(function(d,s,id){
-                if(!d.getElementById(id)){
-                    var js=d.createElement(s);
-                    js.id=id;
-                    js.async=true;
-                    js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());
-                    var ss=d.getElementsByTagName(s)[0];
-                    ss.parentNode.insertBefore(js,ss);
-                }
+
+            // Reset loaded image count
+            Session.set('imgLoaded', 0);
+
+
+
+            // Show results behind loader
+            //$( ".results" ).show();
+
+            // Isotope
+            $("#products").isotope({
+                //itemSelector: '.item',
+                //layoutMode: 'fitRows',
+                //getSortData: {
+                //    name: ".name",
+                //    type: ".type"
+                //},
+                //sortBy: "name"
+            });
+
+            // Try to load Houzz
+            var houzzLaterSync = Meteor._wrapAsync(loadHouzz);
+            var result = houzzLaterSync();
+            if(result){
+                //noting
             }
-            )(document,"script","houzzwidget-js");
-            //});// wrapAsync
-        }
+
+            /**
+             * TODO: Refine animation hiding loader
+             */
+            $( ".loaderMsg" ).animate({
+                height: 0,
+                opacity: 0
+             }, 850, function(){
+                $(this).hide();
+            });
+
+
+
+
+
+            // Get the effects running
+            new WOW().init();
+
+
+        }// end if
     });
-    Meteor.setTimeout(function(){
-        // Init Light Gallery
-        //$("#products").lightGallery({
-            //selector: this + ' figcaption button'
-        //});
-
-        // Init base scripts
-        planet_stone.init();
-        planet_stone.load();
-
-    }, 1500);
-
-    // Isotope
-    //$("#products").isotope({
-    //    itemSelector: '.item',
-    //    layoutMode: 'fitRows',
-    //    getSortData: {
-    //        name: ".name",
-    //        type: ".type"
-    //    },
-    //    sortBy: "name"
-    //});
-
-    // Houzz
-
-
-    // Hide Filter show button
-    $('.filter-show').hide(500);
-
-    // Get the effects running
-    new WOW().init();
-
-
 });
 Template.frontProductsIndex.helpers({
     subsReady:function() {
@@ -110,23 +127,40 @@ filters = [];
 Template.frontProductsIndex.events({
     'change input[type="checkbox"]':function(e){
         var self = $(e.currentTarget);
-            filters = [];
-            // get checked checkboxes values
-            self.filter(':checked').each(function(){
-                var filterValue = self.attr("data-filter");
-                /**
-                 * TODO: exclusionary filter setup for types
-                 */
-                filters.push( self.attr("data-filter") );
-            });
-            //filters.push ( Session.get("excludedFilter" ) );
-            filters = filters.join(', ');
-            console.log(filters);
-            $("#products").isotope({ filter: filters });
+        filters = [];
+        // get checked checkboxes values
+        /**
+         * TODO: exclusionary filter setup for types
+         */
+        $("input:checked").each(function () {
+            var id = $(this).attr("id").toString();
+            filters.push( id );
+        });
+        console.log("post push filters: "+JSON.stringify(filters));
+        //console.log(typeof filters);
+        var out = {};
+        out["color"] = filters;
+    Session.set('applyFilters', out);
+    },
+    'change input[type="checkbox"]':function(e){
+        var self = $(e.currentTarget);
+        filters = [];
+        // get checked checkboxes values
+        /**
+         * TODO: exclusionary filter setup for types
+         */
+        $("input:checked").each(function () {
+            var id = $(this).attr("id").toString();
+            filters.push( id );
+        });
+        console.log("post push filters: "+JSON.stringify(filters));
+        //console.log(typeof filters);
+        var out = {};
+        out["color"] = filters;
+        Session.set('applyFilters', out);
     },
     'change .sort-select':function(e){
         var sortValue = e.currentTarget.value;
         $("#products").isotope({ sortBy: sortValue });
     },
-
 });

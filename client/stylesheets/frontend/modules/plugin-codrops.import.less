@@ -1,13 +1,14 @@
 /* General styles for all menus */
 .s-front {
   .spmenu {
-    background: #37474f;
+    background: @grey-100;
     position: fixed;
   }
 
   .spmenu h3 {
     color: #afdefa;
     font-size: 1.9em;
+    line-height: 150px;
     padding: 20px;
     margin: 0;
     font-weight: 300;
@@ -171,6 +172,22 @@
   .quickFormDrawer {
     width: 80%;
     float: right;
+    .drawerCloser{
+      //margin: 10px 10px 0 0;
+      a {
+        width: auto;
+        display: inline-block;
+        float: right;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: auto;
+        text-align: center;
+        font-weight: 200;
+        opacity: .4;
+        border: none;
+      }
+    }
   }
   .quickFormDrawer .search-hide {
     visibility: hidden;
@@ -282,5 +299,6 @@
   .drawerPromo p {
     color: #fff;
     opacity: 0.6;
+    width: 90%;
   }
 }

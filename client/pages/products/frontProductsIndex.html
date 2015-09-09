@@ -7,27 +7,27 @@
                     <!-- Column -->
                     <div class="one-fifth">
                         <p>Stone Type</p>
-                        {{#if subsReady}}
+                        {{! #if subsReady}}
                             {{#each getFilterTypes}}
                                 <div class="checkbox" >
                                     <input type="checkbox" data-filter-group="type" id="chk{{_id}}" data-filter=".{{_id}}" class="filter-chk" />
                                     <label for="chk{{_id}}">{{title}}</label>
                                 </div>
                             {{/each}}
-                        {{/if}}
+                        {{! /if}}
                     </div>
                     <!-- //Column -->
                     <!-- Column -->
                     <div class="one-third filter-group">
                         <p>Color of Stone</p>
-                        {{#if subsReady }}
+                        {{! #if subsReady }}
                             {{#each getFilterColors }}
                         <div class="checkbox">
                             <input type="checkbox" id="ch{{_id}}" data-filter=".{{filterTitleHelper title}}"  data-filter-group="color{{_id}}"/>
                             <label for="ch{{_id}}">{{title}}</label>
                         </div>
                             {{/each}}
-                        {{/if}}
+                        {{! /if}}
                     </div>
                     <!-- Column -->
                     <div class="one-sixth">
@@ -46,9 +46,13 @@
             <!-- //Refine search results -->
         </aside>
         <!-- //Filters -->
-        <a class="filter-show" title="Show search filters" href="javascript:void(0)" style="display: block;">+</a>
+        <a class="filter-show" title="Show search filters" href="javascript:void(0)" style="display: block;"><i class="fa fa-filter"></i></a>
         <div class="loaderMsg">
-            <h4>Loading.....</h4>
+            <div class="text">
+                <div class="avatar left-pic"><img src="/img/stone-avatar.png" width="80" /></div>
+                <h2>One Moment Please</h2>
+                <h4>We're checking in with the yard to bring you the most current product list</h4>
+            </div>
         </div>
         <!-- begin products gallery -->
         <div class="results offset" id="products">
@@ -59,4 +63,22 @@
             {{/if}}
         </div>
     </main>
+    <div class="modal fade" id="productInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Like What You See?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter your email below and let us help you find your inspiration. We'll help you turn a slab of {PRODUCT_NAME} into the countertop of your dreams!</p>
+                    <input class="input-lg form-control" placeholder="Enter email or phone">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button btn btn-small" data-dismiss="modal">Close</button>
+                    <button type="button" class="button gold btn btn-small">Get Inspired!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

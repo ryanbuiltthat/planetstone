@@ -1,31 +1,28 @@
 <template name="singleproductedit">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-2">
             <ul class="pagination pagination-split">
                 {{#with prev }}
-                <li class=""><a href="{{getPrevNxtURL _id }}"><i class="fa fa-angle-left"></i></a></li>
+                    <li class=""><a href="{{getPrevNxtURL _id }}"><i class="fa fa-angle-left"></i></a></li>
                 {{/with}}
                 {{#with nxt }}
                     <li class=""><a href="{{getPrevNxtURL _id }}"><i class="fa fa-angle-right"></i></a></li>
                 {{/with}}
             </ul>
         </div>
+        <div class="col-md-10">
+            <h1 class="page-title">{{#with product}} {{name}} {{/with}}</h1>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-dark">
                 {{! #autoForm id="addProductForm" type=method meteormethod=updateProduct collection="Products" }}
                     {{#autoForm id="afUpdateProduct" type="update" collection="Products" doc=product}}
                     <div class="panel-heading">
-                        <div class="panel-btns">
-                            <a href="" class="panel-close">x</a>
-                            <a href="" class="minimize">-</a>
-                        </div>
-                        <h4 class="panel-title">Edit {{#with product}} {{name}} {{/with}}</h4>
-                        <p>Currently color and type are un-editable and only displaying the _id parameters, this will be addressed.</p>
+                        <h4 class="panel-title">Product Details</h4>
                     </div>
                     <div class="panel-body">
-
                         <div class="row">
                             <div class="error" style="display: block;">
                                 {{#if afFieldIsInvalid name='name'}}<label for="name" class="error">You must name the product</label>{{/if}}
@@ -63,17 +60,17 @@
                             <div class="col-sm-6">
                                 <div class="form-group {{#if afFieldIsInvalid name='color'}}has-error{{/if}}">
                                     <label class="control-label">{{afFieldLabelText name='color'}}</label>
-                                    {{> afFieldInput name='color' class="form-control" }}
+                                    {{> afFieldInput name='color' type='select-multiple' options=pullColors}}
                                 </div>
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
                                 <div class="form-group {{#if afFieldIsInvalid name='type'}}has-error{{/if}}">
                                     <label class="control-label">{{afFieldLabelText name='type'}}</label>
-                                    {{> afFieldInput name='type' class="form-control" }}
+                                    {{> afFieldInput name='type' type='select' options=pullTypes}}
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
-                        <div class="row">
+                        <div class="row" style="margin-top: 2em;">
                             <div class="col-sm-12">
                                 <div class="form-groups">
                                     <label class="control-label">{{afFieldLabelText name='desc'}}</label>
@@ -99,10 +96,14 @@
                 {{/autoForm}}
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel">
+        <div class="col-md-3">
+            {{> addTypeQuickForm }}
+            {{> addColorQuickForm }}
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-dark">
                 <div class="panel-heading">
-                    <span class="panel-title">Attached Images</span>
+                    <span class="panel-title">Attached Image</span>
                 </div>
                 <div class="panel-body">
                     <!--<div class="table-responsive">-->
@@ -164,7 +165,7 @@
                             <div class="row filemanager">
                                 {{#with product }}
                                 {{#each getImages images }}
-                                    <div class="col-xs-6 col-sm-3 col-md-4 image">
+                                    <div class="col-xs-12 image">
                                         <div class="thmb">
                                             <div class="ckbox ckbox-default" style="display: block;">
                                                 <input type="checkbox" id="check2" value="1">
