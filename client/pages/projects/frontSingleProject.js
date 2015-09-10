@@ -13,7 +13,30 @@ Template.frontSingleProject.onCreated(function(){
 Template.frontSingleProject.onRendered(function(){
     Meteor.setTimeout(function(){
         $("#gallery").lightGallery();
+        $("#testimonialSlider").lightSlider({
+            item:1,
+            keyPress:true,
+            gallery:false,
+            pager:false,
+            prevHtml: 'PREVIOUS',
+            nextHtml: 'NEXT'
+        });
+
+        $('#birthDate').datepicker( "refresh" );
+        // Houzz
         (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+
+        //
+        $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
+
+        $('#birthDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1920:2000',
+            minDate: new Date(1920, 1 - 1, 25),
+            maxDate: '+80Y'
+        });
+
         // Init base scripts
         planet_stone.init();
         planet_stone.load();
@@ -24,7 +47,7 @@ Template.frontSingleProject.helpers({
         return Template.instance().ready.get();
     },
     'project': function() {
-        return Projects.find();
+        return Projects.findOne({ slug: FlowRouter.getParam('projectSlug') });
     },
     'projectImage': function(pics){
         return ProjectImages.find({ _id: { $in: pics }});
@@ -58,6 +81,10 @@ Template.frontSingleProject.helpers({
             return false;
         }
     },
+    getAssociatedType: function(id){
+        Template.instance().subscribe('singleType', id);
+        return Types.find({ _id: id });
+    },
     getAssociatedProductThumbnail: function(images){
         Template.instance().subscribe('singleProductImages', images);
         var thumbs = ProductImages.findOne({ _id: {$in:images}});
@@ -72,5 +99,15 @@ Template.frontSingleProject.helpers({
 Template.frontSingleProject.events({
     'click a':function(e,t){
         //e.preventDefault();
+    },
+    'click .tabs>a': function(e,t){
+        e.preventDefault();
+        $('.content .tab-content').hide().first().show();
+        $('.content .tabs li:first').addClass('current');
+        $(e.currentTarget).closest('li').addClass('current').siblings().removeClass('current');
+        $($(e.currentTarget).attr('href')).show().siblings('.tab-content').hide();
+    },
+    'focus #birthDate': function(e){
+        $(e.currentTarget).datepicker("show");
     }
 });

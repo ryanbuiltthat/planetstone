@@ -1,15 +1,16 @@
 Template.projectTestimonials.onCreated(function(){
-    var parent = Template.parentData(1);
-    this.quotes = this.subscribe( 'projectTestimonial', parent.category );/**
-     * Created by Ryan on 9/6/2015.
-     */
+    //var parent = Template.parentData(1);
+    //this.quotes = this.subscribe( 'projectTestimonial', parent.category );
 });
 
-Template.projectTestimonials.onRendered(function(){});
+Template.projectTestimonials.onRendered(function(){
+
+});
 
 Template.projectTestimonials.helpers({
     sub: function(){
-        return Template.instance().quotes.ready();
+        //console.log(parent.category);
+        //return Template.instance().quotes.ready();
     },
     quote: function(){
         return Testimonials.find();

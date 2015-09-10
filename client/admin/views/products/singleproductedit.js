@@ -1,7 +1,7 @@
 /**
  * Created by Ryan on 8/22/2015.
  */
-Template.singleproductedit.onCreated(function(){
+Template.productsedit.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
     self.createdAt = new ReactiveVar();
@@ -11,7 +11,7 @@ Template.singleproductedit.onCreated(function(){
     });
 });
 
-Template.singleproductedit.helpers({
+Template.productsedit.helpers({
     subReady: function(){
         return Template.instance().ready.get();
     },

@@ -2,7 +2,15 @@
     <div class="widget loading">
         {{#if Template.subscriptionsReady }}
             <h3>Don't Take Our Word For it</h3>
-            <p></p>
+            <ul id="testimonialSlider">
+            {{#each quote }}
+                <li>
+                    <h4>{{ title }}</h4>
+                    {{{ body }}}
+                    <h6>{{ author }}</h6>
+                </li>
+            {{/each}}
+            </ul>
         {{else}}
             {{> genericLoader }}
         {{/if}}

@@ -96,6 +96,11 @@ Meteor.publishComposite("frontSingleProject", function(project) {
                 find: function (project) {
                     return ProjectImages.find({ _id: { $in: project.images }});
                 }
+            },
+            {
+                find: function (project) {
+                    return Testimonials.find({ category: { $eq: project.category }});
+                }
             }
         ]
     }

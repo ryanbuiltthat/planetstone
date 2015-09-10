@@ -3,15 +3,6 @@
  */
 Template.productsindex.onCreated(function(){
    var self = this;
-   //self.ready = new ReactiveVar();
-    //self.autorun(function() {
-        //var postId = FlowRouter.getParam('category');
-       // var handle = ProductsSub.subscribe('productIndex');
-        //self.ready.set(handle.ready());
-        //self.subscribe('productCount');
-    //});
-
-
 });
 
 Template.productsindex.helpers({
@@ -35,14 +26,6 @@ Template.productsindex.events({
         //console.log("click: "+rowData._id);
         FlowRouter.go("/manage/products/edit/"+rowData._id);
     },
-    //'click .toggle': function(e,t){
-    //    e.preventDefault();
-    //    var cell = $(e.target).closest('.toggle').parent();
-    //    var tblRow = cell.parent();
-    //    var dataTable = tblRow.closest('table').DataTable();
-    //    var rowData = dataTable.row(tblRow).data();
-    //    console.log(rowData);
-    //},
     'change .autosave-toggle': function () {
         //Session.set("autoSaveMode", !Session.get("autoSaveMode"));
     },
@@ -53,32 +36,4 @@ Template.productsindex.events({
         return false;
         //e.preventDefault();
     },
-});
-
-Template.singleproductedit.onCreated(function(){
-    //var self = this;
-    //self.autorun(function() {
-    //    var postId = FlowRouter.getParam('itemId');
-    //    self.subscribe('singleProduct', postId);
-    //    self.subscribe('appImages');
-    //});
-});
-
-Template.singleproductedit.helpers({
-    //selectedProduct: function() {
-    //    var postId = FlowRouter.getParam('itemId');
-    //    var post = Products.findOne({_id: postId}) || {};
-    //    if(post){
-    //        Session.set("itemActiveState", post.active);
-    //    }
-    //    return post;
-    //},
-    //findOut: function(){
-    //    if(Session.get("itemActiveState")==='TRUE'){
-    //        return "checked";
-    //    }
-    //}
-});
-Template.singleproductedit.onRendered(function(){
-
 });

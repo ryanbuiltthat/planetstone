@@ -1,11 +1,11 @@
 <template name="frontSingleProject">
     <main class="main" role="main">
         {{#if subsReady }}
-        {{#each project }}
+        {{#with project }}
             <header class="intro dark">
             <!--<h1>{{ title }}</h1>-->
             <p>Browse the project gallery below to build your inspiration or skip to the details.</p>
-            <a href="#tab-navigation" title="" class="button white medium">Project Details</a>
+            <a href="#pgCTA" title="" class="tabnav button white medium">Project Details</a>
         </header>
         <div class="gallery" id="gallery">
             {{#each projectImage images }}
@@ -45,114 +45,83 @@
         </div>
             <!-- /gallery -->
             <!-- Content -->
-        <div class="content">
-            <!-- Tab navigation -->
-            <nav class="tabs two" role="navigation" id="tab-navigation">
-                <ul class="wrap">
-                    <li><a href="#tab1" title="Contact Stone Squad">
-                        <span class="icojam_info_3"></span> About This Project
-                    </a></li>
-                    <li><a href="#tab2" title="Contact Stone Squad">
-                        <span class="icojam_target"></span> Contact Stone Squad
-                    </a></li>
-                </ul>
-            </nav>
-            <!-- //Tab navigation -->
 
-            <!-- Wrapper -->
-            <div class="wrap" style="min-height: 40vh;">
-
-            <!-- Tab Content-->
-                <article class="tab-content" id="tab1">
-                    <div class="row">
-                        <!-- ThreeFourth -->
-                        <div class="one-half">
-                            <h1>{{ name }}</h1>
-                            <p>{{ desc }}</p>
-                        </div>
-                        <!-- //OneHalf -->
-
-                        <!-- OneFourth -->
-                        <div class="one-half sidebar sidebar-right">
-                            {{#if asscprod }}
-                            <div class="widget">
-                            <h3>In This Project</h3>
-                                {{#with getAssociatedProduct asscprod }}
-                                    <ul class="latest-posts">
-                                        <li>
-                                            <a href="#">
-                                        {{#with getAssociatedProductThumbnail images }}
-                                            <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/thumbs/productimages/{{_id}}-{{name}}" alt="{{name}}" width="90" />
-                                        {{/with}}
-                                                <h4>{{ name }}</h4>
-                                                <span class="date"><strong>Colors:</strong> {{#each getAssociatedProductColors color }}{{ title }}, {{/each}}</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                {{/with}}
-                            </div>
-                            {{/if}}
-                            {{> projectTestimonials }}
-                        </div>
-                        <!-- //OneFourth -->
-                    </div>
-                </article>
-            <article class="tab-content" id="tab2">
-                <div class="row">
-                    <!-- ThreeFourth -->
-                    <div class="one-half">
-                        <h2>Contact the Stone Squad</h2>
-                        <p>We know you have questions. Just ask a Planet Stone Design Consultant for advice. We are happy to discuss your project, explain our materials and services, and ensure a successful result.</p>
-                        <p><strong><em>All fields are required.</em></strong></p>
-
-                        <form class="row">
-                            <fieldset>
-                                <div class="full-width">
-                                    <label for="name">First Name</label>
-                                    <input type="text" id="name">
-                                </div>
-
-                                <!--<div class="one-half">-->
-                                <!--<label for="lastname">Last Name</label>-->
-                                <!--<input type="text" id="lastname" />-->
-                                <!--</div>-->
-
-                                <div class="one-half">
-                                    <label for="phone">Phone</label>
-                                    <input type="number" id="phone" class="uniform-input number">
-                                </div>
-
-                                <div class="one-half">
-                                    <label for="email">E-mail</label>
-                                    <input type="email" id="email">
-                                </div>
-
-                                <div class="full-width">
-                                    <label>Your message</label>
-                                    <textarea></textarea>
-                                </div>
-
-                                <div class="full-width">
-                                    <a href="#" title="Send inquiry" class="button gold large">Send inquiry</a>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <!-- //OneHalf -->
-
-                    <!-- OneFourth -->
-                    <aside class="one-half sidebar sidebar-right">
-                        <div class="widget">
-                            <div class="border"><img src="/img/stone-squad.jpg" alt="Planet Stone Marble &amp; Granite Stone Squad!">
-                            </div>    </div>
-                    </aside>
-                    <!-- //OneFourth -->
+            <section class="cta grey" id="pgCTA">
+                <div class="wrap">
+                    <!--<a href="test.html" title="" class="button white medium right">Contact Us</a>-->
+                    <!--<h3>Get Inspired Today</h3>-->
                 </div>
-            </article>
-            <!-- //Tab Content-->
+            </section>
+            <!-- Wrapper -->
+            <div class="content static">
+                <div class="wrap" style="min-height: 40vh;" id="pgContent">
+
+                <div class="three-fourth">
+                    <div class="box-white">
+                        <h1>{{ name }}</h1>
+                    <p>{{ desc }}</p>
+                    <br>
+                    <br>
+                    <h3>Find Your Inspiration</h3>
+                        <div class="row">
+                            <div class="one-half">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" value="">
+                            </div>
+                            <div class="one-half">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="">
+                            </div>
+                            <div class="one-half">
+                                <label for="phone">Phone</label>
+                                <input type="text" id="phone">
+                            </div>
+                            <div class="one-half">
+                                <label for="question">Questions</label>
+                                <input type="text" id="question">
+                            </div>
+                            <div class="full-width checkbox">
+                                <div class="checker" id="uniform-notification1">
+                                    <span>
+                                        <input type="checkbox" id="notification1"></span>
+                                </div>
+                                <label for="notification1">Would you like to hear about promotions or specials from time-to-time? Your information is your information, we never sell or distribute any information we collect.</label>
+                            </div>
+                            <div class="full-width">
+                                <input type="submit" class="button medium full gold" id="submit2" value="Save settings">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-fourth sidebar sidebar-right">
+                    {{#if asscprod }}
+                        {{#with getAssociatedProduct asscprod }}
+                        <div class="widget featured">
+                            <h3><a href="#" title="{{ name }}">On Display Now: <br></a></h3>
+                            {{#with getAssociatedProductThumbnail images }}
+                            <a href="#">
+                                <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}" />
+                            </a>
+                            {{/with}}
+                            <div class="box-white">
+                                    <dl>
+                                        <dd class="def-type">{{#each getAssociatedType type }}{{ title }} {{/each}}</dd>
+                                        <dt class="def-name">{{ name }}</dt>
+                                        <dd class="def-color">{{#each getAssociatedProductColors color }}{{ title }}, {{/each}}</dd>
+                                        <dd class="def-text">{{{ desc }}}</dd>
+                                    </dl>
+                            </div>
+                        </div>
+                        {{/with}}
+                    {{/if}}
+                    <!-- / associated product -->
+                    {{> darkHighlightWidget }}
+                    {{! > projectTestimonials }}
+                </div>
             </div>
             </div>
-            {{/each}}
+            {{> frontTestimonials }}
+            {{/with}}
         {{/if}}
     </main>
 </template>

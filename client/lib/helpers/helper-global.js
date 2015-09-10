@@ -137,7 +137,7 @@ planet_stone = {
                     $root.animate({
                         scrollTop: scrollToPosition
                     }, 500, function () {
-                        window.location.hash = anchor;
+                        //window.location.hash = anchor;
                         // This hash change will jump the page to the top of the div with the same id
                         // so we need to force the page to back to the end of the animation
                         $('html').animate({ 'scrollTop': scrollToPosition }, 0);
