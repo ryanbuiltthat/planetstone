@@ -7,8 +7,9 @@ Template.frontProductsIndex.onCreated(function(){
     self.productsReady = new ReactiveVar();
     self.autorun(function(){
         //self.applyFilters.set({color: ["apu62LNsQKPdDYWHp","RyAPSYhSHtc48HRbK"], type:["4L26WKnhepvCLWh89"] });
-        var filters = Session.get('applyFilters') || null;
-        var handle = self.subscribe('frontAllProductsFilter', filters);
+        //var filters = Session.get('applyFilters') || null;
+        var handle = self.subscribe('frontAllProducts', filters);
+        //debug;
         self.ready.set(handle.ready());
         self.subscribe('productColors');
         self.subscribe('productTypes');
@@ -16,7 +17,7 @@ Template.frontProductsIndex.onCreated(function(){
 });
 Template.frontProductsIndex.onRendered(function(){
     // Show loading message
-    $(".loaderMsg").delay(350).fadeIn('slow');
+    $(".loaderMsg").delay(50).fadeIn('fast');
 
     // Reset the loaded image count
     Session.setDefault('imgLoaded', 0);

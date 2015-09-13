@@ -1,10 +1,5 @@
 {
   "public": {
 
-  },
-  "aws": {
-    "bucket":"com.planetstonemarblegranite",
-    "key": "AKIAJ4WZIAUZMYFLEGGQ",
-    "secret": "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"
   }
 }

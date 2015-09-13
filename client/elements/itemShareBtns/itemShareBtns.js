@@ -16,13 +16,16 @@ Template.itemShareBtns.onRendered(function(){
 });
 
 Template.itemShareBtns.helpers({
-    'product': function(){
-        var item = this.toString();
-        var cursor = Products.findOne({ _id: item });
-        //console.log(cursor);
-      return cursor;
-    },
-   'itemImage': function(imageIds){
-
-   }
+   // 'product': function(){
+   //     var item = this.toString();
+   //     var cursor = Products.findOne({ _id: item });
+   //     //console.log(cursor);
+   //   return cursor;
+   // },
+   //'itemImage': function(imageIds){
+   //
+   //}
+    parent: function(){
+        var data = Template.parentData(1);
+    }
 });

@@ -7,11 +7,11 @@ Template.productIndexGalleryItem.onCreated(function(){
 Template.productIndexGalleryItem.helpers({
     getFullSrc: function(id){
         var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
-        return "https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+fullResSrc._id+"-"+fullResSrc.original.name;
+        return fullResSrc.url({store: "fr"});
     },
     getThumbSrc: function(id){
         var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
-        return "https://s3.amazonaws.com/com.planetstonemarblegranite/thumbs/productimages/"+fullResSrc._id+"-"+fullResSrc.original.name;
+        return fullResSrc.url({store: "thmb"});
     },
     getImages: function (id) {
         return ProductImages.findOne({ _id: { $in: id }});
@@ -53,11 +53,12 @@ Template.productIndexGalleryItem.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("http://planet.betabuild.io/products/"+parent._id);
+        return encodeURIComponent("//planetstone-50636.onmodulus.net/products/");
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
-        return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/"+id+"-"+name);
+        var img = ProductImages.findOne({ _id: id});
+        return encodeURIComponent("//planetstone-50636.onmodulus.net"+img.url({store:"galleryThumb",auth:false}));
     }
 });
 

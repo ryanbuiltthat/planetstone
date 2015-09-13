@@ -5,7 +5,7 @@
                 {{#each project}}
                     <figure class="one-fourth item">
                         {{#each getImages images }}
-                            <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/projectimages/{{_id}}-{{name}}" alt="{{name}}">
+                            <img src="{{url store='galleryThumb' }}" alt="{{name}}">
                         {{/each}}
                         <figcaption>
                             <dl>

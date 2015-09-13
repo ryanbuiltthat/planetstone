@@ -21,15 +21,15 @@ Template.frontProjectsCategory.onRendered(function(){
 
     // Isotope
     Meteor.setTimeout(function() {
-        $("#projects").isotope({
-            itemSelector: '.item',
-            layoutMode: 'fitRows',
-            getSortData: {
-                name: ".name",
-                type: ".type",
-            },
-            sortBy: "name",
-        });
+        //$("#projects").isotope({
+        //    itemSelector: '.item',
+        //    layoutMode: 'fitRows',
+        //    getSortData: {
+        //        name: ".name",
+        //        type: ".type",
+        //    },
+        //    sortBy: "name",
+        //});
     }, 1000);
 });
 Template.frontProjectsCategory.helpers({
@@ -68,18 +68,19 @@ Template.frontProjectsCategory.helpers({
         var productOut = "";
         _.each(products, function (product) {
             productOut = Products.findOne({_id: product});
-            out += ', '+'<a href="/products/'+productOut._id+'">'+productOut.name+'</a>'
+            out += ', '+'<a href="/products">'+productOut.name+'</a>'
         });
         out = out.replace(/^,/, '');
         return out;
     },
     'getSharePageURL': function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("http://planet.betabuild.io/projects/"+parent._id);
+        return encodeURIComponent("//planetstone-50636.onmodulus.net/projects/"+parent._id);
     },
     'getShareImageURL': function(id, name){
         var parent = Template.parentData(1);
-        return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/"+id+"-"+name);
+        var img = ProjectImages.findOne({ _id: id});
+        return encodeURIComponent("//planetstone-50636.onmodulus.net"+img.url({store:"galleryThumb",auth:false}));
     },
     'shortText': function(txt){
         return s.truncate(txt, 200);

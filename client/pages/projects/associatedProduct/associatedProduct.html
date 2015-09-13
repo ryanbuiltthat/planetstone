@@ -1,0 +1,22 @@
+<template name="associatedProduct">
+    {{#if subReady }}
+        {{#with product }}
+    <div class="widget featured">
+        <h3><a href="#" title="{{ name }}">On Display Now: <br></a></h3>
+        {{#each productThumb images }}
+        <a href="#">
+            <img src="{{ url store="menuThumb" auth=false }}" alt="{{ getParentName }} {{ getParentType }} - Planet Stone" title="{{ getParentName }} {{ getParentType }} - Planet Stone" style="width:100%;max-width:100%;display:block;height:auto;" />
+        </a>
+        {{/each}}
+        <div class="box-white">
+            <dl>
+                <dd class="def-type">{{ getType type }}</dd>
+                <dt class="def-name">{{ name }}</dt>
+                <dd class="def-color">{{#each getProductColors color }}{{ title }}, {{/each}}</dd>
+                <dd class="def-text">{{ desc }}</dd>
+            </dl>
+        </div>
+    </div>
+            {{/with}}
+    {{/if}}
+</template>

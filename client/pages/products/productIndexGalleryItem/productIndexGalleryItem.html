@@ -1,7 +1,7 @@
 <template name="productIndexGalleryItem">
     <figure class="one-fourth item {{ getClassColors color }} {{type}}" data-exthumbimage="{{ getThumbSrc images }}"  data-src="{{ getFullSrc images }}"  data-sub-html="#share{{ _id }}">
         {{#with getImages images }}
-            <img class="productThumb" src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}">
+            <img class="productThumb" src="{{url store="galleryThumb" }}" alt="{{name}}">
         {{/with}}
         <figcaption>
             <dl>
@@ -12,21 +12,13 @@
             </dl>
                 <!--<button class="button gold btn btn-xs">View Larger</button>-->
             <div  id="share{{ _id }}" style="display:none;">
-                <div class="gallery-caption">
-                    <h3>{{ name }}</h3>
-                    <p>{{ desc }}</p>
-                </div>
                 <ul class="item-share gallery-share">
-                    <!--<li>-->
-                        <!--<a class="favorite" onclick="toggleBottomDrawer( 'bdProductInquire' )"><i class="fa fa-heart"></i></a>-->
-                    <!--</li>-->
-                    <li>
+                    <li style="clear:both;display:block;"><h3>{{ name }}</h3></li>
                     {{#with getImages images }}
+                    <li>
                         <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
-                    {{/with}}
-                </li>
+                    </li>
                     <li>
-                    {{#with getImages images }}
                         <a class="houzz-share-button"
                            data-url="http://planet.betabuild.com/products/{{ getId }}/"
                            data-hzid="33569"
@@ -37,8 +29,9 @@
                            data-category="Kitchen Countertops"
                            data-showcount="0"
                            href="https://www.houzz.com"><i class="fa fa-houzz"></i></a>
-                    {{/with}}
+
                 </li>
+                    {{/with}}
                 </ul>
             </div>
         </figcaption>

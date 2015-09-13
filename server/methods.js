@@ -88,7 +88,7 @@ if(Meteor.isServer){
 
             try {
                 //check(doc,Schemas.Project);
-                Projects.insert(doc);
+                return Projects.insert(doc);
             }catch(e){
                 throw new Meteor.Error(e);
             }
@@ -193,4 +193,11 @@ if(Meteor.isServer){
 
         }
     });
+
+    // try cfs filesystem on modulus hack
+    //Meteor.methods({
+    //    'config/filesystem/path': function() {
+    //        return process.env.FILES_DIR;
+    //    }
+    //});
 }

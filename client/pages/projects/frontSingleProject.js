@@ -13,29 +13,11 @@ Template.frontSingleProject.onCreated(function(){
 Template.frontSingleProject.onRendered(function(){
     Meteor.setTimeout(function(){
         $("#gallery").lightGallery();
-        $("#testimonialSlider").lightSlider({
-            item:1,
-            keyPress:true,
-            gallery:false,
-            pager:false,
-            prevHtml: 'PREVIOUS',
-            nextHtml: 'NEXT'
-        });
-
-        $('#birthDate').datepicker( "refresh" );
         // Houzz
-        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+       // (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
 
         //
         $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
-
-        $('#birthDate').datepicker({
-            changeMonth: true,
-            changeYear: true,
-            yearRange: '1920:2000',
-            minDate: new Date(1920, 1 - 1, 25),
-            maxDate: '+80Y'
-        });
 
         // Init base scripts
         planet_stone.init();
@@ -66,29 +48,34 @@ Template.frontSingleProject.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("http://planet.betabuild.io/projects/"+parent.slug);
+        return encodeURIComponent("//planetstone-50636.onmodulus.net/projects/"+parent.slug);
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
-        return encodeURIComponent("https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/"+id+"-"+name);
+        var img = ProjectImages.findOne({ _id: id});
+        return encodeURIComponent("//planetstone-50636.onmodulus.net"+img.url({store:"galleryThumb",auth:false}));
     },
+    //shareData: function(project){
+    //    //console.log(project);
+    //    var thumb = ProjectImages.findOne({ _id: { $in: project.images }});
+    //    return {
+    //        title: project.name,
+    //        author: 'Planet Stone Marble Granite',
+    //        summary: project.desc,
+    //        thumbnail: thumb.url({store:'galleryThumb',auth:false}),
+    //        media: "//planetstone-50636.onmodulus.net"+thumb.url({store:'galleryThumb', auth:false}),
+    //        description: project.desc
+    //    }
+    //},
     getAssociatedProduct: function(id){
-        //console.log("asscprodid: "+id);
-        Template.instance().subscribe('frontSingleProductTitle', id);
-        if(id && id!=="undefined") {
-            return Products.findOne({_id: {$in: id}});
-        }else {
-            return false;
-        }
+            return Products.find({_id: {$in: id}});
     },
     getAssociatedType: function(id){
         Template.instance().subscribe('singleType', id);
         return Types.find({ _id: id });
     },
     getAssociatedProductThumbnail: function(images){
-        Template.instance().subscribe('singleProductImages', images);
-        var thumbs = ProductImages.findOne({ _id: {$in:images}});
-        return thumbs;
+            return ProductImages.find({_id: {$in: images}});
     },
     getAssociatedProductColors: function(colors){
         Template.instance().subscribe('allColors', colors);
@@ -109,5 +96,22 @@ Template.frontSingleProject.events({
     },
     'focus #birthDate': function(e){
         $(e.currentTarget).datepicker("show");
+    },
+    'click .houzz-btn':function(e,t){
+        //http://www.houzz.com/imageClipperUpload?link=%2F%2Fplanetstone-50636.onmodulus.net%2Fproducts%2F2Xp3qGNwodyxuDht6%2F&amp;source=button&amp;hzid=33569&amp;imageUrl=%2Fcfs%2Ffiles%2Fprojectimages%2FDWGqsCedwAeSxL7MG%2FImage4.jpg%3Ftoken%3DeyJhdXRoVG9rZW4iOiIifQ%253D%253D%26store%3Dfr&amp;title=White+%26+Modern+Kitchen&amp;ref=http%3A%2F%2Flocalhost%3A3000%2Fprojects%2Fkitchens%2Fwhite-modern-kitchen"
+        // onclick="addToHouzz();
+        // return false;"
+        // class="houzz-button"
+        // target="_blank"></a>
+
+            //function addToHouzz() {
+            //    var popout = 'http://www.houzz.com/imageClipperUpload?link=%2F%2Fplanetstone-50636.onmodulus.net%2Fproducts%2F2Xp3qGNwodyxuDht6%2F&source=button&hzid=33569&imageUrl=%2Fcfs%2Ffiles%2Fprojectimages%2FDWGqsCedwAeSxL7MG%2FImage4.jpg%3Ftoken%3DeyJhdXRoVG9rZW4iOiIifQ%253D%253D%26store%3Dfr&title=White+%26+Modern+Kitchen&ref=http%3A%2F%2Flocalhost%3A3000%2Fprojects%2Fkitchens%2Fwhite-modern-kitchen';
+            //    var popupWidth = 900;
+            //    var popupHeight = 480;
+            //    var left = Math.floor((screen.width - popupWidth)/2);
+            //    var top = Math.floor((screen.height - popupHeight)/2);
+            //    window.open(popout, 'HOUZZ' + new Date().getTime(), 'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
+            //}
+
     }
 });

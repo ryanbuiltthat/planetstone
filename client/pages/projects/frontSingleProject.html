@@ -4,37 +4,40 @@
         {{#with project }}
             <header class="intro dark">
             <!--<h1>{{ title }}</h1>-->
-            <p>Browse the project gallery below to build your inspiration or skip to the details.</p>
-            <a href="#pgCTA" title="" class="tabnav button white medium">Project Details</a>
-        </header>
+                <p>Browse the project gallery below to build your inspiration or skip to the details.</p>
+                <a href="#pgCTA" title="" class="tabnav button white medium">Project Details</a>
+            </header>
         <div class="gallery" id="gallery">
             {{#each projectImage images }}
             <!-- Item -->
-            <figure class="one-fourth" data-src="https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/{{_id}}-{{name}}" data-sub-html="#share{{ _id }}">
-                <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/projectimages/{{_id}}-{{name}}" alt="{{name}}">
+            <figure class="one-fourth" data-src="{{url store='fr' auth=false }}" data-sub-html="#share{{ _id }}">
+                <img src="{{url store='galleryThumb' auth=false }}" alt="{{name}}">
                 <figcaption>
                     <span class="icojam_zoom_in"></span>
                     <div id="share{{_id}}" style="display:none;">
                         <ul class="item-share">
-                            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
+                            <!--<li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>-->
                             <li>
                                 {{! #each projectImage images }}
-                                    <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
+                                    <!--<a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>-->
                                 {{! /each}}
                             </li>
                             <li>
                                 {{! #each projectImage images }}
-                                    <a class="houzz-share-button"
-                                       data-url="http://planet.betabuild.com/products/{{ getId }}/"
-                                       data-hzid="33569"
-                                       data-locale="en-US"
-                                       data-title="{{ getTitle }}"
-                                       data-img="https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/{{_id}}-{{name}}" alt="{{name}}"
-                                       data-desc="{{ getDesc }}"
-                                       data-category="Kitchen Countertops"
-                                       data-showcount="0"
-                                       href="https://www.houzz.com"><i class="fa fa-houzz"></i></a>
+                                    <!--<a class="houzz-share-button"-->
+                                       <!--data-url="//planetstone-50636.onmodulus.net/products/{{ getId }}/"-->
+                                       <!--data-hzid="33569"-->
+                                       <!--data-locale="en-US"-->
+                                       <!--data-title="{{ getTitle }}"-->
+                                       <!--data-img="{{url store="fr" auth=false }}"-->
+                                       <!--data-desc="{{ getDesc }}"-->
+                                       <!--data-category="Kitchen Countertops"-->
+                                       <!--data-showcount="0"-->
+                                       <!--href="https://www.houzz.com"><i class="fa fa-houzz"></i></a>-->
                                 {{! /each}}
+                            </li>
+                            <li>
+                                <a href="#!" class="houzz-share"><i class="houzz-logo"></i><span class="label">Save</span></a>
                             </li>
                         </ul>
                     </div>
@@ -54,72 +57,32 @@
             </section>
             <!-- Wrapper -->
             <div class="content static">
-                <div class="wrap" style="min-height: 40vh;" id="pgContent">
-
-                <div class="three-fourth">
+                <div class="wrap" id="pgContent">
+                <!-- OneFourth -->
+                <aside class="one-fourth sidebar sidebar-left">
+                    {{> darkHighlightWidget }}
+                    <div class="widget">
+                        {{>fbPage}}
+                    </div>
+                </aside>
+                <!-- //OneFourth -->
+                <div class="one-half">
                     <div class="box-white">
                         <h1>{{ name }}</h1>
                     <p>{{ desc }}</p>
                     <br>
                     <br>
                     <h3>Find Your Inspiration</h3>
-                        <div class="row">
-                            <div class="one-half">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" value="">
-                            </div>
-                            <div class="one-half">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" value="">
-                            </div>
-                            <div class="one-half">
-                                <label for="phone">Phone</label>
-                                <input type="text" id="phone">
-                            </div>
-                            <div class="one-half">
-                                <label for="question">Questions</label>
-                                <input type="text" id="question">
-                            </div>
-                            <div class="full-width checkbox">
-                                <div class="checker" id="uniform-notification1">
-                                    <span>
-                                        <input type="checkbox" id="notification1"></span>
-                                </div>
-                                <label for="notification1">Would you like to hear about promotions or specials from time-to-time? Your information is your information, we never sell or distribute any information we collect.</label>
-                            </div>
-                            <div class="full-width">
-                                <input type="submit" class="button medium full gold" id="submit2" value="Save settings">
-                            </div>
-                        </div>
+                        {{> inlinePgForm }}
                     </div>
                 </div>
                 <div class="one-fourth sidebar sidebar-right">
-                    {{#if asscprod }}
-                        {{#with getAssociatedProduct asscprod }}
-                        <div class="widget featured">
-                            <h3><a href="#" title="{{ name }}">On Display Now: <br></a></h3>
-                            {{#with getAssociatedProductThumbnail images }}
-                            <a href="#">
-                                <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/galleryThumb/productimages/{{_id}}-{{name}}" alt="{{name}}" />
-                            </a>
-                            {{/with}}
-                            <div class="box-white">
-                                    <dl>
-                                        <dd class="def-type">{{#each getAssociatedType type }}{{ title }} {{/each}}</dd>
-                                        <dt class="def-name">{{ name }}</dt>
-                                        <dd class="def-color">{{#each getAssociatedProductColors color }}{{ title }}, {{/each}}</dd>
-                                        <dd class="def-text">{{{ desc }}}</dd>
-                                    </dl>
-                            </div>
-                        </div>
-                        {{/with}}
-                    {{/if}}
+                        {{>associatedProduct asscprod }}
                     <!-- / associated product -->
-                    {{> darkHighlightWidget }}
-                    {{! > projectTestimonials }}
                 </div>
             </div>
             </div>
+
             {{> frontTestimonials }}
             {{/with}}
         {{/if}}

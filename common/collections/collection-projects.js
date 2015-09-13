@@ -70,13 +70,83 @@ Schemas.Project = new SimpleSchema({
     },
     images: {
         type: [String],
-        autoform: {
-            afFieldInput: {
-                type: "cfs-files",
-                collection: "projectimages"
-            }
-        },
+        //autoform: {
+        //    afFieldInput: {
+        //        type: "cfs-files",
+        //        collection: "projectimages"
+        //    }
+        //},
         optional: true
-    }
+    },
 });
 Projects.attachSchema(Schemas.Project);
+
+//ProjectImages = new FS.Collection("projectimages", {
+//    stores: [
+//        new FS.Store.S3("project_fullRes",{
+//            bucket: "com.planetstonemarblegranite",
+//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
+//            secretAccessKey: "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",
+//            folder: "/full",
+//            ACL: "public-read"
+//        }),
+//        new FS.Store.S3("project_menuSize", {
+//            bucket: "com.planetstonemarblegranite",
+//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
+//            secretAccessKey: "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",
+//            folder: "/menuSize",
+//            ACL: "public-read",
+//            transformWrite: createMenuThumb }),
+//        new FS.Store.S3("project_thumbs", {
+//            bucket: "com.planetstonemarblegranite",
+//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
+//            secretAccessKey: "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",
+//            folder: "/thumbs",
+//            ACL: "public-read",
+//            transformWrite: createThumb }),
+//        new FS.Store.S3("project_galleryThumb", {
+//            bucket: "com.planetstonemarblegranite",
+//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
+//            secretAccessKey: "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",
+//            folder: "/galleryThumb",
+//            ACL: "public-read",
+//            transformWrite: createGalleryThumb })
+//    ]
+//});
+//Meteor.startup(function() {
+//    return Meteor.call('config/filesystem/path', function(err, filesPath) {
+//        var cfsPath, fileSystemArgs;
+//        fileSystemArgs = {};
+//        if (filesPath != null) {
+//            cfsPath = filesPath + '/cfs';
+//            fileSystemArgs.path = cfsPath;
+//            console.log('Using ' + cfsPath + ' for cfs directory.');
+//        } else {
+//            console.log('Using default cfs directory.');
+//        }
+//        return this.MFiles = new FS.Collection('mfiles', {
+//            stores: [new FS.Store.FileSystem('files', fileSystemArgs)]
+//        });
+//    });
+//});
+ProjectImages = new FS.Collection("projectimages", {
+    stores: [
+        thumbStore,
+        menuStore,
+        galleryStore,
+        fullStore
+    ]
+});
+ProjectImages.allow({
+    insert: function (userId, doc) {
+        if(userId)
+            return true;
+    },
+    update: function (userId, doc, fieldNames, modifier) {
+        if(userId)
+            return true;
+    },
+    download: function (userId) {
+            return true;
+    }
+});

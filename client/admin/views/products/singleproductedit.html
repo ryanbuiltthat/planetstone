@@ -24,16 +24,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="error" style="display: block;">
-                                {{#if afFieldIsInvalid name='name'}}<label for="name" class="error">You must name the product</label>{{/if}}
-                                {{#if afFieldIsInvalid name='slug'}}<label for="slug" class="error">The product must have a slug for proper SEO</label>{{/if}}
-                                {{#if afFieldIsInvalid name='color'}}<label for="color" class="error">Please list the colors in the product</label>{{/if}}
-                                {{#if afFieldIsInvalid name='type'}}<label for="type" class="error">The type of product must be defined</label>{{/if}}
-                                <!--<label for="email" class="error">Your email address is required!</label>-->
-                                <!--<label for="comment" class="error">Please type a comment at least 6 characters long!</label>-->
-                            </div>
                             <div class="col-sm-3">
-                                <div class="form-group {{#if afFieldIsInvalid name='active'}}has-error{{/if}}">
+                                <div class="form-group {{! #if afFieldIsInvalid name='active'}}has-error{{! /if}}">
                                     <div class="checkbox block">
                                             {{> afQuickField name="active"}}
 
@@ -42,47 +34,30 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-sm-6">
-                                <div class="form-group {{#if afFieldIsInvalid name='name'}}has-error{{/if}}">
-                                    <span class=""></span>
-                                    <label class="control-label">{{afFieldLabelText name='name'}}</label>
-                                    {{> afFieldInput name='name' class="form-control"}}
-                                </div>
+                                    {{> afQuickField name='name'}}
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
-                                <div class="form-group {{#if afFieldIsInvalid name='slug'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='slug'}}</label>
-                                    {{> afFieldInput name='slug' class="form-control" }}
-                                </div>
+                                    {{> afQuickField name='slug' }}
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="form-group {{#if afFieldIsInvalid name='color'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='color'}}</label>
-                                    {{> afFieldInput name='color' type='select-multiple' options=pullColors}}
-                                </div>
+                                    {{> afQuickField name='color' type='select-multiple' options=pullColors}}
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
-                                <div class="form-group {{#if afFieldIsInvalid name='type'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='type'}}</label>
-                                    {{> afFieldInput name='type' type='select' options=pullTypes}}
-                                </div>
+                                    {{> afQuickField name='type' type='select' options=pullTypes}}
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
                         <div class="row" style="margin-top: 2em;">
                             <div class="col-sm-12">
-                                <div class="form-groups">
-                                    <label class="control-label">{{afFieldLabelText name='desc'}}</label>
-                                    {{> afFieldInput name='desc' class="form-control" }}
-                                </div>
+                                    {{> afQuickField name='desc' }}
                             </div>
-                            <!--<div class="col-sm-12">-->
+                            <div class="col-sm-12">
                                 <!--<div class="form-groups">-->
-                                    <!--<label class="control-label">{{afFieldLabelText name='images'}}</label>-->
-                                    {{! > afFieldInput name='images' class="form-control" }}
+                                {{> afQuickField name="images" type="cfs-files" collection="productimages"}}
                                 <!--</div>-->
-                            <!--</div>-->
+                            </div>
                         </div>
 
                     </div><!-- panel-body -->
@@ -184,8 +159,8 @@
                                                 <!--</ul>-->
                                             </div><!-- btn-group -->
                                             <div class="thmb-prev">
-                                                <a href="https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/{{_id}}-{{name}}" data-rel="prettyPhoto">
-                                                    <img src="https://s3.amazonaws.com/com.planetstonemarblegranite/menuSize/productimages/{{_id}}-{{name}}" class="img-responsive" alt="{{name}}">
+                                                <a href="{{url store="fr" }}" data-rel="prettyPhoto">
+                                                    <img src="{{url store="menuThumb" }}" class="img-responsive" alt="{{name}}">
                                                 </a>
                                             </div>
                                             <h5 class="fm-title"><a href="">{{name}}</a></h5>

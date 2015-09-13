@@ -33,7 +33,10 @@ Template.projectsadd.helpers({
         return Categories.find({}).map(function (c){
             return {label: c.title, value: c._id};
         });
-    }
+    },
+    //images: function () {
+    //    return ProjectImages.find(); // Where Images is an FS.Collection instance
+    //}
 });
 
 Template.projectsadd.events({

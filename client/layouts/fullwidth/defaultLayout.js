@@ -12,6 +12,7 @@ Template.defaultLayout.onRendered(function() {
     planet_stone.init();
     // Load misc
     planet_stone.load();
+
 });
 Template.defaultLayout.helpers({
     pageClass: function(){

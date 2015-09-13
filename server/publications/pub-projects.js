@@ -10,19 +10,24 @@ Meteor.publishComposite("addProjectView", {
     children: [
         {
             find: function(product) {
-                return Colors.find({});
+                return Colors.find();
             }
         },
         {
             find: function(product) {
-                return Categories.find({});
+                return Categories.find();
             }
         },
         {
             find: function(product){
                 return Products.find();
             }
-        }
+        },
+    //    {
+    //        find: function(product){
+    //            return ProjectImages.find();
+    //        }
+    //    }
     ]
 });
 Meteor.publishComposite("frontProjectsIndex", {
@@ -62,12 +67,12 @@ Meteor.publishComposite("frontProjectsCategory", function(categoryId) {
                 children: [
                     {
                         find: function(project) {
-                            return Products.find({});
+                            return Products.find();
                         }
                     },
                     {
                         find: function(project){
-                            return ProjectImages.find({});
+                            return ProjectImages.find();
                         }
                     }
                 ]
@@ -85,11 +90,6 @@ Meteor.publishComposite("frontSingleProject", function(project) {
             {
                 find: function (project) {
                     return Categories.find({_id: project.category});
-                }
-            },
-            {
-                find: function (project) {
-                    return Products.find( { _id: { $in: project.asscprod } } );
                 }
             },
             {

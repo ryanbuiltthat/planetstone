@@ -1,0 +1,72 @@
+<template name="testimonialTpl">
+    <main class="main" role="main">
+        <!-- Intro -->
+        <header class="intro hidden">
+            <div class="wrap">
+                <h1>Services</h1>
+                <p>Our aim is to remove the administrative burden from yacht owners to enable them to enjoy their yachts. Our professional services extend from yacht registration to providing a complete yacht management service through a dedicated point of contact.</p>
+            </div>
+        </header>
+        <!-- //Intro -->
+
+        <!-- Content -->
+        <div class="content static">
+            <!-- Wrapper -->
+            <div class="wrap">
+                <div class="row">
+                    <!-- OneFourth -->
+                    <aside class="one-fourth sidebar sidebar-left">
+                        <!-- Tab navigation -->
+                        <nav class="tabs vertical" role="navigation">
+                            <ul class="wrap">
+                                {{#if subsready }}
+                                {{#each categories }}
+                                <li><a href="#tab{{_id}}" title="{{ title }}">{{ title }}</a></li>
+                                {{/each}}
+                                {{/if}}
+                            </ul>
+                        </nav>
+                        {{>fbPage}}
+                        <!-- //Tab navigation -->
+
+                        <div class="widget box-navy box hidden">
+                            <p>Let us know your requirements so we can assist in managing your yacht.</p>
+                            <a href="contact.html" class="trigger button full small white" title="Contact us">Contact us</a>
+                        </div>
+
+                        <div class="widget featured hidden">
+                            <a href="yacht-sale-single.html"><img src="uploads/img2.jpg" alt="boat" /></a>
+                            <div class="box-white">
+                                <h4><a href="yacht-sale-single.html" title="Featured Yacht: Elan 1923 Impression">Featured Yacht: <br /><strong>Elan 1923 Impression</strong></a></h4>
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- //OneFourth -->
+
+
+                    <!-- ThreeFourth -->
+                    <div class="three-fourth">
+                        {{#if subsready }}
+                        {{#each categories }}
+                        <!-- Tab Content-->
+                        <article class="tab-content" id="tab{{ _id }}">
+                            <div class="box-white">
+                                <p class="lead"></p>
+                                {{#each quote _id}}
+                                    {{{body}}}
+                                <h4>{{author}}</h4>
+                                {{/each}}
+                            </div>
+                        </article>
+                        <!-- //Tab Content-->
+                        {{/each}}
+                        {{/if}}
+                    </div>
+                    <!-- //ThreeFourth -->
+                </div>
+            </div>
+            <!-- //Wrapper -->
+        </div>
+        <!-- //Content-->
+    </main>
+</template>

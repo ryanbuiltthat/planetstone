@@ -41,6 +41,17 @@ ap = new SubsManager();
 //adminSite = new SubsManager();
 //adminUsers = new SubsManager();
 
+// FB sdk
+if(Meteor.isClient) {
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1480455812257733',
+            status     : true,
+            version    : 'v2.4',
+            xfbml      : true
+        });
+    };
+}
 
 
 // client Side collections

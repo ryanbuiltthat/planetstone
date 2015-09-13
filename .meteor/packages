@@ -10,7 +10,6 @@ fortawesome:fontawesome
 kadira:blaze-layout
 aldeed:simple-schema
 aldeed:collection2
-aldeed:autoform
 cfs:standard-packages
 cfs:s3
 cfs:gridfs
@@ -19,10 +18,8 @@ isotope:isotope
 aldeed:tabular
 cfs:filesystem
 less
-mizzao:user-status
 accounts-base
 accounts-password
-mizzao:timesync
 tmeasday:publish-counts
 kadira:dochead
 dburles:collection-helpers
@@ -34,7 +31,6 @@ service-configuration
 http
 email
 meteorhacks:ssr
-adain:meteor-server-file
 cfs:ui
 cfs:graphicsmagick
 ongoworks:security
@@ -46,4 +42,5 @@ meteorhacks:subs-manager
 underscore
 underscorestring:underscore.string
 twbs:bootstrap
-donchess:autoform-froala
+aldeed:autoform
+biasport:facebook-sdk

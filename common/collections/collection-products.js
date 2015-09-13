@@ -14,7 +14,7 @@ Schemas.Product = new SimpleSchema({
         max: 200,
     },
     color: {
-        type: [String],
+        type: [String]
     },
     type: {
         type: String,
@@ -63,23 +63,33 @@ Schemas.Product = new SimpleSchema({
     },
     images: {
         type: [String],
-        autoform: {
-            afFieldInput: {
-                type: "cfs-files",
-                collection: "productimages"
-            }
-        },
         optional: true
     }
 });
-
-/**
- * TODO: Add image manipulation to create specific sizes for displays
- *
- */
 
 Products.attachSchema(Schemas.Product);
 
 
 ///-----------------
 
+ProductImages = new FS.Collection("productimages", {
+    stores: [
+        thumbStore,
+        menuStore,
+        galleryStore,
+        fullStore
+    ]
+});
+ProductImages.allow({
+    insert: function (userId, doc) {
+        if(userId)
+            return true;
+    },
+    update: function (userId, doc, fieldNames, modifier) {
+        if(userId)
+            return true;
+    },
+    download: function (userId) {
+            return true;
+    }
+});
