@@ -63,15 +63,9 @@ Template.frontProjectsCategory.helpers({
         return projectCategorySlug.slug;
 
     },
-    'getDisplayProducts': function(products){
-        var out = "";
-        var productOut = "";
-        _.each(products, function (product) {
-            productOut = Products.findOne({_id: product});
-            out += ', '+'<a href="/products">'+productOut.name+'</a>'
-        });
-        out = out.replace(/^,/, '');
-        return out;
+    'getDisplayProducts': function(product){
+        var out = Products.findOne({_id: product});
+        return '<a href="/products">'+out.name+'</a>';
     },
     'getSharePageURL': function(){
         var parent = Template.parentData(1);

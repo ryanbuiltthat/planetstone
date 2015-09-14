@@ -14,6 +14,7 @@
     -ms-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
   }
+
   .gallery figure * {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -41,6 +42,59 @@
     left: 0;
     padding: 0 30px;
   }
+
+  .attproduct{
+      figure {
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -ms-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+        figcaption {
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+          opacity: 0;
+          -ms-opacity: 0;
+          color: #fff;
+          background: rgba(43, 58, 66, .9);
+          span {
+            position: absolute;
+            top: 120%;
+            left: 47%;
+          }
+        }
+      }
+      figure:hover figcaption {
+        opacity: 1;
+        -ms-opacity: 1;
+      }
+      figure:hover figcaption div {
+        top: 45%;
+      }
+      figure:hover figcaption span {
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        left: 50%;
+      }
+    }
+  .attproduct figure * {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+
+
+
   .gallery figcaption h5 {
     font: 700 17px 'Raleway', Arial, Helvetica, sans-serif;
     padding: 0 0 15px;

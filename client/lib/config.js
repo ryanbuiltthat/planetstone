@@ -55,5 +55,7 @@ if(Meteor.isClient) {
 
 
 // client Side collections
-PreviousProduct = new Meteor.Collection("previousProduct");
-NextProduct = new Meteor.Collection("nextProduct");
+PreviousProject = new Meteor.Collection("previousProject");
+NextProject = new Meteor.Collection("nextProject");
+PrevCategory = new Meteor.Collection("prevcategory");
+NextCategory = new Meteor.Collection("nextcategory");

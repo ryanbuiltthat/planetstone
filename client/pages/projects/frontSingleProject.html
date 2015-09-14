@@ -48,7 +48,6 @@
         </div>
             <!-- /gallery -->
             <!-- Content -->
-
             <section class="cta grey" id="pgCTA">
                 <div class="wrap">
                     <!--<a href="test.html" title="" class="button white medium right">Contact Us</a>-->
@@ -70,19 +69,23 @@
                     <div class="box-white">
                         <h1>{{ name }}</h1>
                     <p>{{ desc }}</p>
-                    <br>
-                    <br>
+                    </div>
+                    <div class="box-white">
                     <h3>Find Your Inspiration</h3>
                         {{> inlinePgForm }}
                     </div>
+                    <div class="pager box-white">
+                        <a href="{{ prevProject }}" title="PREVIOUS PROJECT" class="prev"><span class="icojam_symbol_backward"></span> PREVIOUS PROJECT</a>
+                        <a href="{{nextProject }}" title="NEXT PROJECT" class="next">NEXT PROJECT <span class="icojam_symbol_foward"></span></a>
+                    </div>
                 </div>
                 <div class="one-fourth sidebar sidebar-right">
-                        {{>associatedProduct asscprod }}
+                    {{>associatedProduct asscprod }}
+                    {{>stoneProductList}}
                     <!-- / associated product -->
                 </div>
             </div>
             </div>
-
             {{> frontTestimonials }}
             {{/with}}
         {{/if}}

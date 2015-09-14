@@ -1,0 +1,12 @@
+<template name="stoneProductList">
+    <div class="widget">
+        {{#if subready }}
+        <h3>Natural Stone</h3>
+        <ul class="nobullet">
+            {{#each gettypes }}
+            <li><a href="{{ getPathFor "products" }}" title="{{ title }}">{{ title }}</a></li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
+</template>

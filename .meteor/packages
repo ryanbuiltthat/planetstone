@@ -13,7 +13,6 @@ aldeed:collection2
 cfs:standard-packages
 cfs:s3
 cfs:gridfs
-msavin:jetsetter
 isotope:isotope
 aldeed:tabular
 cfs:filesystem
@@ -37,10 +36,12 @@ ongoworks:security
 cfs:autoform
 cfs:access-point
 momentjs:moment
-msavin:mongol
 meteorhacks:subs-manager
 underscore
 underscorestring:underscore.string
 twbs:bootstrap
 aldeed:autoform
 biasport:facebook-sdk
+msavin:mongol
+msavin:jetsetter
+meteorhacks:aggregate

@@ -54,10 +54,10 @@ Meteor.publishComposite("frontProjectsIndex", {
     ]
 });
 
-Meteor.publishComposite("frontProjectsCategory", function(categoryId) {
+Meteor.publishComposite("frontProjectsCategory", function(categorySlug) {
     return {
         find: function () {
-            return Categories.find({ slug: categoryId});
+            return Categories.find({ slug: categorySlug});
         },
         children: [
             {
@@ -67,7 +67,7 @@ Meteor.publishComposite("frontProjectsCategory", function(categoryId) {
                 children: [
                     {
                         find: function(project) {
-                            return Products.find();
+                            return Products.find({ _id: project.asscprod});
                         }
                     },
                     {
@@ -87,6 +87,40 @@ Meteor.publishComposite("frontSingleProject", function(project) {
             return Projects.find({ slug: project});
         },
         children: [
+            {
+                // Get previous project
+                collectionName: "previousProject",
+                find: function(project){
+                    return Projects.find(
+                        { createdAt: { $lt: project.createdAt } },
+                        { sort: { createdAt: -1 }, limit: 1 });
+                },
+                children: [
+                    {
+                        collectionName: "prevcategory",
+                        find: function(prevproject){
+                            return Categories.find({ _id: prevproject.category})
+                        }
+                    }
+                ]
+            },
+            {
+                // Get next project
+                collectionName: "nextProject",
+                find: function(project){
+                    return Projects.find(
+                        { createdAt: { $gt: project.createdAt } },
+                        { sort: { createdAt: 1 }, limit: 1 });
+                },
+                children:[
+                    {
+                        collectionName: "nextcategory",
+                        find: function(nextproject){
+                            return Categories.find({ _id: nextproject.category})
+                        }
+                    }
+                ]
+            },
             {
                 find: function (project) {
                     return Categories.find({_id: project.category});

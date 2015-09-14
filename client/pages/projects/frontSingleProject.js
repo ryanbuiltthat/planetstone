@@ -31,6 +31,18 @@ Template.frontSingleProject.helpers({
     'project': function() {
         return Projects.findOne({ slug: FlowRouter.getParam('projectSlug') });
     },
+    nextProject:function(){
+        var nxtProject = NextProject.findOne();
+        var nxtCat = NextCategory.findOne();
+        var out = '/projects/'+nxtCat.slug+'/'+nxtProject.slug;
+        return out;
+    },
+    prevProject:function(){
+        var prvProject = PreviousProject.findOne();
+        var prvCat = PrevCategory.findOne();
+        var out = '/projects/'+prvCat.slug+'/'+prvProject.slug;
+        return out;
+    },
     'projectImage': function(pics){
         return ProjectImages.find({ _id: { $in: pics }});
     },
@@ -67,20 +79,20 @@ Template.frontSingleProject.helpers({
     //        description: project.desc
     //    }
     //},
-    getAssociatedProduct: function(id){
-            return Products.find({_id: {$in: id}});
-    },
-    getAssociatedType: function(id){
-        Template.instance().subscribe('singleType', id);
-        return Types.find({ _id: id });
-    },
-    getAssociatedProductThumbnail: function(images){
-            return ProductImages.find({_id: {$in: images}});
-    },
-    getAssociatedProductColors: function(colors){
-        Template.instance().subscribe('allColors', colors);
-        return Colors.find({ _id: { $in: colors } });
-    }
+    //getAssociatedProduct: function(id){
+    //        return Products.find({_id: {$in: id}});
+    //},
+    //getAssociatedType: function(id){
+    //    Template.instance().subscribe('singleType', id);
+    //    return Types.find({ _id: id });
+    //},
+    //getAssociatedProductThumbnail: function(images){
+    //        return ProductImages.find({_id: {$in: images}});
+    //},
+    //getAssociatedProductColors: function(colors){
+    //    Template.instance().subscribe('allColors', colors);
+    //    return Colors.find({ _id: { $in: colors } });
+    //}
 });
 
 Template.frontSingleProject.events({

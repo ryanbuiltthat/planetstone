@@ -72,5 +72,22 @@ Meteor.publishComposite("singleProduct", function(product) {
     };
 });
 
-
+Meteor.publish("productsplit",function(){
+    self = this;
+    prods = Products.aggregate(
+        [
+            {$project: {color: 1, name: 1, type: 1}},
+            { $unwind : "$color" },
+            //{ $out: "splitproducts" }
+            //{$group: {_id: {email: "$invites.email"}}},
+            //{$project: {email: "$_id.email"}}
+        ])
+    _(prods).each(function(product) {
+        if (product.color) {
+            //if (!SplitProducts.findOne({color: product.color},{})) {
+                self.added('splitproducts', Random.id(), {productId: product._id, name: product.name, color: product.color, type: product.type});
+            //}
+        }
+    });
+});
 

@@ -45,6 +45,14 @@ planet_stone = {
             $('.offset').css('margin-top','197px');
         });
 
+        // Try FB
+        //console.log("[planet_stone:init:FB try]");
+        try {
+            FB.XFBML.parse();
+        }catch(e) {
+            //console.log(e);
+        }
+
         //ADVANCED SEARCH
         //$('.advanced-search').hide();
         //$('.search-trigger').off('click');

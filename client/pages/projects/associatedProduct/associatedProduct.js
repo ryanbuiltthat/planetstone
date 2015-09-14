@@ -36,5 +36,23 @@ Template.associatedProduct.helpers({
     },
     getProductColors: function(colors){
         return Colors.find({ _id: { $in: colors } });
+    },
+    parentId:function(){
+        var data = Template.parentData(1);
+        return data._id;
+    }
+});
+
+Template.associatedProduct.events({
+    'click figure':function(e,t){
+        console.log(t);
+        var data = t.data;
+        var self = e.currentTarget;
+        $(self).lightGallery({
+           dynamic: true,
+            dynamicEl: [{
+                src: $("#"+data).data("src")
+            }]
+        });
     }
 });

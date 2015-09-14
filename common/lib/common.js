@@ -64,3 +64,5 @@ Types = new Mongo.Collection("types");
 Categories = new Mongo.Collection("categories");
 Teams = new Mongo.Collection("teams");
 Faqs = new Mongo.Collection("faqs");
+
+SplitProducts = new Meteor.Collection("splitproducts");

@@ -1,6 +1,14 @@
 /**
  * Created by Ryan on 8/14/2015.
  */
+Template.home.onCreated(function(){
+    var self = this;
+    self.ready = new ReactiveVar();
+    self.autorun(function(){
+     var handle = self.subscribe('frontTestimonials');
+     self.ready.set(handle.ready());
+    })
+});
 Template.home.onRendered(function(){
     // Init scripts
     planet_stone.init();
