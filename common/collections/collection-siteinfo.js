@@ -5,24 +5,29 @@ Schemas.Info = new SimpleSchema({
     title: {
         type: String,
         label: "Site Name",
-        max: 200
+        max: 200,
+        optional: true,
     },
     desc: {
         type: String,
         label: "Site Description",
         max: 250,
+        optional: true,
     },
     phone: {
         type: String,
-        label: "Type"
+        label: "Phone",
+        optional: true,
     },
     address:{
         label: "Physical Address",
-        type: AddressSchema
+        type: AddressSchema,
+        optional: true,
     },
     email: {
         label: "Site Contact",
         type: String,
+        optional: true,
         //regex: SimpleSchema.RegEx.Email
     },
     socials: {

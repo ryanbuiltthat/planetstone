@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 kadira:flow-router
 fortawesome:fontawesome
 kadira:blaze-layout
@@ -45,3 +44,19 @@ biasport:facebook-sdk
 msavin:mongol
 msavin:jetsetter
 meteorhacks:aggregate
+donchess:autoform-froala
+meteorhacks:kadira@2.23.0
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check

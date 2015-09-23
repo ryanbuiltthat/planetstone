@@ -35,7 +35,7 @@ Template.testimonialTpl.helpers({
         //console.log(Testimonials.find());
         var catArr=[];
         catArr.push(catId);
-        return Testimonials.find({ category: {$in:catArr}});
+        return Testimonials.find({ category: {$in:catArr}}) || {};
     },
     categories: function(){
         //console.log(Categories.find());

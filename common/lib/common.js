@@ -32,6 +32,25 @@ makeThumb = function(fileObj, readStream, writeStream) {
         throw new Meteor.Error(e);
     }
 };
+compressFullRes = function(fileObj, readStream, writeStream) {
+    try {
+        gm(readStream, fileObj.name()).quality(50).stream().pipe(writeStream);
+    }catch(e){
+        throw new Meteor.Error(e);
+    }
+};
+
+// Medium team image
+teamMedium = function(fileObj, readStream, writeStream) {
+    var wsize = '266';
+    var hsize = '266';
+    try {
+        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(45).stream().pipe(writeStream);
+
+    }catch(e){
+        throw new Meteor.Error(e);
+    }
+};
 
 
 // FS Stores
@@ -52,7 +71,14 @@ galleryStore = new FS.Store.GridFS("galleryThumb", {
 });
 
 // Fullres
-fullStore = new FS.Store.GridFS("fr");
+fullStore = new FS.Store.GridFS("fr", {
+   // transformWrite: compressFullRes
+});
+
+// Team img stores
+teamMed = new FS.Store.GridFS("teamMed", {
+   transformWrite: teamMedium
+});
 
 // Collections
 Products = new Mongo.Collection("products");

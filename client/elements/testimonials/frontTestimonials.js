@@ -4,10 +4,10 @@
 Template.frontTestimonials.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
-    //self.autorun(function(){
-       // var handle = self.subscribe('frontTestimonials');
-       // self.ready.set(handle.ready());
-    //})
+    self.autorun(function(){
+        var handle = self.subscribe('frontTestimonials');
+        self.ready.set(handle.ready());
+    })
 });
 
 Template.frontTestimonials.onRendered(function(){
@@ -18,8 +18,8 @@ Template.frontTestimonials.onRendered(function(){
 });
 Template.frontTestimonials.helpers({
     'subsReady': function(){
-        return true;
-        //return Template.instance().ready.get();
+        //return true;
+        return Template.instance().ready.get();
     },
     'testimonial': function(){
         return Testimonials.find();

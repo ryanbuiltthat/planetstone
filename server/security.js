@@ -41,3 +41,7 @@ Teams.permit('remove').ifLoggedIn().apply();
 Testimonials.permit('insert').ifLoggedIn().apply();
 Testimonials.permit('update').ifLoggedIn().apply();
 Testimonials.permit('remove').ifLoggedIn().apply();
+
+Site.permit('insert').ifLoggedIn().apply();
+Site.permit('update').ifLoggedIn().apply();
+Site.permit('remove').ifHasRole('admin').apply();

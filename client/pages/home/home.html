@@ -11,17 +11,17 @@
     <!-- Tab navigation -->
     <nav class="nav tabs four" role="navigation">
         <ul class="wrap">
-            <li><a href="#" title="">
-                <img src="img/samples/lineicons/measure.png" alt="" /> Our Story<br >Custom Design Service
+            <li><a href="{{getPathFor "aboutus" }}" title="Learn about Planet Stone">
+                <img src="img/samples/lineicons/measure.png" alt="" /> Our Story<br >
             </a></li>
-            <li><a href="#" title="">
-                <img src="img/samples/lineicons/guide.png" alt="" /> Plan it with Planet! selection to installation of your new countertops
+            <li><a href="#planit" title="Planit with Planet Stone">
+                <img src="img/samples/lineicons/guide.png" alt="Planit with Planet Stone" /> Plan it with Planet! Selection to installation of your new countertops
             </a></li>
-            <li><a href="#" title="">
-                <img src="img/samples/lineicons/globe.png" alt="" /> New Stone from around the world here today!
+            <li><a href="{{getPathFor "products" }}" title="New Stone from around the world here today!">
+                <img src="img/samples/lineicons/globe.png" alt="New Stone from around the world here today!" /> New Stone from around the world here today!
             </a></li>
-            <li><a href="#lightSliderPosts" class="anchor" title="">
-                <img src="img/samples/lineicons/support.png" alt="" /> Contact questions, need tips? Inspiration? We have it.
+            <li><a href="{{ getPathFor "contact" }}" class="anchor" title="Contact questions, need tips? Inspiration? We have it.">
+                <img src="img/samples/lineicons/support.png" alt="Contact questions, need tips? Inspiration? We have it." /> Contact questions, need tips? Inspiration? We have it.
             </a></li>
         </ul>
     </nav>
@@ -32,7 +32,7 @@
         </div>
     </section>
         <!-- planet it section -->
-        <section class="white icons">
+        <section class="white icons" id="planit">
             <div class="wrap" style="width:1170px;max-width:94%;display:block;">
                 <div class="row">
 
@@ -116,7 +116,7 @@
             <div class="wrap center">
                 <h2>"We touch every job that comes through".</h2>
                 <p>No job gets passed the saw without me touching it.</p>
-                <a href="#" title="Find out more" class="button white medium">Start Your Plan</a>
+                <a href="{{getPathFor "stonesquad" }}" title="Meet our Experts, Our Stone Squad" class="button white medium">Meet The Stone Squad</a>
             </div>
         </section>
         <!-- testimonials begin -->

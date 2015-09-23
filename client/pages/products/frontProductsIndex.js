@@ -52,6 +52,8 @@ Template.frontProductsIndex.onRendered(function(){
         $("#products").lightGallery({
             //appendSubHtmlTo: '.lg-item',
             preload: 2,
+            //showAfterLoad: false,
+            selector: '.btn-magnify',
             currentPagePosition: 'left',
             exThumbImage: 'data-exthumbimage',
             thumbWidth: 120,
@@ -61,19 +63,18 @@ Template.frontProductsIndex.onRendered(function(){
         // Reset loaded image count
         Session.set('imgLoaded', 0);
 
-
         // Show results behind loader
         $(".results").show();
 
         // Isotope
         $("#products").isotope({
-            //itemSelector: '.item',
-            //layoutMode: 'fitRows',
-            //getSortData: {
-            //    name: ".name",
-            //    type: ".type"
-            //},
-            //sortBy: "name"
+            itemSelector: '.item',
+            layoutMode: 'fitRows',
+            getSortData: {
+                name: ".name",
+                type: ".type"
+            },
+            sortBy: "name"
         });
 
         // Try to load Houzz
@@ -93,10 +94,8 @@ Template.frontProductsIndex.onRendered(function(){
             $(this).hide();
         });
 
-
         // Get the effects running
         new WOW().init();
-
 
         }// end if
     });
@@ -106,47 +105,41 @@ Template.frontProductsIndex.helpers({
     subsReady:function() {
         return Template.instance().ready.get();
     },
-    productLoad: function(){
-      return Template.instance().productsReady.get();
-    },
+    //productLoad: function(){
+    //  return Template.instance().productsReady.get();
+    //},
     product:function(){
         //Template.instance().subscribe('productsplit');
         //var colors = FlowRouter.getQueryParam("colors");
         //var types = FlowRouter.getQueryParam("types");
-        //if(colors){
+        //if(FlowRouter.getQueryParam("colors") && FlowRouter.getQueryParam("colors") !== ""){
 
             //var colorArr = [];
             //colorArr = colors.split("|");
             //colorArr.pop();
             //console.log(colorArr);
             //console.log("trying to filter");
-            //var cur = SplitProducts.find({color: { $in: colorArr } });
+            //var cur = SplitProducts.find({color: { $in: FlowRouter.getQueryParam("colors") } });
             //var cur = SplitProducts.find("productId",{color: { $in: colorArr}});
             //_.each(cur, function(splitproduct){
             //   console.log(splitproduct.productId);
             //});
+
+            //console.log(cur);
             //console.log(cur.count());
-
-
-        //    Session.set('imgLoaded', cur.count());
-        //    Session.set('imgCount', cur.count());
+            //
+            //
+            //Session.set('imgLoaded', cur.count());
+            //Session.set('imgCount', cur.count());
         //}else {
             Session.set('imgCount', Products.find().count());
-            console.log("returning all");
+        //    console.log("returning all");
             return Products.find();
         //}
     },
-    getFilterTypes: function(){
-        return Types.find();
-    },
-    getFilterColors: function(){
-        return Colors.find();
-    },
-    filterTitleHelper: function(str){
-        return str.replace(/ /g,"_");
-    }
+
 });
-filters = [];
+
 Template.frontProductsIndex.events({
     //'change input[type="checkbox"]':function(e){
         //var self = $(e.currentTarget);
@@ -165,36 +158,9 @@ Template.frontProductsIndex.events({
     //    out["color"] = filters;
     //Session.set('applyFilters', out);
     //},
-    'change input[type="checkbox"]':function(e){
-        var self = $(e.currentTarget);
-        //var qs_color_filters = FlowRouter.getQueryParam("colors") || [];
-        //if(FlowRouter.getQueryParam("colors")){
-          //  var color_filters = FlowRouter.getQueryParam("colors").split('|');
-        //}
 
-        filters = [];
-        var filter_string = "";
-        // get checked checkboxes values
-        /**
-         * TODO: exclusionary filter setup for types
-         */
-        //$("input:checked").each(function () {
-        //    var id = $(this).attr("id").toString();
-        //    //filters.push( id );
-        //    if(id!=="undefined"){
-        //        filter_string += id+'|';
-        //    }
-        //});
-            //FlowRouter.setQueryParams({colors: filter_string});
-            //console.log(filter_string);
-        //console.log("post push filters: "+JSON.stringify(filters));
-        //console.log(typeof filters);
-        //var out = {};
-        //out["color"] = filters;
-        //Session.set('applyFilters', out);
-    },
-    'change .sort-select':function(e){
-        var sortValue = e.currentTarget.value;
-        //$("#products").isotope({ sortBy: sortValue });
-    },
+    //'change .sort-select':function(e){
+    //    var sortValue = e.currentTarget.value;
+    //    //$("#products").isotope({ sortBy: sortValue });
+    //},
 });

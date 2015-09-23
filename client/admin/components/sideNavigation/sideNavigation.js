@@ -8,6 +8,7 @@ Template.sideNavigation.onCreated(function(){
     })
 });
 Template.sideNavigation.events({
+
     'click ': function(e) {
         //console.log(e.currentTarget);
         var parent = jQuery(e.currentTarget).parent();
@@ -33,8 +34,10 @@ Template.sideNavigation.events({
     }
 });
 Template.sideNavigation.onRendered(function(){
-    var self = this;
-    self.autorun(function(){
+    // Menu Toggle
+    jQuery('.menutoggle').click(function(){
+
+
 
     });
 });

@@ -63,38 +63,7 @@ Template.defaultAdminLayout.onRendered(function(){
         });
 
 
-        // Menu Toggle
-        jQuery('.menutoggle').click(function(){
 
-            var body = jQuery('body');
-            var bodypos = body.css('position');
-
-            if(bodypos != 'relative') {
-
-                if(!body.hasClass('leftpanel-collapsed')) {
-                    body.addClass('leftpanel-collapsed');
-                    jQuery('.nav-bracket ul').attr('style','');
-
-                    jQuery(this).addClass('menu-collapsed');
-
-                } else {
-                    body.removeClass('leftpanel-collapsed chat-view');
-                    jQuery('.nav-bracket li.active ul').css({display: 'block'});
-
-                    jQuery(this).removeClass('menu-collapsed');
-
-                }
-            } else {
-
-                if(body.hasClass('leftpanel-show'))
-                    body.removeClass('leftpanel-show');
-                else
-                    body.addClass('leftpanel-show');
-
-                adjustmainpanelheight();
-            }
-
-        });
 
         // Chat View
         jQuery('#chatview').click(function(){
@@ -266,6 +235,36 @@ Template.defaultAdminLayout.onRendered(function(){
 });
 
 Template.defaultAdminLayout.events({
+    'click .menutoggle':function(e, tpl){
+        console.log("menu click");
+        var body = $('body');
+        var bodypos = body.css('position');
+
+        if(bodypos != 'relative') {
+
+            if(!body.hasClass('leftpanel-collapsed')) {
+                body.addClass('leftpanel-collapsed');
+                $('.nav-bracket ul').attr('style','');
+
+                $(e.currentTarget).addClass('menu-collapsed');
+
+            } else {
+                body.removeClass('leftpanel-collapsed chat-view');
+                $('.nav-bracket li.active ul').css({display: 'block'});
+
+                $(e.currentTarget).removeClass('menu-collapsed');
+
+            }
+        } else {
+
+            if(body.hasClass('leftpanel-show'))
+                body.removeClass('leftpanel-show');
+            else
+                body.addClass('leftpanel-show');
+
+            adjustmainpanelheight();
+        }
+    },
     'click .logoutLink': function(e){
         e.preventDefault();
         return FlowRouter.go(FlowRouter.path('logout'));

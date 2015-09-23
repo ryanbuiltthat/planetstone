@@ -1,12 +1,10 @@
 /**
  * Created by Ryan on 8/24/2015.
  */
-//Meteor.publish('frontAllProducts', function(products){
-//    if(products.color != ''){
-//        return Products.find({ active: true, color: { $in: products.color }});
-//    }
-// return Products.find({active: true});
-//});
+Meteor.publish('products',function(){
+    return Products.find({ active: true },{ sort: { createdAt: -1 }, });
+});
+
 Meteor.publishComposite("frontAllProducts", {
     find: function() {
         //
@@ -91,3 +89,22 @@ Meteor.publish("productsplit",function(){
     });
 });
 
+
+Meteor.publishComposite("addProduct", {
+    find: function() {
+        // Let's go ahead and find those ten newest articles
+        return Products.find({}, {});
+    },
+    children: [
+        {
+            find: function(product) {
+                return Colors.find({});
+            }
+        },
+        {
+            find: function(product) {
+                return Types.find({});
+            }
+        },
+    ]
+});
