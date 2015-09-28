@@ -16,13 +16,24 @@ Template.home.onRendered(function(){
         // Load misc
         planet_stone.load();
         // Get the effects running
+
+        // featured slider
+        $("#lightSliderDeals").lightSlider({
+            item:1,
+            keyPress:true,
+            gallery:false,
+            pager:false,
+            prevHtml: 'PREVIOUS',
+            nextHtml: 'NEXT'
+        });
+
         new WOW().init();
     }, 350);
 });
 
 Template.home.events({
     'click #heroCTAab': function(e){
-        toggleBottomDrawer( 'cbp-spmenu-s4' );
+        toggleBottomDrawer( 'bdProductInquire' );
         return false;
     },
 

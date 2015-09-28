@@ -5,6 +5,12 @@ Meteor.publish('products',function(){
     return Products.find({ active: true },{ sort: { createdAt: -1 }, });
 });
 
+Meteor.publish('productNotType', function(productId){
+    return Types.find({
+        _id: { $ne: productId }
+    });
+});
+
 Meteor.publishComposite("frontAllProducts", {
     find: function() {
         //

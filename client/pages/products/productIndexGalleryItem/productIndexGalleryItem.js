@@ -2,7 +2,11 @@
  * Created by Ryan on 8/27/2015.
  */
 Template.productIndexGalleryItem.onCreated(function(){
-
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('productTypes');
+        self.subscribe('productColors');
+    });
 });
 Template.productIndexGalleryItem.helpers({
     getFullSrc: function(id){

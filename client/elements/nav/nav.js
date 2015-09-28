@@ -16,5 +16,11 @@ Template.nav.events({
     'click a':function(e,t){
         //$('.megamenu').css({display: 'none'});
         $('.megamenu').fadeOut('fast');
+    },
+    'submit form': function (e,t){
+        alert('Thank you, your note has been sent');
+        return false;
     }
+
+
 });

@@ -1,5 +1,6 @@
 <template name="productIndexGalleryItem">
-    <figure class="one-fourth item {{ getClassColors color }} {{type}}" data-exthumbimage="{{ getThumbSrc images }}"  data-src="{{ getFullSrc images }}"  data-sub-html="#share{{ _id }}">
+    {{#if Template.subscriptionsReady }}
+    <figure class="one-fourth item {{ getClassColors color }} {{type}}">
         {{#with getImages images }}
             <img class="productThumb" src="{{url store="galleryThumb" }}" alt="{{name}}">
         {{/with}}
@@ -10,7 +11,7 @@
                 <dd class="att color"><strong>Color:</strong> {{ getDisplayColors color }}</dd>
                 <dd class="att type"><strong>Type:</strong> {{ getDisplayType type}}</dd>
             </dl>
-                <button class="button gold btn btn-sm btn-magnify">View Larger</button>
+                <button class="button gold btn btn-sm btn-magnify" data-exthumbimage="{{ getThumbSrc images }}"  data-src="{{ getFullSrc images }}"  data-sub-html="#share{{ _id }}">View Larger</button>
             <div  id="share{{ _id }}" style="display:none;">
                 <ul class="item-share gallery-share">
                     <li style="clear:both;display:block;"><h3>{{ name }}</h3></li>
@@ -36,4 +37,5 @@
             </div>
         </figcaption>
     </figure>
+    {{/if}}
 </template>
