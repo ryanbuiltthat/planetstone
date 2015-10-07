@@ -17,10 +17,6 @@ Schemas.Team = new SimpleSchema({
         optional: true,
         max: 15000,
         autoform:{
-            //afFieldInput: {
-            //    type: "textarea",
-            //    rows: 8
-            //}
             afFieldInput:{
                 type: "froala",
                 inlineMode: false,

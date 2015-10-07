@@ -19,7 +19,6 @@ less
 accounts-base
 accounts-password
 tmeasday:publish-counts
-kadira:dochead
 dburles:collection-helpers
 reactive-var
 reywood:publish-composite

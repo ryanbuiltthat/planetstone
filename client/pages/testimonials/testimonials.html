@@ -16,13 +16,15 @@
                 <div class="row">
                     <!-- OneFourth -->
                     <aside class="one-fourth sidebar sidebar-left">
+                        {{>darkHighlightWidget}}
                         <!-- Tab navigation -->
-                        <nav class="tabs vertical" role="navigation">
+                        <nav class="tabs vertical hidden" role="navigation">
                             <ul class="wrap">
+                                <li><a href="#1" title="test">test</a></li>
                                 {{#if subsready }}
-                                {{#each categories }}
-                                <li><a href="#tab{{_id}}" title="{{ title }}">{{ title }}</a></li>
-                                {{/each}}
+                                {{! #each categories }}
+                                <!--<li><a href="#tab{{_id}}" title="{{ title }}">{{ title }}</a></li>-->
+                                {{! /each}}
                                 {{/if}}
                             </ul>
                         </nav>
@@ -35,9 +37,9 @@
                         </div>
 
                         <div class="widget featured hidden">
-                            <a href="yacht-sale-single.html"><img src="uploads/img2.jpg" alt="boat" /></a>
+                            <a href="#"><img src="uploads/img2.jpg" alt="#" /></a>
                             <div class="box-white">
-                                <h4><a href="yacht-sale-single.html" title="Featured Yacht: Elan 1923 Impression">Featured Yacht: <br /><strong>Elan 1923 Impression</strong></a></h4>
+                                <h4><a href="#" title="--">Featured: <br /><strong>smaple title </strong></a></h4>
                             </div>
                         </div>
                     </aside>
@@ -47,19 +49,21 @@
                     <!-- ThreeFourth -->
                     <div class="three-fourth">
                         {{#if subsready }}
-                        {{#each categories }}
+
                         <!-- Tab Content-->
-                        <article class="tab-content" id="tab{{ _id }}">
+                        <article class="tab-content" id="1">
+                            {{#each quote }}
                             <div class="box-white">
                                 <p class="lead"></p>
-                                {{#each quote _id}}
+                                {{! #each quote _id}}
                                     {{{body}}}
                                 <h4>{{author}}</h4>
-                                {{/each}}
+                                {{! /each}}
                             </div>
+                            {{/each}}
                         </article>
                         <!-- //Tab Content-->
-                        {{/each}}
+
                         {{/if}}
                     </div>
                     <!-- //ThreeFourth -->

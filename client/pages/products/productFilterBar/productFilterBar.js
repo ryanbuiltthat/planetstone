@@ -24,29 +24,36 @@ Template.productFilterBar.helpers({
     }
 });
 filters = [];
+f = {};
 Template.productFilterBar.events({
+    'change .type-select':function(e){
+        var $this = e.currentTarget;
+        f[ "type" ] = $this.value;
+        // combine filters
+        var filterValue = concatVal( f );
+        $("#products").isotope({ filter: filterValue });
+    },
     'change input[type="checkbox"]':function(e){
         var self = $(e.currentTarget);
-        //console.log(self.attr("data-filter"));
+        var filters = [];
+        f["color"] = "";
         $checkboxes = $(".search-filter").find("input[type='checkbox']");
-        $checkboxes.change(function(){
-           filters = [];
-            // get checked checkboxes values
             $checkboxes.filter(':checked').each(function(){
                 var filterValue = self.attr("data-filter");
-                if(self.data("filter-group")=='type'){
-                    console.log("type filter");
-                }
                 /**
                  * TODO: exclusionary filter setup for types
                  */
 
                 filters.push( self.attr("data-filter") );
+                //console.log("filters in each: "+filters);
             });
             filters = filters.join(', ');
-            $("#products").isotope({ filter: filters });
-            console.log("filter go: "+filters);
-        });
+            console.log("filters are: "+filters);
+            f["color"] = filters;
+            var filterValue = concatVal( f );
+            $("#products").isotope({ filter: filterValue });
+            //console.log("filter go: "+filters);
+        //});
         //console.log("filter go: "+filters);
     },
     'change .sort-select':function(e){

@@ -4,16 +4,14 @@
         <div class="search-filter">
             <div class="wrap">
                 <!-- Column -->
-                <div class="one-fifth">
+                <div class="one-sixth">
                     <p>Stone Type</p>
-                    {{! #if subsReady}}
-                    {{#each getFilterTypes}}
-                        <div class="checkbox" >
-                            <input type="checkbox" data-filter-group="type" id="chk{{_id}}" data-filter=".{{_id}}" class="filter-chk" />
-                            <label for="chk{{_id}}">{{title}}</label>
-                        </div>
-                    {{/each}}
-                    {{! /if}}
+                    <select class="type-select" data-filter-group="type">
+                        <option value="*">All</option>
+                        {{#each getFilterTypes}}
+                            <option value=".{{title}}">{{title}}</option>
+                        {{/each}}
+                    </select>
                 </div>
                 <!-- //Column -->
                 <!-- Column -->

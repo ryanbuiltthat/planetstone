@@ -5,10 +5,11 @@ Template.frontProductsIndex.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
     self.productsReady = new ReactiveVar();
+    //Session.setDefault('filterValue', '*');
     self.autorun(function(){
         //self.applyFilters.set({color: ["apu62LNsQKPdDYWHp","RyAPSYhSHtc48HRbK"], type:["4L26WKnhepvCLWh89"] });
         //var filters = Session.get('applyFilters') || null;
-        var handle = self.subscribe('frontAllProducts', filters);
+        var handle = self.subscribe('frontAllProducts');
         //debug;
         self.ready.set(handle.ready());
         self.subscribe('productColors');
@@ -17,7 +18,7 @@ Template.frontProductsIndex.onCreated(function(){
 });
 Template.frontProductsIndex.onRendered(function(){
     // Show loading message
-    $(".loaderMsg").delay(50).fadeIn('fast');
+    //$(".loaderMsg").delay(50).fadeIn('fast');
 
     // Reset the loaded image count
     Session.setDefault('imgLoaded', 0);
@@ -45,9 +46,9 @@ Template.frontProductsIndex.onRendered(function(){
         planet_stone.load();
 
         // Hide the filters to start
-        $('aside.fixed').slideUp(500);
-        $('.filter-show').show(500);
-        $('.offset').css('margin-top', '0');
+        //$('aside.fixed').slideUp(500);
+        //$('.filter-show').show(500);
+        //$('.offset').css('margin-top', '0');
         // Initialize lightGallery
         $("#products").lightGallery({
             //appendSubHtmlTo: '.lg-item',
@@ -67,14 +68,18 @@ Template.frontProductsIndex.onRendered(function(){
         $(".results").show();
 
         // Isotope
-        $("#products").isotope({
+        //Tracker.autorun(function(){
+        //
+        //});
+            $("#products").isotope({
             itemSelector: '.item',
             layoutMode: 'fitRows',
             getSortData: {
                 name: ".name",
-                type: ".type"
+                //type: ".type"
             },
-            sortBy: "name"
+            sortBy: "name",
+            //filter: Session.get('filterValue') || "*"
         });
 
         // Try to load Houzz
@@ -87,12 +92,12 @@ Template.frontProductsIndex.onRendered(function(){
         /**
          * TODO: Refine animation hiding loader
          */
-        $(".loaderMsg").animate({
-            //height: 0,
-            opacity: 0
-        }, 850, function () {
-            $(this).hide();
-        });
+        //$(".loaderMsg").animate({
+        //    //height: 0,
+        //    opacity: 0
+        //}, 850, function () {
+        //    $(this).hide();
+        //});
 
         // Get the effects running
         new WOW().init();
@@ -114,27 +119,27 @@ Template.frontProductsIndex.helpers({
         //var types = FlowRouter.getQueryParam("types");
         //if(FlowRouter.getQueryParam("colors") && FlowRouter.getQueryParam("colors") !== ""){
 
-            //var colorArr = [];
-            //colorArr = colors.split("|");
-            //colorArr.pop();
-            //console.log(colorArr);
-            //console.log("trying to filter");
-            //var cur = SplitProducts.find({color: { $in: FlowRouter.getQueryParam("colors") } });
-            //var cur = SplitProducts.find("productId",{color: { $in: colorArr}});
-            //_.each(cur, function(splitproduct){
-            //   console.log(splitproduct.productId);
-            //});
+        //var colorArr = [];
+        //colorArr = colors.split("|");
+        //colorArr.pop();
+        //console.log(colorArr);
+        //console.log("trying to filter");
+        //var cur = SplitProducts.find({color: { $in: FlowRouter.getQueryParam("colors") } });
+        //var cur = SplitProducts.find("productId",{color: { $in: colorArr}});
+        //_.each(cur, function(splitproduct){
+        //   console.log(splitproduct.productId);
+        //});
 
-            //console.log(cur);
-            //console.log(cur.count());
-            //
-            //
-            //Session.set('imgLoaded', cur.count());
-            //Session.set('imgCount', cur.count());
+        //console.log(cur);
+        //console.log(cur.count());
+        //
+        //
+        //Session.set('imgLoaded', cur.count());
+        //Session.set('imgCount', cur.count());
         //}else {
-            Session.set('imgCount', Products.find().count());
+        Session.set('imgCount', Products.find().count());
         //    console.log("returning all");
-            return Products.find();
+        return Products.find();
         //}
     },
 
@@ -142,12 +147,12 @@ Template.frontProductsIndex.helpers({
 
 Template.frontProductsIndex.events({
     //'change input[type="checkbox"]':function(e){
-        //var self = $(e.currentTarget);
-        //filters = [];
-        // get checked checkboxes values
-        /**
-         * TODO: exclusionary filter setup for types
-         */
+    //var self = $(e.currentTarget);
+    //filters = [];
+    // get checked checkboxes values
+    /**
+     * TODO: exclusionary filter setup for types
+     */
     //    $("input:checked").each(function () {
     //        var id = $(this).attr("id").toString();
     //        filters.push( id );

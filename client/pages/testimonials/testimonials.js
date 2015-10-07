@@ -5,7 +5,7 @@ Template.testimonialTpl.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
     self.autorun(function(){
-        var handle = self.subscribe('testimonials');
+        var handle = self.subscribe('frontTestimonials');
         self.ready.set(handle.ready());
     })
 });
@@ -31,11 +31,12 @@ Template.testimonialTpl.helpers({
    subsready: function(){
        return Template.instance().ready.get();
    },
-    quote:function(catId){
+    quote:function(){
         //console.log(Testimonials.find());
-        var catArr=[];
-        catArr.push(catId);
-        return Testimonials.find({ category: {$in:catArr}}) || {};
+        //var catArr=[];
+        //catArr.push(catId);
+        //return Testimonials.find({ category: {$in:catArr}}) || ();
+        return Testimonials.find();
     },
     categories: function(){
         //console.log(Categories.find());

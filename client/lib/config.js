@@ -5,6 +5,7 @@
 // Set BlazeLayout root to body
 BlazeLayout.setRoot('body');
 
+//filters = {};
 // Enable autoform debugging
 AutoForm.debug();
 AutoForm.addHooks(

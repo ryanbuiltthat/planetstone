@@ -1,6 +1,6 @@
 <template name="productIndexGalleryItem">
     {{#if Template.subscriptionsReady }}
-    <figure class="one-fourth item {{ getClassColors color }} {{type}}">
+    <figure class="one-fourth item {{ getClassColors color }} {{getDisplayType type}}">
         {{#with getImages images }}
             <img class="productThumb" src="{{url store="galleryThumb" }}" alt="{{name}}">
         {{/with}}
@@ -16,12 +16,15 @@
                 <ul class="item-share gallery-share">
                     <li style="clear:both;display:block;"><h3>{{ name }}</h3></li>
                     {{#with getImages images }}
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#infoModal"><i class="fa fa-heart"></i> </a>
+                        </li>
                     <li>
                         <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
                     </li>
                     <li>
                         <a class="houzz-share-button"
-                           data-url="http://planet.betabuild.com/products/{{ getId }}/"
+                           data-url="//planetstone-52463.onmodulus.net//products/{{ getId }}/"
                            data-hzid="33569"
                            data-locale="en-US"
                            data-title="{{ getTitle }}"

@@ -76,6 +76,7 @@ planet_stone = {
 
         // CUSTOM FORM ELEMENTS
         $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
+        //$('input, textarea, select').uniform();
 
         // ACCORDION
         //$('.accordion dd').hide();
@@ -182,4 +183,16 @@ planet_stone = {
         // PRELOADER
         $('.preloader').fadeOut();
     }
+};
+
+// flatten object by concatting values
+concatVal = function( obj ) {
+    var value = '';
+    for ( var prop in obj ) {
+        value += obj[ prop ];
+        //value.replace(/(^,)|(,$)/g, "")
+        //value = value.join(', ');
+    }
+    console.log("[concatVal] "+value);
+    return value;
 };

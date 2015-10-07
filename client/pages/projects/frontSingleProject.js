@@ -14,7 +14,7 @@ Template.frontSingleProject.onRendered(function(){
     Meteor.setTimeout(function(){
         $("#gallery").lightGallery();
         // Houzz
-       // (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
 
         //
         $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
@@ -22,7 +22,7 @@ Template.frontSingleProject.onRendered(function(){
         // Init base scripts
         planet_stone.init();
         planet_stone.load();
-    }, 1150);
+    }, 850);
 });
 Template.frontSingleProject.helpers({
     'subsReady': function(){
@@ -60,12 +60,12 @@ Template.frontSingleProject.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("//planetstone-50636.onmodulus.net/projects/"+parent.slug);
+        return encodeURIComponent("//planetstone-52463.onmodulus.net/projects/"+parent.slug);
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
         var img = ProjectImages.findOne({ _id: id});
-        return encodeURIComponent("//planetstone-50636.onmodulus.net"+img.url({store:"galleryThumb",auth:false}));
+        return encodeURIComponent("//planetstone-52463.onmodulus.net/"+img.url({store:"galleryThumb",auth:false}));
     },
     //shareData: function(project){
     //    //console.log(project);
