@@ -11,6 +11,12 @@ Template.frontSingleProject.onCreated(function(){
     })
 });
 Template.frontSingleProject.onRendered(function(){
+    this.autorun(function(){
+        // HTML5 kills our autofocus on modals so we need to hack it back
+        $('#infoModal').on('shown.bs.modal', function() {
+            $(document).find("#infoReqText").focus();
+        });
+    });
     Meteor.setTimeout(function(){
         $("#gallery").lightGallery();
         // Houzz

@@ -1,12 +1,13 @@
 <template name="inlinePgForm">
     <div class="row">
+        <form id="inlinePageForm">
         <div class="one-half">
             <label for="name">Name</label>
-            <input type="text" id="name" value="">
+            <input class="required" type="text" id="name" value="">
         </div>
         <div class="one-half">
             <label for="email">Email</label>
-            <input type="email" id="email" value="">
+            <input class="required" type="email" id="email" value="">
         </div>
         <div class="one-half">
             <label for="phone">Phone</label>
@@ -14,17 +15,19 @@
         </div>
         <div class="one-half">
             <label for="question">Questions</label>
-            <input type="text" id="question">
+            <input class="required" type="text" id="question" value="">
         </div>
         <div class="full-width checkbox">
-            <div class="checker" id="uniform-notification1">
-                                    <span>
-                                        <input type="checkbox" checked id="notification1"></span>
+            <div class="checker" id="uniform-emailOptOut">
+                <span>
+                    <input type="checkbox" checked id="emailOptOut">
+                </span>
             </div>
-            <label for="notification1">Would you like to hear about promotions or specials from time-to-time? Your information is your information, we never sell or distribute any information we collect.</label>
+            <label for="emailOptOut">Would you like to hear about promotions or specials from time-to-time? Your information is your information, we never sell or distribute any information we collect.</label>
         </div>
         <div class="full-width">
             <input type="submit" class="button medium full gold" id="submit2" value="Send">
         </div>
+        </form>
     </div>
 </template>

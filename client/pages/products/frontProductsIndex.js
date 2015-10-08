@@ -5,7 +5,6 @@ Template.frontProductsIndex.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
     self.productsReady = new ReactiveVar();
-    //Session.setDefault('filterValue', '*');
     self.autorun(function(){
         //self.applyFilters.set({color: ["apu62LNsQKPdDYWHp","RyAPSYhSHtc48HRbK"], type:["4L26WKnhepvCLWh89"] });
         //var filters = Session.get('applyFilters') || null;
@@ -21,18 +20,21 @@ Template.frontProductsIndex.onRendered(function(){
     //$(".loaderMsg").delay(50).fadeIn('fast');
 
     // Reset the loaded image count
-    Session.setDefault('imgLoaded', 0);
+    Session.set('imgLoaded', 0);
 
     // Check whether or not all of our (product) images are loaded
     this.autorun(function(){
         if(Template.instance().ready.get()){
-
             var imagesLoaded = Session.get('imgLoaded');
             var totalProducts = Session.get('imgCount');
             if( imagesLoaded == totalProducts ){
                 return Template.instance().productsReady.set(true);
             }
         }
+        // HTML5 kills our autofocus on modals so we need to hack it back
+        $('#infoModal').on('shown.bs.modal', function() {
+            $(document).find("#infoReqText").focus();
+        });
     });
 
     // If our product images are loaded, hide the loading message and show
@@ -68,10 +70,7 @@ Template.frontProductsIndex.onRendered(function(){
         $(".results").show();
 
         // Isotope
-        //Tracker.autorun(function(){
-        //
-        //});
-            $("#products").isotope({
+        $("#products").isotope({
             itemSelector: '.item',
             layoutMode: 'fitRows',
             getSortData: {
@@ -110,9 +109,9 @@ Template.frontProductsIndex.helpers({
     subsReady:function() {
         return Template.instance().ready.get();
     },
-    //productLoad: function(){
-    //  return Template.instance().productsReady.get();
-    //},
+    productLoad: function(){
+      return Template.instance().productsReady.get();
+    },
     product:function(){
         //Template.instance().subscribe('productsplit');
         //var colors = FlowRouter.getQueryParam("colors");

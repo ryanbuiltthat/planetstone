@@ -1,15 +1,18 @@
 <template name="infoModal">
-    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="requestInfo" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">?</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Like What You See?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-2x"></i></span></button>
+                    <h4 class="modal-title" id="requestInfo">Quick Request: <span></span>?</h4>
                 </div>
-                <form>
+                <form id="userRequestForm">
                 <div class="modal-body">
-                    <p>Enter your email below and let us help you find your inspiration. We'll help you turn our stone into the source of your inspiration!</p>
-                    <input class="input-lg form-control" placeholder="Enter email or phone" type="text" name="usrinfo" />
+                    <div class="form-group">
+                        <label for="infoReqText"><p>Enter your email or phone number below and let us help you find your inspiration.</p></label>
+                        <input type="hidden" id="targetProduct" name="targetProduct" value="" />
+                        <input id="infoReqText" class="input-lg form-control required" placeholder="Email or phone" type="text" name="infoReqText" value="{{getSess}}" />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button btn btn-small" data-dismiss="modal">Close</button>

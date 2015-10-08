@@ -17,7 +17,7 @@
                     <div id="share{{_id}}" style="display:none;">
                         <ul class="item-share">
                             <li></li>
-                            <li><a href="#" data-toggle="modal" data-target="#infoModal"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#infoModal" data-item="{{getTitle}}"><i class="fa fa-heart"></i></a></li>
                             <li>
                                 {{! #each projectImage images }}
                                     <a href="//www.pinterest.com/pin/create/button/?url={{ getSharePageURL }}&media={{ getShareImageURL _id name }}&description={{ getTitle }}-{{ getDesc }}" data-pin-do="buttonPin" data-pin-shape="round"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png" /></a>
@@ -61,7 +61,7 @@
                 <!-- OneFourth -->
                 <aside class="one-fourth sidebar sidebar-left">
                     {{> darkHighlightWidget }}
-                    <div class="widget">
+                    <div class="widget hidden-xs hidden-sm">
                         {{>fbPage}}
                     </div>
                 </aside>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="box-white">
                     <h3>Find Your Inspiration</h3>
-                        {{> inlinePgForm }}
+                        {{> inlinePgForm this }}
                     </div>
                     <div class="pager box-white">
                         <a href="{{ prevProject }}" title="PREVIOUS PROJECT" class="prev"><span class="icojam_symbol_backward"></span> PREVIOUS PROJECT</a>

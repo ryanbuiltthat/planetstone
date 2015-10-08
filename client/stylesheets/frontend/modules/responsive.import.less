@@ -51,6 +51,7 @@
   }
 
   @media screen and (max-width: 980px) {
+
     .wrap {
       width: 92%;
     }
@@ -68,6 +69,10 @@
       display: inline-block;
       padding: 0;
       margin: 15px 0 0;
+      width: 100%;
+      img{
+        margin: 0 auto;
+      }
     }
 
     .main-nav {
@@ -83,6 +88,10 @@
       display: block;
       width: 100%;
       border-bottom: 1px solid #ddd;
+
+      .showhide {
+        margin-bottom: 0px;
+      }
     }
 
     .jetmenu > li > a {
@@ -170,7 +179,7 @@
     }
 
     .main {
-      margin-top: 0;
+      margin-top: 50px;
     }
 
     .fixed {
@@ -266,7 +275,16 @@
       max-width: 100%;
     }
 
+    .modal {
+      width: 70%;
+    }
+
+    .results figcaption dl dd:first-of-type {
+      padding-bottom: 2em;
+    }
+
   }
+
 
   @media screen and (max-width: 670px) {
     #superHeader {
@@ -417,5 +435,11 @@
     .advanced-search .wrap > div:last-child {
       width: 100%;
     }
+  }
+}
+
+@media screen and (max-width:840px) {
+  .s-front.page-index .photo .wrap.center {
+    max-width: 80%;
   }
 }

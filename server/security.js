@@ -45,3 +45,8 @@ Testimonials.permit('remove').ifLoggedIn().apply();
 Site.permit('insert').ifLoggedIn().apply();
 Site.permit('update').ifLoggedIn().apply();
 Site.permit('remove').ifHasRole('admin').apply();
+
+/*
+* Quick Send collection (for logging mainly)
+* */
+Leads.permit(['insert']).apply();

@@ -68,6 +68,9 @@ Template.productIndexGalleryItem.helpers({
 
 Template.productIndexGalleryItem.onRendered(function(){
     planet_stone.init();
+    //$('.btn-item-menu').popover({
+    //
+    //});
     //planet_stone.load();
 });
 
@@ -77,8 +80,5 @@ Template.productIndexGalleryItem.events({
         var il = Session.get('imgLoaded');
         il++;
         Session.set('imgLoaded', il);
-    },
-    'click':function(e){
-        console.log("click");
     }
 });
