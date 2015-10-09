@@ -13,7 +13,7 @@ Schemas.Project = new SimpleSchema({
         max: 200,
     },
     asscprod: {
-        type: [String],
+        type: String,
         label: "Associated Products",
         optional: true
     },
