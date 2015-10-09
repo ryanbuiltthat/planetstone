@@ -25,7 +25,7 @@ Template.projectsadd.helpers({
         });
     },
     products: function(){
-        return Products.find({},{fields:{_id:1,name:1}}).map(function (c) {
+        return Products.find({},{fields:{_id:1,name:1}}, { name: 1}).map(function (c) {
             return {label: c.name, value: c._id};
         });
     },
