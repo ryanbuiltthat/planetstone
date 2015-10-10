@@ -1,35 +1,6 @@
 /**
  * Created by Ryan on 9/6/2015.
  */
-Meteor.publishComposite("addProjectView", {
-    find: function() {
-        return Projects.find({}, {
-            sort: { createdAt: -1 }
-        });
-    },
-    children: [
-        {
-            find: function(product) {
-                return Colors.find();
-            }
-        },
-        {
-            find: function(product) {
-                return Categories.find();
-            }
-        },
-        {
-            find: function(product){
-                return Products.find();
-            }
-        },
-    //    {
-    //        find: function(product){
-    //            return ProjectImages.find();
-    //        }
-    //    }
-    ]
-});
 Meteor.publishComposite("frontProjectsIndex", {
     find: function() {
         // Let's go ahead and find those ten newest articles

@@ -6,19 +6,7 @@
 BlazeLayout.setRoot('body');
 
 //filters = {};
-// Enable autoform debugging
-AutoForm.debug();
-AutoForm.addHooks(
-    ["addProductForm", "addProjectForm","afUpdateProduct"],
-    {
-        before   : {
-            method: CfsAutoForm.Hooks.beforeInsert
-        },
-        after    : {
-            method: CfsAutoForm.Hooks.afterInsert
-        }
-    }
-);
+
 // Set a global pseudo helper for strings
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
