@@ -33,9 +33,7 @@ Template.productsedit.helpers({
     getImages: function (id) {
         return ProductImages.find({ _id: { $in: id }});
     },
-    showUpdate: function(time){
-        return moment.utc(time).calendar();
-    },
+
     prev: function(){
         return PreviousProduct.findOne({ createdAt: { $lt: Template.instance().createdAt.get() } }, {sort: {createdAt: -1}, limit: 1});
     },
@@ -47,14 +45,14 @@ Template.productsedit.helpers({
         var path  = FlowRouter.path("edits", params);
         return path;
     },
-    pullColors: function(){
-        return Colors.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
-            return {label: c.title, value: c._id};
-        });
-    },
-    pullTypes: function(){
-        return Types.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
-            return {label: c.title, value: c._id};
-        });
-    }
+    //pullColors: function(){
+    //    return Colors.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
+    //        return {label: c.title, value: c._id};
+    //    });
+    //},
+    //pullTypes: function(){
+    //    return Types.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
+    //        return {label: c.title, value: c._id};
+    //    });
+    //}
 });

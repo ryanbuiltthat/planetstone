@@ -6,9 +6,6 @@ Template.projectsadd.onCreated(function(){
     self.ready = new ReactiveVar();
     self.autorun(function(){
         var handle = self.subscribe('addProjectView');
-        //self.subscribe('colors');
-        //self.subscribe('cats');
-        //self.subscribe('pros');
         self.ready.set(handle.ready());
     })
 });

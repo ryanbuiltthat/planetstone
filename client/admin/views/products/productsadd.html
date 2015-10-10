@@ -1,30 +1,14 @@
 <template name="productsadd">
-    {{#autoForm id="addProductForm" type="method" meteormethod="addProduct" collection="Products"  }}
+
     <div class="row">
         <div class="col-md-4">
         <div class="panel panel-dark">
-            {{#if types }}
-                <div class="panel-heading">
-                    <h3 class="panel-title ">Type</h3>
-                </div>
-                <div class="panel-body">
-                    {{> afQuickField name="type" type="select" options=types label=false }}
-                </div>
-            {{/if}}
+
         </div>
         <!--</div>-->
         <!--<div class="col-md-3">-->
             <div class="panel panel-dark">
-                {{#if colors }}
-                    <div class="panel-heading">
-                        <div class="panel-btns">
-                        </div>
-                        <h3 class="panel-title">Colors</h3>
-                    </div>
-                    <div class="panel-body">
-                        {{> afQuickField name="color" options=colors label=false}}
-                    </div>
-                {{/if}}
+
             </div>
             <!-- image uploader -->
             <div class="panel panel-dark">
@@ -32,7 +16,7 @@
                     <h3 class="panel-title">Product Images</h3>
                 </div>
                 <div class="panel-body">
-                    {{> afQuickField name="images" type="cfs-files" collection="productimages"}}
+
                 </div>
             </div>
         </div>
@@ -50,7 +34,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12">
-                            {{> afFieldInput name="active"}}
+
                         </div>
                     </div>
                     <div class="row">
@@ -64,15 +48,15 @@
                             <!--<label for="comment" class="error">Please type a comment at least 6 characters long!</label>-->
                         </div>
                         <div class="col-sm-6">
-                                {{> afQuickField name='name' }}
+
                         </div><!-- col-sm-6 -->
                         <div class="col-sm-6">
-                                {{> afQuickField name='slug' }}
+
                         </div><!-- col-sm-6 -->
                     </div><!-- row -->
                     <div class="row">
                         <div class="col-sm-12">
-                                {{> afQuickField name='desc' }}
+
                         </div>
                     </div>
                 </div><!-- panel-body -->
@@ -82,5 +66,5 @@
             </div>
         </div>
     </div>
-    {{/autoForm}}
+
 </template>

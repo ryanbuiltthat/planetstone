@@ -88,32 +88,7 @@ Schemas.Team = new SimpleSchema({
     },
     images: {
         type: [String],
-        autoform: {
-            afFieldInput: {
-                type: "cfs-file",
-                collection: "teamimages"
-            }
-        },
         optional: true
     }
 });
 Teams.attachSchema(Schemas.Team);
-TeamImages = new FS.Collection("teamimages", {
-    stores: [
-        teamMed,
-        fullStore
-    ]
-});
-TeamImages.allow({
-    insert: function (userId, doc) {
-        if(userId)
-            return true;
-    },
-    update: function (userId, doc, fieldNames, modifier) {
-        if(userId)
-            return true;
-    },
-    download: function (userId) {
-        return true;
-    }
-});

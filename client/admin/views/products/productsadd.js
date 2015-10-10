@@ -18,18 +18,18 @@ Template.productsadd.helpers({
         return Template.instance().ready.get();
     },
     colors: function(){
-        return Colors.find().map(function (c) {
-            return {label: c.title, value: c._id};
-        });
+        //return Colors.find().map(function (c) {
+        //    return {label: c.title, value: c._id};
+        //});
     },
     types: function(){
-        return Types.find().map(function (c) {
-            return {label: c.title, value: c._id};
-        });
+        //return Types.find().map(function (c) {
+        //    return {label: c.title, value: c._id};
+        //});
     },
     colorCount:function(){
-        var x = Template.instance().colorCount.get();
-        return (x+1);
+        //var x = Template.instance().colorCount.get();
+        //return (x+1);
     }
 });
 Template.productsadd.events({

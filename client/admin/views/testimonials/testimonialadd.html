@@ -1,6 +1,6 @@
 <template name="testimonialsadd">
     <div class="row">
-        {{#autoForm id="afAddTestimonialForm" type="insert" collection="Testimonials"}}
+
             <div class="col-md-9">
                 <div class="panel panel-dark">
                     <div class="panel-heading">
@@ -12,41 +12,36 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="error" style="display: block;">
-                                {{#if afFieldIsInvalid name='title'}}<label for="title" class="error">You have to name the project</label>{{/if}}
-                                {{#if afFieldIsInvalid name='body'}}<label for="body" class="error">The body should be filled in</label>{{/if}}
-                                {{#if afFieldIsInvalid name='author'}}<label for="author" class="error">What colors of stone were used here?</label>{{/if}}
-                                {{#if afFieldIsInvalid name='category'}}<label for="category" class="error">It helps if you can associate what the picture is showing with the products we offer</label>{{/if}}
-                            </div>
+                            errors
                         </div>
                         <div class="row mb40">
                             <div class="col-sm-6">
-                                <div class="form-group  {{#if afFieldIsInvalid name='title'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='title'}}</label>
-                                    {{> afFieldInput name='title'}}
-                                    {{! > afQuickField name='name' autofocus='' label=false }}
+                                <div class="form-group ">
+                                    <label class="control-label">Title</label>
+
+
                                 </div>
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
-                                <div class="form-group  {{#if afFieldIsInvalid name='author'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='author'}}</label>
-                                    {{> afFieldInput name='author'}}
+                                <div class="form-group">
+                                    <label class="control-label">Author</label>
+
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
                         <div class="row mb40">
                             <div class="col-sm-6">
-                                <div class="form-group  {{#if afFieldIsInvalid name='category'}}has-error{{/if}}">
-                                    <label class="control-label">{{afFieldLabelText name='category'}}</label>
-                                        {{> afFieldInput name='category' type='select-multiple' options=pullCategories}}
+                                <div class="form-group">
+                                    <label class="control-label">Category</label>
+
                                 </div>
                             </div><!-- col-sm-4 -->
                         </div><!-- row -->
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group  {{#if afFieldIsInvalid name='body'}}has-error{{/if}}">
-                                    <label class="control-label" for="desc">{{afFieldLabelText name='body'}}</label>
-                                    {{> afFieldInput name='body' }}
+                                <div class="form-group">
+                                    <label class="control-label" for="desc">Text</label>
+
                                 </div>
                             </div>
                         </div>
@@ -57,14 +52,14 @@
                     </div><!-- panel-footer -->
                 </div><!-- panel-default -->
             </div>
-        {{/autoForm}}
+
         <div class="col-md-3">
             <div class="panel panel-dark">
                 <div class="panel-heading">
                     <h3 class="panel-title">Add Category</h3>
                 </div>
                 <div class="panel-body">
-                    {{> quickForm type="insert" id="qfAddCategories" collection="Categories"}}
+
                 </div>
             </div>
         </div>

@@ -1,8 +1,5 @@
 <template name="projectsadd">
-    {{! #autoForm id="addProjectForm" type="method" meteormethod="addProject" collection="Projects"}}
-
         <div class="row">
-            {{#autoForm id="addProjectForm" type="method" meteormethod="addProject" collection="Projects"}}
             <div class="col-md-9">
         <div class="panel panel-dark">
             <div class="panel-heading">
@@ -26,37 +23,34 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
-                        {{> afFieldInput name='active'}}
+
                     </div>
                 </div>
                 <div class="row mb40">
                     <div class="col-sm-6">
-                            {{> afQuickField name='name' }}
+
                     </div><!-- col-sm-6 -->
                     <div class="col-sm-6">
-                            {{> afQuickField name='slug'}}
+
                     </div><!-- col-sm-6 -->
                 </div><!-- row -->
                 <div class="row mb40">
                     <div class="col-sm-4">
-                        {{> afQuickField name='category' type='select' options=categories}}
+
                     </div><!-- col-sm-4 -->
                     <div class="col-sm-4">
-                        {{> afQuickField name='asscprod' type='select' options=products}}
+
                     </div><!-- col-sm-4 -->
                     <div class="col-sm-4">
-                        {{> afQuickField name='assccolor' type='select-multiple' options=colors}}
+
                     </div><!-- col-sm-4 -->
                 </div><!-- row -->
                 <div class="row">
                     <div class="col-md-6">
-                        {{> afQuickField name='desc' }}
+
                     </div>
                     <div class="col-md-6">
-                        <!--<div class="form-group {{! #if afFieldIsInvalid name='images'}}has-error{{! /if}} ">-->
-                            <!--<label class="control-label" for="images">{{! afFieldLabelText name='images'}}</label>-->
-                            {{> afQuickField name="images" type="cfs-files" collection="projectimages"}}
-                        <!--</div>-->
+
 
                     </div>
                 </div>
@@ -67,14 +61,14 @@
             </div><!-- panel-footer -->
         </div><!-- panel-default -->
         </div>
-    {{/autoForm}}
+
             <div class="col-md-3">
                 <div class="panel panel-dark">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Category</h3>
                     </div>
                     <div class="panel-body">
-                        {{> quickForm type="insert" id="qfAddCategories" collection="Categories"}}
+
                     </div>
                 </div>
                 <div class="panel">

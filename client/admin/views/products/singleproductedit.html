@@ -17,8 +17,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-dark">
-                {{! #autoForm id="addProductForm" type=method meteormethod=updateProduct collection="Products" }}
-                    {{#autoForm id="afUpdateProduct" type="update" collection="Products" doc=product}}
+
                     <div class="panel-heading">
                         <h4 class="panel-title">Product Details</h4>
                     </div>
@@ -27,35 +26,29 @@
                             <div class="col-sm-3">
                                 <div class="form-group {{! #if afFieldIsInvalid name='active'}}has-error{{! /if}}">
                                     <div class="checkbox block">
-                                            {{> afQuickField name="active"}}
+
 
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-sm-6">
-                                    {{> afQuickField name='name'}}
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
-                                    {{> afQuickField name='slug' }}
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
 
                         <div class="row">
                             <div class="col-sm-6">
-                                    {{> afQuickField name='color' type='select-multiple' options=pullColors}}
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-6">
-                                    {{> afQuickField name='type' type='select' options=pullTypes}}
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
                         <div class="row" style="margin-top: 2em;">
                             <div class="col-sm-12">
-                                    {{> afQuickField name='desc' }}
                             </div>
                             <div class="col-sm-12">
                                 <!--<div class="form-groups">-->
-                                {{> afQuickField name="images" type="cfs-files" collection="productimages"}}
                                 <!--</div>-->
                             </div>
                         </div>
@@ -68,12 +61,11 @@
                             </div>
                         </div>
                     </div>
-                {{/autoForm}}
+
             </div>
         </div>
         <div class="col-md-3">
-            {{> addTypeQuickForm }}
-            {{> addColorQuickForm }}
+
         </div>
         <div class="col-md-3">
             <div class="panel panel-dark">
@@ -164,7 +156,7 @@
                                                 </a>
                                             </div>
                                             <h5 class="fm-title"><a href="">{{name}}</a></h5>
-                                            <small class="text-muted">Updated: {{showUpdate updatedAt}}</small>
+                                            <small class="text-muted">Updated: {{updatedAt}}</small>
                                         </div><!-- thmb -->
                                     </div>
                                 {{/each}}
