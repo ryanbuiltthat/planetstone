@@ -14,28 +14,28 @@ Schemas.Category = new SimpleSchema({
     },
     createdAt: {
         type: Date,
-        autoValue: function() {
-            if (this.isInsert) {
-                return new Date;
-            } else if (this.isUpsert) {
-                return {$setOnInsert: new Date};
-            } else {
-                this.unset();
-            }
-        },
-        autoform:{
-            afFieldInput:{
-                type: "hidden"
-            }
-        }
+        //autoValue: function() {
+        //    if (this.isInsert) {
+        //        return new Date;
+        //    } else if (this.isUpsert) {
+        //        return {$setOnInsert: new Date};
+        //    } else {
+        //        this.unset();
+        //    }
+        //},
+        //autoform:{
+        //    afFieldInput:{
+        //        type: "hidden"
+        //    }
+        //}
     },
     updatedAt: {
         type: Date,
-        autoValue: function() {
-            if (this.isUpdate) {
-                return new Date();
-            }
-        },
+        //autoValue: function() {
+        //    if (this.isUpdate) {
+        //        return new Date();
+        //    }
+        //},
         denyInsert: true,
         optional: true
     }

@@ -2,6 +2,109 @@
  * Created by Ryan on 8/25/2015.
  */
 
+// Bracket Helpers
+closeVisibleSubMenu = function() {
+    $('.leftpanel .nav-parent').each(function() {
+        var t = $(this);
+        if(t.hasClass('nav-active')) {
+            t.find('> ul').slideUp(200, function(){
+                t.removeClass('nav-active');
+            });
+        }
+    });
+};
+
+adjustmainpanelheight = function() {
+    // Adjust mainpanel height
+    var docHeight = $(document).height();
+    if(docHeight > $('.mainpanel').height())
+        $('.mainpanel').height(docHeight);
+};
+
+
+reposition_searchform = function() {
+    if($('.searchform').css('position') == 'relative') {
+        $('.searchform').insertBefore('.leftpanelinner .userlogged');
+    } else {
+        $('.searchform').insertBefore('.header-right');
+    }
+};
+
+reposition_topnav = function() {
+    if($('.nav-horizontal').length > 0) {
+
+        // top navigation move to left nav
+        // .nav-horizontal will set position to relative when viewed in screen below 1024
+        if($('.nav-horizontal').css('position') == 'relative') {
+
+            if($('.leftpanel .nav-bracket').length == 2) {
+                $('.nav-horizontal').insertAfter('.nav-bracket:eq(1)');
+            } else {
+                // only add to bottom if .nav-horizontal is not yet in the left panel
+                if($('.leftpanel .nav-horizontal').length == 0)
+                    $('.nav-horizontal').appendTo('.leftpanelinner');
+            }
+
+            $('.nav-horizontal').css({display: 'block'})
+                .addClass('nav-pills nav-stacked nav-bracket');
+
+            $('.nav-horizontal .children').removeClass('dropdown-menu');
+            $('.nav-horizontal > li').each(function() {
+
+                $(this).removeClass('open');
+                $(this).find('a').removeAttr('class');
+                $(this).find('a').removeAttr('data-toggle');
+
+            });
+
+            if($('.nav-horizontal li:last-child').has('form')) {
+                $('.nav-horizontal li:last-child form').addClass('searchform').appendTo('.topnav');
+                $('.nav-horizontal li:last-child').hide();
+            }
+
+        } else {
+            // move nav only when .nav-horizontal is currently from leftpanel
+            // that is viewed from screen size above 1024
+            if($('.leftpanel .nav-horizontal').length > 0) {
+
+                $('.nav-horizontal').removeClass('nav-pills nav-stacked nav-bracket')
+                    .appendTo('.topnav');
+                $('.nav-horizontal .children').addClass('dropdown-menu').removeAttr('style');
+                $('.nav-horizontal li:last-child').show();
+                $('.searchform').removeClass('searchform').appendTo('.nav-horizontal li:last-child .dropdown-menu');
+                $('.nav-horizontal > li > a').each(function() {
+
+                    $(this).parent().removeClass('nav-active');
+
+                    if($(this).parent().find('.dropdown-menu').length > 0) {
+                        $(this).attr('class','dropdown-toggle');
+                        $(this).attr('data-toggle','dropdown');
+                    }
+
+                });
+            }
+
+        }
+
+    }
+};
+
+// UI Helpers
+updateBracketUI = function() {
+    if($('body').css('position') == 'relative') {
+        $('body').removeClass('leftpanel-collapsed chat-view');
+    } else {
+        $('body').removeClass('chat-relative-view');
+        $('body').css({left: '', marginRight: ''});
+    }
+    reposition_searchform();
+    reposition_topnav();
+};
+
+window.addEventListener("resize", updateBracketUI);
+
+
+
 // Constants
 rtime = new Date('1', '1', '2000', '12', '0', '0');
 timeout = false;
@@ -19,169 +122,18 @@ resizeEnd = function() {
 
 planet_stone = {
     rebind_menu_events: function() {
-        //$('.advanced-search').hide();
-        //$('.search-trigger').off('click');
-        //$('.search-trigger').on('click', function () {
-        //    $('.advanced-search').slideToggle(500);
-        //});
-        //$('.houzz-share-button').on('click', function(){
-        //    alert('test');
-        //});
+
     },
     init: function () {
-        //console.log("ps init");
-        //SEARCH FILTER
-        $('.filter-show').hide(500);
-
-        $('.filter-hide').on('click', function () {
-            $('aside.fixed').slideUp(500);
-            $('.filter-show').show(500);
-            $('.offset').css('margin-top','0');
-        });
-
-        $('.filter-show').on('click', function () {
-            $('aside.fixed').slideDown(500);
-            $('.filter-show').hide(500);
-            $('.offset').css('margin-top','197px');
-        });
-
         // Try FB
-        //console.log("[planet_stone:init:FB try]");
         try {
             FB.XFBML.parse();
         }catch(e) {
             //console.log(e);
         }
-
-        //ADVANCED SEARCH
-        //$('.advanced-search').hide();
-        //$('.search-trigger').off('click');
-        //$('.search-trigger').on('click', function () {
-        //    $('.advanced-search').slideToggle(500);
-        //});
-
-        //$('.search-hide').on('click', function () {
-        //    $('.advanced-search').hide(500);
-        //});
-
-        //$('#startDate').datepicker();
-        //
-        //$('#birthDate').datepicker({
-        //    changeMonth: true,
-        //    changeYear: true,
-        //    yearRange: '1920:2000',
-        //    minDate: new Date(1920, 1 - 1, 25),
-        //    maxDate: '+80Y'
-        //});
-
-        // CUSTOM FORM ELEMENTS
-        $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
-        //$('input, textarea, select').uniform();
-
-        // ACCORDION
-        //$('.accordion dd').hide();
-        //$('.accordion dt').on('click', function () {
-        //    $(this).next('.accordion dd').slideToggle(500);
-        //    $(this).toggleClass('expanded');
-        //});
-
-        //$('.accordion .next-step').on('click', function (e) {
-        //    $(this).closest('.accordion dd').next('.accordion dt').next('.accordion dd').slideToggle(500);
-        //    $(this).closest('.accordion dd').next('.accordion dt').toggleClass('expanded');
-        //    e.preventDefault();
-        //});
-
-        //$('.bookingSteps .thank-you-note').hide();
-        //$('.accordion .submit-step').on('click', function (e) {
-        //    $(this).closest('.accordion').slideToggle(500);
-        //    $('.bookingSteps .thank-you-note').slideToggle(500);
-        //
-        //    $('html, body').animate({
-        //        scrollTop: parseInt($("#tab-navigation").position().top, 10)
-        //    }, 1000);
-        //
-        //    e.preventDefault();
-        //});
-
-        // BOOKING STEPS
-        //$('.booking').hide();
-        //$('.availability .button').on('click', function () {
-        //    $('.availability').hide();
-        //    $('.selectDates').show(500);
-        //});
-        //
-        //$('.selectDates .button').on('click', function () {
-        //    $('.selectDates').hide();
-        //    $('.bookingSteps').show(500);
-        //});
-
-        // TABS
-        $('.content .tab-content').hide().first().show();
-        $('.content .tabs li:first').addClass('current');
-
-        $('.content .tabs a').on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('li').addClass('current').siblings().removeClass('current');
-            $($(this).attr('href')).show().siblings('.tab-content').hide();
-        });
-
-        var hash = $.trim( window.location.hash );
-        if (hash) $('.content .tabs a[href$="'+hash+'"]').trigger('click');
-
-
-        // SMOOTH ANCHOR SCROLLING
-        var $root = $('html, body');
-        $('.intro .button, .anchor').on('click', function(e) {
-            var href = $.attr(this, 'href');
-            if (typeof ($(href)) != 'undefined' && $(href).length > 0) {
-                var anchor = '';
-
-                if(href.indexOf("#") != -1) {
-                    anchor = href.substring(href.lastIndexOf("#"));
-                }
-
-                var scrollToPosition = $(anchor).offset().top - 80;
-
-                if (anchor.length > 0) {
-                    $root.animate({
-                        scrollTop: scrollToPosition
-                    }, 500, function () {
-                        //window.location.hash = anchor;
-                        // This hash change will jump the page to the top of the div with the same id
-                        // so we need to force the page to back to the end of the animation
-                        $('html').animate({ 'scrollTop': scrollToPosition }, 0);
-                    });
-                    e.preventDefault();
-                }
-            }
-        });
-
-        //MAIN MENU
-        //$().jetmenu();
     },
     load: function () {
-        //console.log("ps load");
 
-        // Pinterest
-        //(function(d){
-        //    var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
-        //    p.type = 'text/javascript';
-        //    p.async = true;
-        //    p.src = '//assets.pinterest.com/js/pinit.js';
-        //    f.parentNode.insertBefore(p, f);
-        //}(document));
-
-
-        // UNIFY HEIGHT
-        var maxHeight = 0;
-
-        $('.heightfix').each(function(){
-            if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
-        });
-        $('.heightfix').height(maxHeight);
-
-        // PRELOADER
-        $('.preloader').fadeOut();
     }
 };
 

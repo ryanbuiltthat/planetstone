@@ -1,0 +1,15 @@
+<template name="upload">
+    <p><strong>Note</strong>: only <code>.png</code>, <code>.jpeg</code>, and <code>.gif</code> files are allowed.</p>
+    {{! > uploader}}
+    <div class="row">
+        <div class="col-md-6">
+            {{>cropUploader thumbnailWidth=800 thumbnailHeight=600 derivativeName='fourThree' }}
+        </div>
+        <div class="col-md-6">
+            <div class="preview thumbnail">
+                <canvas id="thumbnail_canvas"></canvas>
+                <h6 class="id">Preview</h6>
+            </div>
+        </div>
+    </div>
+</template>

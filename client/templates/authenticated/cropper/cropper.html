@@ -1,0 +1,25 @@
+<template name="cropper">
+    {{#if Template.subscriptionsReady}}
+        <div class="row">
+            <ul class="filemanager-options">
+                <li><a href="" class="itemopt save"><i class="fa fa-cloud-upload"></i> Save</a></li>
+                <li><a href="" class="itemopt rotate"><i class="fa fa-refresh"></i> Rotate</a></li>
+                <li><a href="" class="itemopt reset"><i class="fa fa-undo"></i> Reset</a></li>
+                <li><a href="" class="itemopt delete"><i class="fa fa-trash-o"></i> Delete</a></li>
+                <li><a href="" class="itemopt help"><i class="fa fa-support"></i> Help</a></li>
+            </ul>
+        </div>
+    <div class="row">
+        {{>cropUploaderCropper imageid=imageid url=url thumbnailWidth=800 thumbnailHeight=600 options=getOpts}}
+    </div>
+        <!--<div class="buttons">-->
+        <!--<button class="btn rotate">Rotate</button>-->
+        {{#if currentUser}}
+            <!--<button class="btn btn-success save" imageid="{{! imageid}}">Save</button>-->
+            <!--<button class="btn btn-danger delete" imageid="{{! imageid}}">Delete</button>-->
+        {{/if}}
+    <!--</div>-->
+    {{else}}
+        <!--Loading-->
+    {{/if}}
+</template>

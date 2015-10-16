@@ -30,41 +30,41 @@ Schemas.Project = new SimpleSchema({
     desc: {
         type: String,
         label: "Description",
-        autoform: {
-            afFieldInput: {
-                type: "textarea",
-                rows: 8
-            }
-        },
-        max: 5000
+        //autoform: {
+        //    afFieldInput: {
+        //        type: "textarea",
+        //        rows: 8
+        //    }
+        //},
+        //max: 5000
     },
     active: {
         type: Boolean,
-        autoform: {
-            afFieldInput: {
-                type: "boolean-checkbox"
-            }
-        }
+        //autoform: {
+        //    afFieldInput: {
+        //        type: "boolean-checkbox"
+        //    }
+        //}
     },
     createdAt: {
         type: Date,
-        autoValue: function() {
-            if (this.isInsert) {
-                return new Date;
-            } else if (this.isUpsert) {
-                return {$setOnInsert: new Date};
-            } else {
-                this.unset();
-            }
-        }
+        //autoValue: function() {
+        //    if (this.isInsert) {
+        //        return new Date;
+        //    } else if (this.isUpsert) {
+        //        return {$setOnInsert: new Date};
+        //    } else {
+        //        this.unset();
+        //    }
+        //}
     },
     updatedAt: {
         type: Date,
-        autoValue: function() {
-            if (this.isUpdate) {
-                return new Date();
-            }
-        },
+        //autoValue: function() {
+        //    if (this.isUpdate) {
+        //        return new Date();
+        //    }
+        //},
         denyInsert: true,
         optional: true
     },

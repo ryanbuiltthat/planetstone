@@ -24,9 +24,9 @@ Template.users.helpers({
 });
 
 Template.users.events({
-  'change [name="userRole"]': function( event, template ) {
-    let role = $( event.target ).find( 'option:selected' ).val();
-
+  'click [class="userRole"]': function( event, template ) {
+    let role = $( event.target ).data( 'role' ).val();
+  console.log(role);
     Meteor.call( "setRoleOnUser", {
       user: this._id,
       role: role

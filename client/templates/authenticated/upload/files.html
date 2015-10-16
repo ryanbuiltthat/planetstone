@@ -1,0 +1,52 @@
+<template name="files">
+    <div class="row">
+        <ul class="filemanager-options">
+            <li>
+                <div class="ckbox ckbox-default">
+                    <input type="checkbox" id="selectall" value="1">
+                    <label for="selectall">Select All</label>
+                </div>
+            </li>
+            <li>
+                <a href="" class="itemopt disabled"><i class="fa fa-trash-o"></i> Delete</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="row filemanager">
+            {{#if Template.subscriptionsReady}}
+                {{#each images}}
+                    <div class="col-xs-6 col-sm-4 col-md-3 image">
+
+                            <div class="thmb">
+                                <div class="ckbox ckbox-default" style="display: none;">
+                                    <input type="checkbox" id="check{{_id}}" value="1">
+                                    <label for="check{{_id}}"></label>
+                                </div>
+                                <div class="btn-group fm-group" style="display: none;">
+                                    <button type="button" class="btn btn-default dropdown-toggle fm-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu fm-menu" role="menu">
+                                        <li><a href="#" data-imgid="{{_id}}" class="btn-file-edit"><i class="fa fa-pencil"></i> Edit</a></li>
+                                        <li><a href="#" class="btn-file-download"><i class="fa fa-download"></i> Download</a></li>
+                                        <li><a href="#" data-imgid="{{_id}}" class="btn-file-delete"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                    </ul>
+                                </div><!-- btn-group -->
+                                <div class="thmb-prev">
+                                    <a href="{{url}}" data-rel="prettyPhoto">
+                                {{#if derivatives.fourThree}}
+                                        <img src="{{derivatives.fourThree}}" class="img-responsive" alt="{{name}}" id="{{_id}}">
+                                {{/if}}
+                                    </a>
+                                </div>
+                                <h5 class="fm-title"><a href="">{{name}}</a></h5>
+                                <small class="text-muted">Added: {{humanDate created}}</small>
+                            </div><!-- thmb -->
+
+                    </div><!-- col-xs-6 -->
+                {{/each}}
+            {{/if}}
+        </div><!-- /.filemanager -->
+    </div>
+</template>

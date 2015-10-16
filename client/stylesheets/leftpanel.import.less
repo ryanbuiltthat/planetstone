@@ -1,5 +1,5 @@
 
-.s-admin {
+
   .leftpanel {
     width: 240px;
     position: absolute;
@@ -105,28 +105,29 @@
       > a:hover, > a:active {
         color: @main-bg-color;
         background-color: #ffffff;
-        background-image: url(/img/plus.png);
+        background-image: url(../img/plus.png);
       }
       > a {
-        background: transparent url(/img/plus-white.png) no-repeat 92% center;
+        background: transparent url(../img/plus-white.png) no-repeat 92% center;
       }
       > a:focus {
-        background-color: none;
+        background-color: transparent;
         color: #8f939e;
         .noshadow();
       }
     }
     > li.nav-active > a {
       background-color: #ffffff;
-      background-image: url(/img/minus.png);
+      background-image: url(../img/minus.png);
       color: @main-bg-color;
       .box-shadow(0 3px 0, rgba(0, 0, 0, 0.2));
     }
     > li.nav-active > a:hover {
-      background-image: url(/img/minus.png);
+      background-image: url(../img/minus.png);
       background-repeat: no-repeat;
     }
     > li.nav-active > a:focus {
+      background-color: #ffffff;
       color: @main-bg-color;
     }
     > li.active {
@@ -141,13 +142,13 @@
       }
     }
     > li.nav-parent.active > a {
-      background-image: url(/img/plus.png);
+      background-image: url(../img/plus.png);
     }
     > li.nav-active.active > a {
-      background-image: url(/img/minus.png);
+      background-image: url(../img/minus.png);
     }
     > li.nav-active.active > a:hover {
-      background-image: url(/img/minus.png);
+      background-image: url(../img/minus.png);
     }
     li {
       .fa, .glyphicon {
@@ -237,4 +238,3 @@
       opacity: 0.6;
     }
   }
-}

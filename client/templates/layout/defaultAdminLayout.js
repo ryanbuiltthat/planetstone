@@ -1,48 +1,162 @@
 /**
  * Created by Ryan on 8/15/2015.
  */
-Template.defaultAdminLayout.onCreated(function() {
-    jQuery('body').removeClass('signin');
+Template.default.onCreated(function () {
+    //jQuery('body').removeClass('signin');
     jQuery('body').addClass('stickyheader s-admin');
     var self = this;
     self.ready = new ReactiveVar();
     self.autorun(function () {
         //var postId = FlowRouter.getParam('postId');
-        var handle = self.subscribe('allAdmin');
-        self.ready.set(handle.ready());
-        self.subscribe('userStatus');
+        //var handle = self.subscribe('allAdmin');
+        //self.ready.set(handle.ready());
+        //self.subscribe('userStatus');
     });
 });
-Template.defaultAdminLayout.onRendered(function(){
+Template.default.onRendered(function () {
 //-------------------------------------
-    jQuery(document).ready(function() {
-        console.log("doc ready");
-        "use strict";
+    // Page Preloader
+    $('#preloader').delay(350).fadeOut(function () {
+        $('body').delay(350).css({'overflow': 'visible'});
+    });
+
+    adjustmainpanelheight();
+
+    // Tooltip
+    //$('.tooltips').tooltip({ container: 'body'});
+
+    // Popover
+    //$('.popovers').popover();
+
+    //
+    //$('.toggle-chat1').toggles({on: false});
+    //
+
+    reposition_topnav();
+    reposition_searchform();
+
+    // Sticky Header
+    if ($.cookie('sticky-header'))
+        $('body').addClass('stickyheader');
+
+    // Sticky Left Panel
+    if ($.cookie('sticky-leftpanel')) {
+        $('body').addClass('stickyheader');
+        $('.leftpanel').addClass('sticky-leftpanel');
+    }
+
+    // Left Panel Collapsed
+    if ($.cookie('leftpanel-collapsed')) {
+        $('body').addClass('leftpanel-collapsed');
+        $('.menutoggle').addClass('menu-collapsed');
+    }
+
+    // Check if leftpanel is collapsed
+    if ($('body').hasClass('leftpanel-collapsed'))
+        $('.nav-bracket .children').css({display: ''});
 
 
-        adjustmainpanelheight();
-        // Tooltip
-        jQuery('.tooltips').tooltip({ container: 'body'});
+    // Handles form inside of dropdown
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+    });
+    //-------------------------------------
+});
 
-        // Popover
-        jQuery('.popovers').popover();
+Template.default.events({
+    'click .leftpanel>.leftpanelinner>ul>.nav-parent>a': function(e,t){
+        var parent = $(e.currentTarget).parent();
+        var sub = parent.find('> ul');
+        // Dropdown works only when leftpanel is not collapsed
+        if(!$('body').hasClass('leftpanel-collapsed')) {
+            if(sub.is(':visible')) {
+                sub.slideUp(200, function(){
+                    parent.removeClass('nav-active');
+                    $('.mainpanel').css({height: ''});
+                    adjustmainpanelheight();
+                });
+            } else {
+                closeVisibleSubMenu();
+                parent.addClass('nav-active');
+                sub.slideDown(200, function(){
+                    adjustmainpanelheight();
+                });
+            }
+        }
+        return false;
+    },
+    'click .menutoggle': function (e, t) {
+        console.log("[menutoggle] click");
+        var body = $('body');
+        var bodypos = body.css('position');
+        if (bodypos != 'relative') {
+            if (!body.hasClass('leftpanel-collapsed')) {
+                body.addClass('leftpanel-collapsed');
+                $('.nav-bracket ul').attr('style', '');
 
-        // Close Button in Panels
-        jQuery('.panel .panel-close').click(function(){
-            jQuery(this).closest('.panel').fadeOut(200);
-            return false;
+                $(e.currentTarget).addClass('menu-collapsed');
+
+            } else {
+                body.removeClass('leftpanel-collapsed chat-view');
+                $('.nav-bracket li.active ul').css({display: 'block'});
+                $(e.currentTarget).removeClass('menu-collapsed');
+            }
+        } else {
+            if (body.hasClass('leftpanel-show'))
+                body.removeClass('leftpanel-show');
+            else
+                body.addClass('leftpanel-show');
+            adjustmainpanelheight();
+        }
+    },
+    'mouseenter .nav-bracket > li': function (e, t) {
+        $(e.currentTarget).addClass('nav-hover');
+    },
+    'mouseleave .nav-bracket > li': function (e, t) {
+        $(e.currentTarget).removeClass('nav-hover');
+    },
+    'click .panel .panel-close': function (e, t) {
+        $(e.currentTarget).closest('.panel').fadeOut(200);
+        return false;
+    },
+    'click #chatview': function (e, t) {
+        var body = $('body');
+        var bodypos = body.css('position');
+        if (bodypos != 'relative') {
+            if (!body.hasClass('chat-view')) {
+                body.addClass('leftpanel-collapsed chat-view');
+                $('.nav-bracket ul').attr('style', '');
+            } else {
+                body.removeClass('chat-view');
+                if (!$('.menutoggle').hasClass('menu-collapsed')) {
+                    $('body').removeClass('leftpanel-collapsed');
+                    $('.nav-bracket li.active ul').css({display: 'block'});
+                } else {
+                }
+            }
+
+        } else {
+            if (!body.hasClass('chat-relative-view')) {
+                body.addClass('chat-relative-view');
+                body.css({left: ''});
+            } else {
+                body.removeClass('chat-relative-view');
+            }
+        }
+    },
+    'click .logout' () {
+        Meteor.logout((error) => {
+            if (error) {
+                Bert.alert(error.reason, 'warning');
+            } else {
+                Bert.alert('Logged out!', 'success');
+            }
         });
-
-        // Form Toggles
-        jQuery('.toggle').toggles({on: true});
-
-        jQuery('.toggle-chat1').toggles({on: false});
-
-        // Minimize Button in Panels
-        jQuery('.minimize').click(function(){
-            var t = jQuery(this);
+    },
+    'click .panel .minimize': function(e){
+            var t = jQuery(e.currentTarget);
             var p = t.closest('.panel');
-            if(!jQuery(this).hasClass('maximize')) {
+            if(!jQuery(e.currentTarget).hasClass('maximize')) {
                 p.find('.panel-body, .panel-footer').slideUp(200);
                 t.addClass('maximize');
                 t.html('&plus;');
@@ -52,248 +166,19 @@ Template.defaultAdminLayout.onRendered(function(){
                 t.html('&minus;');
             }
             return false;
-        });
-
-
-        // Add class everytime a mouse pointer hover over it
-        jQuery('.nav-bracket > li').hover(function(){
-            jQuery(this).addClass('nav-hover');
-        }, function(){
-            jQuery(this).removeClass('nav-hover');
-        });
-
-
-
-
-        // Chat View
-        jQuery('#chatview').click(function(){
-
-            var body = jQuery('body');
-            var bodypos = body.css('position');
-
-            if(bodypos != 'relative') {
-
-                if(!body.hasClass('chat-view')) {
-                    body.addClass('leftpanel-collapsed chat-view');
-                    jQuery('.nav-bracket ul').attr('style','');
-
-                } else {
-
-                    body.removeClass('chat-view');
-
-                    if(!jQuery('.menutoggle').hasClass('menu-collapsed')) {
-                        jQuery('body').removeClass('leftpanel-collapsed');
-                        jQuery('.nav-bracket li.active ul').css({display: 'block'});
-                    } else {
-
-                    }
-                }
-
-            } else {
-
-                if(!body.hasClass('chat-relative-view')) {
-
-                    body.addClass('chat-relative-view');
-                    body.css({left: ''});
-
-                } else {
-                    body.removeClass('chat-relative-view');
-                }
-            }
-
-        });
-
-        reposition_topnav();
-        reposition_searchform();
-
-        jQuery(window).resize(function(){
-
-            if(jQuery('body').css('position') == 'relative') {
-
-                jQuery('body').removeClass('leftpanel-collapsed chat-view');
-
-            } else {
-
-                jQuery('body').removeClass('chat-relative-view');
-                jQuery('body').css({left: '', marginRight: ''});
-            }
-
-
-            reposition_searchform();
-            reposition_topnav();
-
-        });
-
-
-
-        /* This function will reposition search form to the left panel when viewed
-         * in screens smaller than 767px and will return to top when viewed higher
-         * than 767px
-         */
-        function reposition_searchform() {
-            if(jQuery('.searchform').css('position') == 'relative') {
-                jQuery('.searchform').insertBefore('.leftpanelinner .userlogged');
-            } else {
-                jQuery('.searchform').insertBefore('.header-right');
-            }
-        }
-
-
-
-        /* This function allows top navigation menu to move to left navigation menu
-         * when viewed in screens lower than 1024px and will move it back when viewed
-         * higher than 1024px
-         */
-        function reposition_topnav() {
-            if(jQuery('.nav-horizontal').length > 0) {
-
-                // top navigation move to left nav
-                // .nav-horizontal will set position to relative when viewed in screen below 1024
-                if(jQuery('.nav-horizontal').css('position') == 'relative') {
-
-                    if(jQuery('.leftpanel .nav-bracket').length == 2) {
-                        jQuery('.nav-horizontal').insertAfter('.nav-bracket:eq(1)');
-                    } else {
-                        // only add to bottom if .nav-horizontal is not yet in the left panel
-                        if(jQuery('.leftpanel .nav-horizontal').length == 0)
-                            jQuery('.nav-horizontal').appendTo('.leftpanelinner');
-                    }
-
-                    jQuery('.nav-horizontal').css({display: 'block'})
-                        .addClass('nav-pills nav-stacked nav-bracket');
-
-                    jQuery('.nav-horizontal .children').removeClass('dropdown-menu');
-                    jQuery('.nav-horizontal > li').each(function() {
-
-                        jQuery(this).removeClass('open');
-                        jQuery(this).find('a').removeAttr('class');
-                        jQuery(this).find('a').removeAttr('data-toggle');
-
-                    });
-
-                    if(jQuery('.nav-horizontal li:last-child').has('form')) {
-                        jQuery('.nav-horizontal li:last-child form').addClass('searchform').appendTo('.topnav');
-                        jQuery('.nav-horizontal li:last-child').hide();
-                    }
-
-                } else {
-                    // move nav only when .nav-horizontal is currently from leftpanel
-                    // that is viewed from screen size above 1024
-                    if(jQuery('.leftpanel .nav-horizontal').length > 0) {
-
-                        jQuery('.nav-horizontal').removeClass('nav-pills nav-stacked nav-bracket')
-                            .appendTo('.topnav');
-                        jQuery('.nav-horizontal .children').addClass('dropdown-menu').removeAttr('style');
-                        jQuery('.nav-horizontal li:last-child').show();
-                        jQuery('.searchform').removeClass('searchform').appendTo('.nav-horizontal li:last-child .dropdown-menu');
-                        jQuery('.nav-horizontal > li > a').each(function() {
-
-                            jQuery(this).parent().removeClass('nav-active');
-
-                            if(jQuery(this).parent().find('.dropdown-menu').length > 0) {
-                                jQuery(this).attr('class','dropdown-toggle');
-                                jQuery(this).attr('data-toggle','dropdown');
-                            }
-
-                        });
-                    }
-
-                }
-
-            }
-        }
-
-
-        // Sticky Header
-        if(jQuery.cookie('sticky-header'))
-
-            jQuery('body').addClass('stickyheader');
-
-        // Sticky Left Panel
-        if(jQuery.cookie('sticky-leftpanel')) {
-            jQuery('body').addClass('stickyheader');
-            jQuery('.leftpanel').addClass('sticky-leftpanel');
-        }
-
-        // Left Panel Collapsed
-        if(jQuery.cookie('leftpanel-collapsed')) {
-            jQuery('body').addClass('leftpanel-collapsed');
-            jQuery('.menutoggle').addClass('menu-collapsed');
-        }
-
-        // Check if leftpanel is collapsed
-        if(jQuery('body').hasClass('leftpanel-collapsed'))
-            jQuery('.nav-bracket .children').css({display: ''});
-
-
-        // Handles form inside of dropdown
-        jQuery('.dropdown-menu').find('form').click(function (e) {
-            e.stopPropagation();
-        });
-    });
-    //-------------------------------------
-});
-
-Template.defaultAdminLayout.events({
-    'click .menutoggle':function(e, tpl){
-        console.log("menu click");
-        var body = $('body');
-        var bodypos = body.css('position');
-
-        if(bodypos != 'relative') {
-
-            if(!body.hasClass('leftpanel-collapsed')) {
-                body.addClass('leftpanel-collapsed');
-                $('.nav-bracket ul').attr('style','');
-
-                $(e.currentTarget).addClass('menu-collapsed');
-
-            } else {
-                body.removeClass('leftpanel-collapsed chat-view');
-                $('.nav-bracket li.active ul').css({display: 'block'});
-
-                $(e.currentTarget).removeClass('menu-collapsed');
-
-            }
-        } else {
-
-            if(body.hasClass('leftpanel-show'))
-                body.removeClass('leftpanel-show');
-            else
-                body.addClass('leftpanel-show');
-
-            adjustmainpanelheight();
-        }
-    },
-    'click .logoutLink': function(e){
-        e.preventDefault();
-        return FlowRouter.go(FlowRouter.path('logout'));
     }
 });
-Template.defaultAdminLayout.helpers({
-    onlineusers: function(){
-        var users =  Meteor.users.find({ "status.online": true }).count();
-        if( users <= 0 ) {
-            return 0;
+Template.default.helpers({
+    subsReady: function () {
+        //return Template.instance().ready.get();
+        return true;
+    },
+    getRtName: function(){
+        var rtname = FlowRouter.getRouteName();
+        if(rtname) {
+            return FlowRouter.getRouteName();
         }else {
-            /**
-             * TODO make a reactiveVar for online users - array and test if change push new count as new element
-             */
-            return users;
+            return FlowRouter.current().route.group.name;
         }
-    },
-    getsess: function(){
-        return Session.get('users');
-    },
-    nonAuthForm: function(){
-        if(!Meteor.userId()){
-            return Session.get("formState");
-        }
-    },
-    subsReady: function(){
-        return Template.instance().ready.get();
-    },
-    getUserEmail: function(){
-        return Meteor.user().emails[0].address;
     }
 });

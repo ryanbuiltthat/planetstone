@@ -1,4 +1,3 @@
-.s-admin {
   .ckbox, .rdio {
     position: relative;
   }
@@ -27,15 +26,30 @@
     background: #ffffff;
   }
 
-  .ckbox input[type="checkbox"] :disabled + label {
+  //.ckbox label:after {
+  //  content: "";
+  //  position: absolute;
+  //  top: 0;
+  //  left: 3.5px;
+  //  display: inline-block;
+  //  font-size: 11px;
+  //  width: 16px;
+  //  height: 16px;
+  //}
+
+  .ckbox input[type="checkbox"]:disabled + label {
     color: #999999;
   }
 
-  .ckbox input[type="checkbox"] :disabled + label:before {
+  .ckbox input[type="checkbox"]:disabled + label:before {
     background-color: #eeeeee;
   }
 
-  .ckbox input[type="checkbox"] :checked + label::after {
+  .ckbox input[type="checkbox"]:checked + label::after{
+    color: #ffffff;
+  }
+
+  .checked .ckbox label:after,  .ckbox input[type="checkbox"]:checked + label::after {
     font-family: 'FontAwesome';
     content: "\F00C";
     position: absolute;
@@ -45,33 +59,34 @@
     font-size: 11px;
     width: 16px;
     height: 16px;
-    color: #ffffff;
-  }
-
-  .ckbox-default input[type="checkbox"] :checked + label:before {
-    border-color: #999999;
-  }
-
-  .ckbox-default input[type="checkbox"] :checked + label::after {
+    //color: #ffffff;
     color: #333333;
   }
 
-  .ckbox-primary input[type="checkbox"] :checked + label:before {
+  .ckbox-default input[type="checkbox"]:checked + label:before {
+    border-color: #999999;
+  }
+
+  .ckbox-default input[type="checkbox"]:checked + label::after {
+    color: #333333;
+  }
+
+  .ckbox-primary input[type="checkbox"]:checked + label:before {
     border-color: @primary-color;
     background-color: @primary-color-hover;
   }
 
-  .ckbox-warning input[type="checkbox"] :checked + label:before {
+  .ckbox-warning input[type="checkbox"]:checked + label:before {
     border-color: @warning-color;
     background-color: @warning-color-hover;
   }
 
-  .ckbox-success input[type="checkbox"] :checked + label:before {
+  .ckbox-success input[type="checkbox"]:checked + label:before {
     border-color: @success-color;
     background-color: @success-color-hover;
   }
 
-  .ckbox-danger input[type="checkbox"] :checked + label:before {
+  .ckbox-danger input[type="checkbox"]:checked + label:before {
     border-color: @danger-color;
     background-color: @danger-color-hover;
   }
@@ -89,15 +104,15 @@
     background: #ffffff;
   }
 
-  .rdio input[type="radio"] :disabled + label {
+  .rdio input[type="radio"]:disabled + label {
     color: #999999;
   }
 
-  .rdio input[type="radio"] :disabled + label:before {
+  .rdio input[type="radio"]:disabled + label:before {
     background-color: #eeeeee;
   }
 
-  .rdio input[type="radio"] :checked + label::after {
+  .rdio input[type="radio"]:checked + label::after {
     content: '';
     position: absolute;
     top: 5px;
@@ -110,39 +125,39 @@
     .border-radius(50px);
   }
 
-  .rdio-default input[type="radio"] :checked + label:before {
+  .rdio-default input[type="radio"]:checked + label:before {
     border-color: #999999;
   }
 
-  .rdio-primary input[type="radio"] :checked + label:before {
+  .rdio-primary input[type="radio"]:checked + label:before {
     border-color: @primary-color;
   }
 
-  .rdio-primary input[type="radio"] :checked + label::after {
+  .rdio-primary input[type="radio"]:checked + label::after {
     background-color: @primary-color;
   }
 
-  .rdio-warning input[type="radio"] :checked + label:before {
+  .rdio-warning input[type="radio"]:checked + label:before {
     border-color: @warning-color;
   }
 
-  .rdio-warning input[type="radio"] :checked + label::after {
+  .rdio-warning input[type="radio"]:checked + label::after {
     background-color: @warning-color;
   }
 
-  .rdio-success input[type="radio"] :checked + label:before {
+  .rdio-success input[type="radio"]:checked + label:before {
     border-color: @success-color;
   }
 
-  .rdio-success input[type="radio"] :checked + label::after {
+  .rdio-success input[type="radio"]:checked + label::after {
     background-color: @success-color;
   }
 
-  .rdio-danger input[type="radio"] :checked + label:before {
+  .rdio-danger input[type="radio"]:checked + label:before {
     border-color: @danger-color;
   }
 
-  .rdio-danger input[type="radio"] :checked + label::after {
+  .rdio-danger input[type="radio"]:checked + label::after {
     background-color: @danger-color;
   }
 
@@ -319,4 +334,3 @@
   .editable-unsaved {
     font-weight: normal;
   }
-}

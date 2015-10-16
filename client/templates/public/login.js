@@ -1,7 +1,11 @@
+Template.login.onCreated(function(){
+
+});
 Template.login.onRendered( () => {
+    //this.$('#login').validate();
   Modules.client.login( { form: "#login", template: Template.instance() } );
 });
 
 Template.login.events({
-  'submit form': ( event ) => event.preventDefault()
+  'submit #login': ( event ) => event.preventDefault()
 });
