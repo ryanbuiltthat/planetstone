@@ -76,3 +76,8 @@ $RECYCLE.BIN/
 
 #WebStorm Files
 .idea
+
+#Meteor settings
+settings.json
+settings-development.json
+settings-production.json
