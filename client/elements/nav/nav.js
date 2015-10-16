@@ -3,6 +3,14 @@
  */
 Template.nav.onRendered(function(){
     $().jetmenu();
+
+    // Get datepicker moving
+    //$('#startDate').datepicker();
+
+    $('#startDate').datepicker();
+    // CUSTOM FORM ELEMENTS
+    $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
+
 });
 
 

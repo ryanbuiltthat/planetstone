@@ -38,7 +38,7 @@ formatSlug = function(value) {
 //adminSubs = new SubsManager();
 //adminProducts = new SubsManager();
 ap = new SubsManager();
-//adminTestimonials = new SubsManager();
+ProductsSub = new SubsManager();
 //adminSite = new SubsManager();
 //adminUsers = new SubsManager();
 

@@ -10,7 +10,8 @@ Template.productFilterBar.onCreated(function(){
         self.subscribe('productNotType', Session.get('typeFilter'));
     });
 });
-Template.productFilterBar.onRendered(function(){});
+Template.productFilterBar.onRendered(function(){
+});
 Template.productFilterBar.helpers({
     getFilterTypes: function(){
         // need to get oposite filters

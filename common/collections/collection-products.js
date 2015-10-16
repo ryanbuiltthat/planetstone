@@ -2,6 +2,15 @@
  * Created by Ryan on 8/9/2015.
  */
 Schemas.Product = new SimpleSchema({
+    featured: {
+        type: Boolean,
+        optional: true,
+        autoform: {
+            afFieldInput: {
+                type: "boolean-checkbox"
+            }
+        }
+    },
     name: {
         type: String,
         label: "Name",

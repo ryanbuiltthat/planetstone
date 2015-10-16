@@ -4,25 +4,26 @@
         <ul class="jetmenu" id="jetmenu">
             <li><a href="{{getPathFor "products" }}" title="Marble &amp; Granite Products">Products</a>
             </li>
-            <li><a href="#!" title="Our Finished Product">Our Work</a>
+            <li><a href="#" title="Our Finished Product">Our Work</a>
+
                 <div class="megamenu full-width finished-menu">
                     <div class="wrap">
                         <div class="row">
                             <div class="col one-fourth">
                                 <a href="{{ getPathFor "projectcategory" }}/kitchens" title="Kitchens">
-                                    <img src="/img/finished-projects/kitchens.jpg" alt="" width="100%" />
+                                    <img src="/img/finished-projects/kitchens.jpg" alt="" width="100%"/>
                                     <span>Kitchens</span>
                                 </a>
                             </div>
                             <div class="col one-fourth">
                                 <a href="{{ getPathFor "projectcategory" }}/outdoor-kitchens" title="">
-                                    <img src="/img/finished-projects/outdoor-kitchens.jpg" alt="" width="100%" />
+                                    <img src="/img/finished-projects/outdoor-kitchens.jpg" alt="" width="100%"/>
                                     <span>Outdoor Kitchens</span>
                                 </a>
                             </div>
                             <div class="col one-fourth">
                                 <a href="{{ getPathFor "projectcategory" }}/bath" title="">
-                                    <img src="/img/finished-projects/bathroom.jpg" alt="" width="100%" />
+                                    <img src="/img/finished-projects/bathroom.jpg" alt="" width="100%"/>
                                     <span>Bathrooms</span>
                                 </a>
                             </div>
@@ -41,53 +42,136 @@
         </ul>
     </nav>
     <!-- //Primary menu -->
-    <nav class="spmenu spmenu-horizontal spmenu-bottom" id="cbp-spmenu-s4">
-        <h3>Get Inspired</h3>
-        <form class="quickFormDrawer" action="">
-            <div class="drawerCloser">
-                <a href="#" onclick="toggleBottomDrawer( 'cbp-spmenu-s4' ); return false;"><i class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>
-            </div>
-            <div class="wrap">
-                <div class="drawerPromo">
-                    <a href="#" class="drawerPromoImg">
-                        <img src="img/samples/001.jpg" alt="" width="300"></a>
-                    <h2>Promotion Variant</h2>
-                    <p>Lacinia adipiscing ultricies ullamcorper parturient phasellus ullamcorper ac suspendisse lectus varius ultricies leo.</p>
-                    <a href="#" class="button white medium">Learn More</a>
-                </div>
-            </div>
-        </form>
-    </nav>
+    <!--<nav class="spmenu spmenu-horizontal spmenu-bottom" id="cbp-spmenu-s4">-->
+    <!--<h3>Get Inspired</h3>-->
+    <!--<form class="quickFormDrawer" action="">-->
+    <!--<div class="drawerCloser">-->
+    <!--<a href="#" onclick="toggleBottomDrawer( 'cbp-spmenu-s4' ); return false;"><i class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>-->
+    <!--</div>-->
+    <!--<div class="wrap">-->
+    <!--<div class="drawerPromo">-->
+    <!--<a href="#" class="drawerPromoImg">-->
+    <!--<img src="img/samples/001.jpg" alt="" width="300"></a>-->
+    <!--<h2>Promotion Variant</h2>-->
+    <!--<p>Lacinia adipiscing ultricies ullamcorper parturient phasellus ullamcorper ac suspendisse lectus varius ultricies leo.</p>-->
+    <!--<a href="#" class="button white medium">Learn More</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!--</nav>-->
     <nav class="spmenu spmenu-horizontal spmenu-bottom" id="bdProductInquire">
-        <h3>We Can Help</h3>
-        <form class="quickFormDrawer" action="">
-            <div class="drawerCloser">
-                <a href="#" onclick="toggleBottomDrawer( 'bdProductInquire' ); return false;"><i class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>
-            </div>
-            <div class="wrap">
-                <div>
-                    <select>
-                        <option selected>Help Me to...</option>
-                        <option>Pick a material</option>
-                        <option>Pick a style</option>
-                        <option>Pick an installer</option>
-                        <option>Pick a motif</option>
+        <div class="block">
+            <h2 class="drawerTitle">We Can Help Find Your Inspiration</h2>
+        </div>
+        <div class="drawerCloser">
+            <a href="#" onclick="toggleBottomDrawer( 'bdProductInquire' ); return false;"><i
+                    class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>
+        </div>
+        <form>
+            <div class="row">
+                <div class="one-fourth">
+                    <!--<label for="name">Name</label>-->
+                    <input class="required" type="text" placeholder="Email or Phone" id="emailphone" value="">
+                </div>
+                <!--<div class="one-fourth">-->
+                    <!--&lt;!&ndash;<label for="name">Name</label>&ndash;&gt;-->
+                    <!--<select class="selector required" id="buildtype">-->
+                        <!--<option value="">I'm working on my</option>-->
+                        <!--<option value="">Kitchens</option>-->
+                        <!--<option value="">Bath</option>-->
+                        <!--<option value="">Backsplashes</option>-->
+                        <!--<option value="">Outdoor</option>-->
+                        <!--<option value="">Entire House</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <div class="one-fourth">
+                    <div>
+                        <select>
+                            <option selected>Duration</option>
+                            <option>1 week</option>
+                            <option>2 weeks</option>
+                            <option>3 weeks</option>
+                            <option>4 weeks</option>
                         </select>
                     </div>
-                <div>
-                <select>
-                    <option selected>For my</option>
-                    <option>Kitchen</option>
-                    <option>Outdoor Patio</option>
-                    <option>Bathroom</option>
-                    <option>Mancave</option>
-                    </select>
                 </div>
-                <div>
-                <input type="text" id="startDate" placeholder="Need it by" />
+
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="one-fourth">
+                    <!--<label for="name">Name</label>-->
+                    <input class="required" type="text" placeholder="Name" id="name" value="">
                 </div>
-                <div><input type="submit" id="" class="anchor button white medium wow fadeInUp animated" value="Send Info" /></div>
+                <div class="one-fourth">
+                    <input type="text" id="startDate" name="startDate" placeholder="Need it by"/>
                 </div>
+            </div>
         </form>
+        <!--<form class="quickFormDrawer" action="" style="display: block;">-->
+        <!--<div class="wrap">-->
+        <!--<div class="one_sixth">-->
+        <!--<h6>Select Your Project Type</h6>-->
+        <!--<div class="selector"><span>Select location</span><select>-->
+        <!--<option selected="">Select location</option>-->
+        <!--<option>Caribbean</option>-->
+        <!--<option>Mediterranean</option>-->
+        <!--<option>Indian Ocean</option>-->
+        <!--<option>South Pacific</option>-->
+        <!--<option>South East Asia</option>-->
+        <!--<option>South America</option>-->
+        <!--<option>North America</option>-->
+        <!--<option>Northern Europe</option>-->
+        <!--</select></div>-->
+        <!--</div>-->
+        <!--<div class="one_fifth">-->
+        <!--<h6>When do you planet to start?</h6>-->
+        <!--<input type="text" id="startDate" class="hasDatepicker">-->
+        <!--</div>-->
+        <!--<div class="one_fifth">-->
+        <!--<h6>What type of material are you looking for?</h6>-->
+        <!--<div class="selector"><span>Duration</span><select>-->
+        <!--<option selected="">Duration</option>-->
+        <!--<option>1 week</option>-->
+        <!--<option>2 weeks</option>-->
+        <!--<option>3 weeks</option>-->
+        <!--<option>4 weeks</option>-->
+        <!--</select></div>-->
+        <!--</div>-->
+        <!--<div class="one_sixth">-->
+        <!--<input type="submit" id="as-submit" class="button gold full" value="Search yachts">-->
+        <!--</div>-->
+        <!--<a href="javascript:void(0)" class="search-hide" title="Hide this box">Hide this box</a>-->
+        <!--</div>-->
+        <!--</form>-->
+        <!--<form class="quickFormDrawer" action="">-->
+        <!--<div class="drawerCloser">-->
+        <!--<a href="#" onclick="toggleBottomDrawer( 'bdProductInquire' ); return false;"><i class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>-->
+        <!--</div>-->
+        <!--<div class="wrap">-->
+        <!--<div>-->
+        <!--<select>-->
+        <!--<option selected>Help Me to...</option>-->
+        <!--<option>Pick a material</option>-->
+        <!--<option>Pick a style</option>-->
+        <!--<option>Pick an installer</option>-->
+        <!--<option>Pick a motif</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<select>-->
+        <!--<option selected>For my</option>-->
+        <!--<option>Kitchen</option>-->
+        <!--<option>Outdoor Patio</option>-->
+        <!--<option>Bathroom</option>-->
+        <!--<option>Mancave</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<input type="text" id="startDate" placeholder="Need it by" />-->
+        <!--</div>-->
+        <!--<div><input type="submit" id="" class="anchor button white medium wow fadeInUp animated" value="Send Info" /></div>-->
+        <!--</div>-->
+        <!--</form>-->
     </nav>
 </template>

@@ -3,6 +3,7 @@
   .fixed {
     position: fixed;
     top: 130px;
+    //top: -130px;
     left: 0;
     z-index: 99;
     padding: 0;
@@ -105,7 +106,7 @@
   }
 
   .offset {
-    margin-top: 197px;
+    margin-top: 223px;
   }
   .loaderMsg {
     display: none;
@@ -117,7 +118,7 @@
     top: 0;
     left: 0;
     z-index: 9999;
-    .text{
+    .text {
       position: relative;
       width: 70vw;
       margin: 0 auto;
@@ -125,7 +126,7 @@
       -webkit-transform: translateY(-30%);
       tranform: translateY(-30%);
       .left-pic {
-        margin:0;
+        margin: 0;
       }
       h2 {
         //font-family: 'Roboto Condensed', sans-serif;
@@ -133,7 +134,7 @@
         padding: 0;
         margin: 0;
       }
-      h4{
+      h4 {
         font-family: 'Roboto', sans-serif;
         color: @grey-100;
         margin: 0;
@@ -168,7 +169,7 @@
   }
   .results figcaption {
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     position: absolute;
     top: 0;
     left: 0;
@@ -183,10 +184,10 @@
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
     box-shadow: 0 0 10px rgba(0, 0, 0, .4);
 
-    .share-wrapper{
-      .share-container{
+    .share-wrapper {
+      .share-container {
         display: block !important;
-        .item-share{
+        .item-share {
           position: relative;
           left: auto;
           top: 0;
@@ -196,11 +197,10 @@
           li:first-child {
             display: none !important;
           }
-          li:active, li:focus, li>a:focus, li>a:active {
+          li:active, li:focus, li > a:focus, li > a:active {
             outline: none;
           }
         }
-
 
       }
     }
@@ -217,20 +217,21 @@
   .results figure:hover figcaption {
     opacity: 1;
     -ms-opacity: 1;
-    cursor: pointer;
+    //cursor: pointer;
 
   }
   .results figcaption dl {
 
-    dt{
-      font-size: 21px;
+    dt {
+      font-size: 1.2em;
       font-weight: 700;
       text-transform: uppercase;
       padding: 0 0 7px;
       color: @blue-alt;
+      margin-top: 0.5em;
     }
 
-    dd{
+    dd {
       border-top: none;
       width: 100%;
       float: left;
@@ -238,9 +239,10 @@
       font-family: 'Roboto', sans-serif;
     }
     dd:first-of-type {
-      font: 200 14px 'Raleway', Arial, Helvetica, sans-serif;
+      font: 200 12px 'Raleway', Arial, Helvetica, sans-serif;
+      line-height: 1.38;
       border-bottom: solid 1px #ddd;
-      padding-bottom: 3em;
+      padding-bottom: 1em;
       color: @grey-90;
     }
     .att {
@@ -249,7 +251,7 @@
       padding: 1em 0;
       float: left !important;
       width: 48%;
-      strong{
+      strong {
         font-family: 'Roboto Slab', serif;
         color: @grey-100;
         font-weight: 700;
@@ -280,7 +282,7 @@
     font-size: 21px;
     font-weight: 700;
   }
-  .gallery-caption{
+  .gallery-caption {
     max-width: 90%;
     width: auto;
     display: block;
@@ -292,10 +294,10 @@
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Roboto', sans-serif;
-    h3{
+    h3 {
       font-size: 14px;
       margin: 0;
-      padding:0;
+      padding: 0;
     }
     p {
       padding: 0;
@@ -303,15 +305,15 @@
       opacity: 0.7 !important;
     }
   }
-  .item-share{
+  .item-share {
     list-style: none;
-    margin:0;
+    margin: 0;
     padding: 0;
     position: absolute;
     bottom: 6vh;
     right: 3vw;
     font-size: 1.4em;
-    li:first-of-type{
+    li:first-of-type {
       clear: left;
       display: block;
       position: relative;
@@ -319,21 +321,21 @@
       float: none;
       margin: 0;
       color: #fff;
-      border-bottom: solid rgba(255,255,255,1) 1px;
+      border-bottom: solid rgba(255, 255, 255, 1) 1px;
       padding-bottom: 5px;
       margin-bottom: 10px;
       line-height: 1;
       height: auto;
       font-size: 14px;
-      h3{
+      h3 {
         font-size: inherit;
         margin: 0;
         padding-bottom: 0;
       }
     }
-    li{
+    li {
       margin: 0 4px;
-      padding:0;
+      padding: 0;
       list-style-type: none;
       float: left;
       text-align: center;
@@ -356,5 +358,5 @@
     //top: 50%;
     //transform: translateY(-50%);
   }
-}
 
+}

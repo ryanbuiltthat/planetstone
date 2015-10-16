@@ -6,10 +6,7 @@ Template.frontProductsIndex.onCreated(function(){
     self.ready = new ReactiveVar();
     self.productsReady = new ReactiveVar();
     self.autorun(function(){
-        //self.applyFilters.set({color: ["apu62LNsQKPdDYWHp","RyAPSYhSHtc48HRbK"], type:["4L26WKnhepvCLWh89"] });
-        //var filters = Session.get('applyFilters') || null;
-        var handle = self.subscribe('frontAllProducts');
-        //debug;
+        var handle = ProductsSub.subscribe('frontAllProducts');
         self.ready.set(handle.ready());
         self.subscribe('productColors');
         self.subscribe('productTypes');
@@ -17,7 +14,7 @@ Template.frontProductsIndex.onCreated(function(){
 });
 Template.frontProductsIndex.onRendered(function(){
     // Show loading message
-    //$(".loaderMsg").delay(50).fadeIn('fast');
+    $(".loaderMsg").show();
 
     // Reset the loaded image count
     Session.set('imgLoaded', 0);
@@ -39,71 +36,68 @@ Template.frontProductsIndex.onRendered(function(){
 
     // If our product images are loaded, hide the loading message and show
     // the grid
-    //Meteor.setTimeout(function() {
-        this.autorun(function(){
+
+    this.autorun(function(){
         if(Template.instance().productsReady.get()){
+            // Init base scripts
+            planet_stone.init();
+            planet_stone.load();
 
-        // Init base scripts
-        planet_stone.init();
-        planet_stone.load();
+            // Hide the filters to start
+            //$('aside.fixed').slideUp(500);
+            //$('.filter-show').show();
+            //$('.offset').css('margin-top', '0');
 
-        // Hide the filters to start
-        //$('aside.fixed').slideUp(500);
-        //$('.filter-show').show(500);
-        //$('.offset').css('margin-top', '0');
-        // Initialize lightGallery
-        $("#products").lightGallery({
-            //appendSubHtmlTo: '.lg-item',
-            preload: 2,
-            //showAfterLoad: false,
-            selector: '.btn-magnify',
-            currentPagePosition: 'left',
-            exThumbImage: 'data-exthumbimage',
-            thumbWidth: 120,
-            cssEasing: 'easeInOutExpo'
-        });
 
-        // Reset loaded image count
-        Session.set('imgLoaded', 0);
 
-        // Show results behind loader
-        $(".results").show();
+            // Initialize lightGallery
+            $("#products").lightGallery({
+                //appendSubHtmlTo: '.lg-item',
+                preload: 2,
+                //showAfterLoad: false,
+                selector: '.btn-magnify',
+                currentPagePosition: 'left',
+                exThumbImage: 'data-exthumbimage',
+                thumbWidth: 120,
+                cssEasing: 'easeInOutExpo'
+            });
 
-        // Isotope
-        $("#products").isotope({
-            itemSelector: '.item',
-            layoutMode: 'fitRows',
-            getSortData: {
-                name: ".name",
-                //type: ".type"
-            },
-            sortBy: "name",
-            //filter: Session.get('filterValue') || "*"
-        });
+            // Reset loaded image count
+            Session.set('imgLoaded', 0);
 
-        // Try to load Houzz
-        var houzzLaterSync = Meteor.wrapAsync(loadHouzz);
-        var result = houzzLaterSync();
-        if (result) {
-            //noting
-        }
+            // Show results behind loader
+            $(".results").show();
 
-        /**
-         * TODO: Refine animation hiding loader
-         */
-        //$(".loaderMsg").animate({
-        //    //height: 0,
-        //    opacity: 0
-        //}, 850, function () {
-        //    $(this).hide();
-        //});
+            // Isotope
+            $("#products").isotope({
+                itemSelector: '.item',
+                layoutMode: 'fitRows',
+                getSortData: {
+                    name: ".name",
+                    //type: ".type"
+                },
+                sortBy: "name"
+                //filter: Session.get('filterValue') || "*"
+            });
 
-        // Get the effects running
-        new WOW().init();
+            // Try to load Houzz
+            var houzzLaterSync = Meteor.wrapAsync(loadHouzz);
+            var result = houzzLaterSync();
+            if (result) {
+                //noting
+            }
+
+            /**
+             * TODO: Refine animation hiding loader
+             */
+            $('.loaderMsg').delay(100).fadeOut('fast');
+
+            // Get the effects running
+            new WOW().init();
 
         }// end if
     });
-    //}, 1850);
+
 });
 Template.frontProductsIndex.helpers({
     subsReady:function() {

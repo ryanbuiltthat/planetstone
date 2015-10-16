@@ -3,6 +3,23 @@
  */
 Schemas.Project = new SimpleSchema({
 
+    active: {
+        type: Boolean,
+        autoform: {
+            afFieldInput: {
+                type: "boolean-checkbox"
+            }
+        }
+    },
+    featured: {
+        type: Boolean,
+        optional: true,
+        autoform: {
+            afFieldInput: {
+                type: "boolean-checkbox"
+            }
+        }
+    },
     name:{
         type: String,
         label: "Project Title"
@@ -37,14 +54,6 @@ Schemas.Project = new SimpleSchema({
             }
         },
         max: 5000
-    },
-    active: {
-        type: Boolean,
-        autoform: {
-            afFieldInput: {
-                type: "boolean-checkbox"
-            }
-        }
     },
     createdAt: {
         type: Date,

@@ -53,7 +53,7 @@ Template.productIndexGalleryItem.helpers({
     },
     getDisplayType:function(id){
         var productType = Types.findOne({_id: id});
-        return productType.title;
+        return productType.title || false;
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
@@ -68,10 +68,7 @@ Template.productIndexGalleryItem.helpers({
 
 Template.productIndexGalleryItem.onRendered(function(){
     planet_stone.init();
-    //$('.btn-item-menu').popover({
-    //
-    //});
-    //planet_stone.load();
+    planet_stone.load();
 });
 
 Template.productIndexGalleryItem.events({

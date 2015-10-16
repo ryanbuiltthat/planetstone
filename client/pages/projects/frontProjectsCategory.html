@@ -10,9 +10,9 @@
                         <figcaption>
                             <dl>
                                 <dt class="name">{{name}}</dt>
-                                <dd>{{  shortText desc }}</dd>
+                                <dd class="hidden-xs hidden-sm">{{  shortText desc }}</dd>
                                 <dd class="att left color"><strong>Build Type:</strong> {{ getDisplayCategory category }}</dd>
-                                {{#if asscprod }}
+                                {{#if getDisplayProducts asscprod }}
                                 <dd class="att right type"><strong>Stone Used:</strong> {{{ getDisplayProducts asscprod }}}</dd>
                                 {{/if}}
                             </dl>
