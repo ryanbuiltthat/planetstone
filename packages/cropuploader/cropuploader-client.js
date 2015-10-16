@@ -1,0 +1,389 @@
+Template.cropUploader.onRendered(function () {
+  var template = this;
+
+  _.map(this.data, function(val,key){
+    if(['thumbnailWidth', 'thumbnailHeight', 'canvasID', 'thumbnailID' ].indexOf(key) < 0)
+    {
+      if(template.addons == undefined) template.addons = {};
+      template.addons[key] = val;
+    }
+  });
+
+  this.thumbnailWidth = template.data.thumbnailWidth || undefined;
+  this.thumbnailHeight = template.data.thumbnailHeight || undefined;
+  this.canvasID = template.data.canvasID || undefined;
+  this.thumbnailID = template.data.thumbnailID || undefined;
+  /**
+   * I need to be able to product multiple copies of a source image.
+   * A compressed fullscale copy, 4:3 cropped for the gallery and menu
+   * and a thumbnail, later on I'll add social sizes too....
+   *
+   * So let's pass in a dierivative name for our first pass. Down the line we'll use a session
+   * variable to change our derivative name in the cropper along with our aspect ratio :)
+   * @type {undefined|*}
+   */
+  this.derivativeName = template.data.derivativeName || undefined;
+
+  if(this.canvasID == undefined) this.canvasID = 'thumbnail_canvas';
+  if(this.thumbnailID == undefined) this.thumbnailID = 'thumbnail_img';
+
+  if(this.thumbnailHeight == undefined && this.thumbnailWidth == undefined)
+  {
+    this.thumbnailHeight = 100;
+    this.thumbnailWidth = 100;
+  }
+  // console.info(this.view.name+'.rendered',this);
+
+  this.reader = new FileReader();
+  this.preview = document.getElementById('preview');
+
+  if(!this.preview)
+  {
+    console.log('cropUploader added div#preview');
+    this.preview = document.createElement('div');
+    this.preview.id = 'preview';
+    document.body.appendChild(this.preview);
+  }
+
+  this.thumbnail_img = document.getElementById(this.thumbnailID);
+  if(!this.thumbnail_img)
+  {
+    // console.log('creating #thumbnail_img');
+    this.thumbnail_img = document.createElement('img');
+    this.thumbnail_img.id = this.thumbnailID;
+    this.thumbnail_img.classList.add('hidden');
+    this.preview.appendChild(this.thumbnail_img);
+  }
+
+  this.thumbnailCanvas = document.getElementById(this.canvasID);
+  if(!this.thumbnailCanvas)
+  {
+    this.thumbnailCanvas = document.createElement('canvas');
+    this.thumbnailCanvas.id = this.canvasID;
+    this.thumbnailCanvas.width = this.thumbnailWidth;
+    this.thumbnailCanvas.height = this.thumbnailHeight;
+    this.thumbnailCanvas.classList.add('hidden');
+    this.thumbnailCanvas.classList.add('preview');
+    this.preview.appendChild(this.thumbnailCanvas);
+  }
+  else
+  {
+    this.thumbnailCanvas.width = this.thumbnailWidth;
+    this.thumbnailCanvas.height = this.thumbnailHeight;
+  }
+
+  this.thumbnail_img.onload = function(e) {
+    var thumbnail_dataUrl = template.thumbnail_img.src;
+    // console.log('thumbnailping');
+    var cc = {
+      x: 0,
+      y: 0,
+      width: template.thumbnail_img.width,
+      height: template.thumbnail_img.height
+      // width: template.thumbnailCanvas.width,
+      // height: template.thumbnailCanvas.height
+    };
+    //
+    // check if we want to make it square
+    //
+    if(template.thumbnailWidth == template.thumbnailHeight)
+    {
+      if (cc.height > cc.width) {
+        cc.height = cc.width;
+      }
+      else
+      {
+        cc.width = template.thumbnail_img.height;
+      }
+      template.thumbnailCanvas.width = template.thumbnailWidth;
+      template.thumbnailCanvas.height= template.thumbnailHeight;
+    }
+    else
+    {
+      if(template.thumbnailWidth != undefined)
+        template.thumbnailCanvas.height = template.thumbnailWidth * cc.height/cc.width;
+      else
+        template.thumbnailCanvas.width = template.thumbnailHeight * cc.width/cc.height;
+    }
+
+    // console.log('thumbnail cropping',cc);
+
+    var thumbnail_ctx = template.thumbnailCanvas.getContext("2d");
+    //
+    // resize/crop the original for the thumbnail
+    //
+    thumbnail_ctx.drawImage(
+      template.thumbnail_img,
+      // original x/y w/h
+      cc.x, cc.y,
+      cc.width, cc.height,
+      // reduce to canvas x/y w/h
+      0,0,
+      template.thumbnailCanvas.width, template.thumbnailCanvas.height
+    );
+  }
+});
+Template.cropUploader.events({
+  'change input.crop-uploader-file': function(e, template) {
+    var file = template.$('input[type="file"]')[0].files[0];
+    template.reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(template.thumbnail_img);
+    template.reader.readAsDataURL(file);
+  },
+  'click button.crop-uploader-upload': function(e,template) {
+    var file = template.$('input.crop-uploader-file');
+    CropUploader.errorMessage.set(null);
+    if(file.size()>0 && file[0].files.length > 0)
+    {
+      var uuid = Meteor.uuid();
+      var image = file[0].files[0];
+      var uploader = new Slingshot.Upload(CropUploader.name, {uuid: uuid });
+
+      template.reader.onload = function(e) {
+        //
+        // e.target.result contains the image data of the original
+        //
+        var md5hash = MD5(e.target.result);
+        var canvas = document.getElementById(template.canvasID);
+        if(canvas && canvas.toBlob)
+        {
+          //
+          // first save the blob (thumbnail)
+          //
+          canvas.toBlob(function(blob) {
+            //
+            // set the name which will get used in the uploader/key function
+            //
+
+            /**
+             * Let's swap this out for our template-level variable we
+             * defined earlier above. The goal here is to keep an orderly structure on the S3
+             * while producing multiple versions of one image.
+             * @type {string}
+             */
+            //blob.name = 'derivative/thumbnail/';
+            blob.name = 'derivative/'+template.derivativeName+'/';
+
+
+
+            uploader.send(blob, function (error, thumbnailUrl) {
+              if (error) {
+                console.error('Error uploading', uploader.xhr.response);
+                console.error(error);
+                CropUploader.errorMessage.set('Error uploading:'+error.reason);
+              } else {
+                //
+                // we have uploaded the thumbnail, so now upload original
+                //
+                uploader.send(image, function (error, originalUrl) {
+                  if (error) {
+                    // Log service detailed response
+                    console.error('Error uploading', uploader.xhr.response);
+                    console.error(error);
+                    CropUploader.errorMessage.set('Error uploading:'+error.reason);
+                    // we need to delete the derivative
+                    Meteor.call('cropUploaderS3Delete', thumbnailUrl, function(err, res){
+                      if(err) console.err(err);
+                    })
+                  } else {
+                    //
+                    // add uuid and md5hash to image object
+                    //
+                    image.uuid = uuid;
+                    image.md5hash = md5hash;
+                    image.url = originalUrl;
+                    //
+                    // add our derivatives
+                    //
+
+                    /**
+                     * Right now (because I'm way overdue on sleep) I have to
+                     * set my main derivative since my 4:3 crop is used in more places
+                     * than the fullscale or thumbnail, I'll use that as my initial call.
+                     *
+                     * But because it's not a thumbnail, we need to also make the derivative property
+                     * dynamic.
+                     *
+                     * I think eventually just passing an array or object through will be better for creating all of the versions I need on initial
+                     * upload, then if we need to adjust a crop we can...brilliant!
+                     *
+                     * Apologies if this is improper syntax..like I said, it's late!
+                     * @type {{thumbnail: *}}
+                     */
+                    var dername = template.derivativeName;
+                    image.derivatives = {
+                      [dername]: thumbnailUrl
+                    };
+                    if(template.addons)
+                      image = _.extend(image, template.addons);
+                    //
+                    // finally add it to the collection
+                    //
+                    CropUploader.insert(image);
+                    file.val('');
+                    $('#'+template.canvasID).trigger('uploaded', image);
+                    // document.getElementById(template.canvasID).dispatchEvent(new CustomEvent("uploaded", image));
+                    CropUploader.errorMessage.set('');
+                  }
+                });
+              }
+            });
+          }, 'image/png');
+        } else console.log('canvas no blob');
+      };
+      //
+      // in order to get the MD5 for the image, we need to read it on the client
+      //
+      template.reader.readAsDataURL(image);
+    } else CropUploader.errorMessage.set('Please select file first');
+  }
+});
+Template.cropUploaderImages.onRendered(function(){
+  //
+  this.subscribe('cropUploaderImages');
+});
+Template.cropUploaderImages.helpers({
+  images: function() {
+    return CropUploader.images.find();
+  }
+});
+Template.cropUploaderImages.events({
+  'mouseenter img':function(e,t) {
+    var image = CropUploader.images.findOne(e.target.id);
+    if(image) {
+      $('html').css({
+        background: 'url('+image.url+') no-repeat center center fixed',
+        backgroundSize: 'cover'
+      })
+    }
+  },
+  'mouseleave img': function(e,t) {
+    $('html').css('background','none');
+  },
+  'click img': function(e,t) {
+    if(confirm('Delete this image?'))
+    {
+      CropUploader.images.remove(e.target.id);
+    }
+  }
+});
+Template.cropUploaderCropper.onCreated(function () {
+  var template = this;
+  CropUploader.crop.template = template;
+  //
+  //
+  template.canvas = null;
+  //
+  //
+  this.initCropper = function(template) {
+    if(!template.view.isRendered) return;
+    console.log('initCropper');
+    template.imageid = template.data.imageid;
+    template.original = CropUploader.images.findOne({_id: template.data.imageid});
+    if(!template.original) throw new Meteor.Error(403, 'image not found');
+    template.uuid = template.original.url.split('/').pop().split('.').shift();
+    template.thumbnailWidth = template.data.thumbnailWidth || undefined;
+      //console.log("[template.thumbnailWidth] "+template.thumbnailWidth);
+    template.thumbnailHeight = template.data.thumbnailHeight || undefined;
+      //console.log("[template.thumbnailHeight] "+template.thumbnailHeight);
+
+    if(template.thumbnailHeight == undefined && template.thumbnailWidth == undefined)
+    {
+      template.thumbnailHeight = 100;
+      template.thumbnailWidth = 100;
+    }
+    // console.log(template.data.exif);
+    // save the cropper handle in the template
+    template.cropimage = template.$(".image-container > img");
+    // template.cropimage[0].onload = function(){
+    //   template.cropimagedimensions = {
+    //     width: template.cropimage[0].width,
+    //     height: template.cropimage[0].height
+    //   };
+    // };
+
+    /**
+     * Set cropper options to a template object or a default set.
+     * @type {*|{aspectRatio: number, resizable: boolean, rotatable: boolean}}
+     */
+    var options = template.data.options || {
+          aspectRatio: 1.0,
+          resizable: true,
+          rotatable: true,
+          // checkImageOrigin: false,
+        };
+    options.preview = ".img-preview";
+    options.data = {
+        x: 10,
+        y: 10,
+        width: template.thumbnailWidth,
+        height: template.thumbnailHeight
+      };
+      console.log("opts w "+options.data.width);
+      console.log("opts h "+options.data.height);
+      // dragend: function() {
+      //   console.log('dragend');
+      // },
+      options.built = function() {
+        // this is image
+        console.log('cropper built' );
+          /**
+           * In my UI I'm using a few tabs for things...it'll probably change but this
+           * can still come in handy. Basically I need to know when the cropper is ready.
+           * So let's set a session variable to keep track
+           */
+          Session.set('crprRdy', true);
+        template.$('button.hidden').removeClass('hidden');
+        //
+        // this will distort getDataURL
+        //
+        // if(template.data.exif.Orientation && template.data.exif.Orientation == 'bottom-right')
+        //   template.$('img').addClass(template.data.exif.Orientation);
+      };
+    //};
+    // add the checkImageOrigin for AppleWebKit
+    // if(isWebKit) options['checkImageOrigin'] = true;//'Anonymous';
+    //
+    // initialize the cropper
+    //
+    template.cropimage.cropper(options);
+  }
+});
+Template.cropUploaderCropper.onRendered(function () {
+  var template = this;
+  var img = new Image,
+      canvas = document.createElement("canvas"),
+      ctx = canvas.getContext("2d"),
+      src = template.data.url; // insert image url here
+      // Just need to make sure we tell our app we're not ready yet
+    Session.set('crprRdy', false);
+
+  img.crossOrigin = "Anonymous";
+
+  img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      console.log("canvas is: "+canvas.width+" x "+canvas.height);
+      ctx.drawImage( img, 0, 0 );
+      var dataUrl = canvas.toDataURL("image/png");
+      // localStorage.setItem( "savedImageData", dataUrl );
+      // console.log(template.cropimage);
+      // console.log('savedImageData', template.$(".image-container > img"));
+      template.$(".image-container > img").attr('src', dataUrl );
+      template.initCropper(template);
+  }
+  img.src = src;
+  // make sure the load event fires for cached images too
+  // if ( img.complete || img.complete === undefined ) {
+  //     img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+  //     img.src = src;
+  //     console.log('complete');
+  //     // $('img').attr('src', localStorage.getItem('savedImageData'));
+  //     template.$(".image-container > img").attr('src', localStorage.getItem('savedImageData') );
+  //     template.initCropper(template);
+  // }
+});
+Template.cropUploaderCropper.onDestroyed( function () {
+  var template = this;
+  CropUploader.crop.template = null;
+  template.cropimage = undefined;
+});

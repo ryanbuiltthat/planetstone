@@ -37,10 +37,11 @@ formatSlug = function(value) {
 // Setup Sub Manager
 //adminSubs = new SubsManager();
 //adminProducts = new SubsManager();
-ap = new SubsManager();
+//ap = new SubsManager();
 ProductsSub = new SubsManager();
 //adminSite = new SubsManager();
 //adminUsers = new SubsManager();
+subFeaturedSlider = new SubsManager();
 
 // FB sdk
 if(Meteor.isClient) {
@@ -56,6 +57,7 @@ if(Meteor.isClient) {
 
 
 // client Side collections
+Featured = new Meteor.Collection("featured");
 PreviousProject = new Meteor.Collection("previousProject");
 NextProject = new Meteor.Collection("nextProject");
 PrevCategory = new Meteor.Collection("prevcategory");

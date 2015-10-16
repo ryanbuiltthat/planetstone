@@ -5,8 +5,8 @@ Template.stoneProductList.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
     self.autorun(function(){
-        var handle = self.subscribe('types');
-        self.ready.set(handle.ready());
+        //var handle = self.subscribe('types');
+        //self.ready.set(handle.ready());
     })
 });
 

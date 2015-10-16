@@ -11,6 +11,9 @@ Schemas.Product = new SimpleSchema({
             }
         }
     },
+    assettype: {
+        type: String
+    },
     name: {
         type: String,
         label: "Name",

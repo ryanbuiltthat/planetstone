@@ -40,7 +40,6 @@ underscorestring:underscore.string
 twbs:bootstrap
 aldeed:autoform
 biasport:facebook-sdk
-msavin:mongol
 msavin:jetsetter
 meteorhacks:aggregate
 donchess:autoform-froala
@@ -61,3 +60,5 @@ spacebars
 check
 themeteorchef:jquery-validation
 chrismbeckett:toastr
+msavin:mongol
+dburles:mongo-collection-instances

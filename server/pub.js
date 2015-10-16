@@ -5,21 +5,21 @@
 // All Products (mainly just for counters in admin
 Meteor.publish("allAdmin", function () {
     if(this.userId){
-        Counts.publish(this, 'products-counter', Products.find(), { noReady: true });
-        Counts.publish(this, 'projects-counter', Projects.find(), { noReady: true });
-        Counts.publish(this, 'testimonials-counter', Testimonials.find(), { noReady: true });
+        //Counts.publish(this, 'products-counter', Products.find(), { noReady: true });
+        //Counts.publish(this, 'projects-counter', Projects.find(), { noReady: true });
+        //Counts.publish(this, 'testimonials-counter', Testimonials.find(), { noReady: true });
         //Counts.publish(this, 'users-counter', Meteor.users.find(), { noReady: true });
         return [
-            Products.find(),
-            Projects.find(),
-            Colors.find(),
-            Types.find(),
+            //Products.find(),
+            //Projects.find(),
+            //Colors.find(),
+            //Types.find(),
             //LocalImages.find(),
             //ProjectImages.find(),
             //ProductImages.find(),
-            Categories.find(),
-            Meteor.users.find(),
-            Testimonials.find(),
+            //Categories.find(),
+            //Meteor.users.find(),
+            //Testimonials.find(),
             // Site information
             //Site.find()
         ];

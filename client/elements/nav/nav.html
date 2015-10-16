@@ -67,32 +67,28 @@
             <a href="#" onclick="toggleBottomDrawer( 'bdProductInquire' ); return false;"><i
                     class="fa fa-close fa-pull-right fa-2x fa-fw"></i></a>
         </div>
-        <form>
+        <form id="drawerForm">
             <div class="row">
                 <div class="one-fourth">
-                    <!--<label for="name">Name</label>-->
-                    <input class="required" type="text" placeholder="Email or Phone" id="emailphone" value="">
+                    <div>
+                        <!--<label for="name">Name</label>-->
+                        <input class="required" type="text" placeholder="Name" id="name" value="">
+                    </div>
                 </div>
-                <!--<div class="one-fourth">-->
-                    <!--&lt;!&ndash;<label for="name">Name</label>&ndash;&gt;-->
-                    <!--<select class="selector required" id="buildtype">-->
-                        <!--<option value="">I'm working on my</option>-->
-                        <!--<option value="">Kitchens</option>-->
-                        <!--<option value="">Bath</option>-->
-                        <!--<option value="">Backsplashes</option>-->
-                        <!--<option value="">Outdoor</option>-->
-                        <!--<option value="">Entire House</option>-->
-                    <!--</select>-->
-                <!--</div>-->
                 <div class="one-fourth">
                     <div>
-                        <select>
-                            <option selected>Duration</option>
-                            <option>1 week</option>
-                            <option>2 weeks</option>
-                            <option>3 weeks</option>
-                            <option>4 weeks</option>
+                        <select class="required" id="helpwith" name="helpwith">
+                            <option selected>Working on...</option>
+                            <option>Kitchen</option>
+                            <option>Bath</option>
+                            <option>Outdoor Area</option>
+                            <option>Other</option>
                         </select>
+                    </div>
+                </div>
+                <div class="one-fourth">
+                    <div>
+                        <button type="submit" class="button medium white">Submit</button>
                     </div>
                 </div>
 
@@ -100,11 +96,11 @@
             <!-- row -->
             <div class="row">
                 <div class="one-fourth">
-                    <!--<label for="name">Name</label>-->
-                    <input class="required" type="text" placeholder="Name" id="name" value="">
+                    <div><!--<label for="name">Name</label>-->
+                    <input class="required" type="text" placeholder="Email or Phone" id="emailphone" name="emailphone" value=""></div>
                 </div>
                 <div class="one-fourth">
-                    <input type="text" id="startDate" name="startDate" placeholder="Need it by"/>
+                    <div><input type="text" id="startdate" name="startdate" placeholder="Need it by..."/></div>
                 </div>
             </div>
         </form>

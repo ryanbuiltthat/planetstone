@@ -153,6 +153,36 @@
   .lightSlider li:before {
     display: none;
   }
+  .featured-meta {
+    li {
+      &:before{
+        font-family: 'FontAwesome';
+        content: "\f14a";
+        top: 1px;
+        font-size: 14px;
+        color: @grey-70;
+        position: absolute;
+        left: 0;
+        display:block;
+      }
+      a{
+        margin-left: 22px;
+        font-weight: 300;
+        color: @grey-70;
+        &:hover {
+          color: @green-primary;
+        }
+      }
+    }
+  }
+  .boxed {
+    article {
+      header {
+        text-transform: capitalize;
+      }
+    }
+  }
+
   .lSAction {
     position: absolute;
     right: 5%;

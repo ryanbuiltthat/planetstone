@@ -7,7 +7,10 @@ Template.nav.onRendered(function(){
     // Get datepicker moving
     //$('#startDate').datepicker();
 
-    $('#startDate').datepicker();
+    // Fire up the validator
+    $('#drawerForm').validate();
+
+    $('#startdate').datepicker();
     // CUSTOM FORM ELEMENTS
     $('input[type=radio], input[type=checkbox],input[type=number],select').uniform();
 
@@ -27,7 +30,8 @@ Template.nav.events({
         //$().jetmenu('hide');
     },
     'submit form': function (e,t){
-        alert('Thank you, your note has been sent');
+        e.preventDefault();
+
         return false;
     }
 

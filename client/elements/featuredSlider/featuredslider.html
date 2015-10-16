@@ -1,0 +1,40 @@
+<template name="featuredSlider">
+    <!-- Deals -->
+    <section class="content boxed grid2 noarrow">
+        {{#if subsready }}
+        <ul id="featuredSlider">
+            {{#each getfeatured }}
+            <li>
+                <!-- Item -->
+                <article class="full-width hentry">
+                    <figure class="one-half heightfix" style="height:auto;">
+                        <a href="{{getlink}}">
+                            {{#with getimageurl images }}
+                            <img src="{{this.url store='galleryThumb' }}" alt="Featured {{assetttype}}" style="width: 100%;height: auto;max-width:100%;" />
+                            {{/with}}
+                        </a></figure>
+                    <div class="one-half heightfix">
+                        <header>Featured {{ assettype }}</header>
+                        <div class="text">
+                            <h3><a href="{{getlink}}">{{ name }}</a></h3>
+                            <p>{{ desc }}</p>
+                            <ul class="featured-meta">
+                                {{#if asscprod}}
+                                <li><a href="{{getlink}}">Built with {{getproductname asscprod}}</a></li>
+                                {{/if}}
+                            </ul>
+                            <p>&nbsp;</p>
+                            <a href="{{getlink}}" title="Learn More" class="button gold full medium">View {{assettype}}</a>
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </article>
+                <!-- //Item -->
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </section>
+    <!-- //Deals -->
+</template>

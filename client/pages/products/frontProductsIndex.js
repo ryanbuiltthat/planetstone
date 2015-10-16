@@ -76,8 +76,8 @@ Template.frontProductsIndex.onRendered(function(){
                     name: ".name",
                     //type: ".type"
                 },
-                sortBy: "name"
-                //filter: Session.get('filterValue') || "*"
+                sortBy: "name",
+                filter: Session.get('productFilters') || "*"
             });
 
             // Try to load Houzz

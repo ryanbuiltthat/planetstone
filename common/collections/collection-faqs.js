@@ -81,4 +81,4 @@ Schemas.Faq = new SimpleSchema({
         optional: true
     }
 });
-Faqs.attachSchema(Schemas.Faq);
+//Faqs.attachSchema(Schemas.Faq);

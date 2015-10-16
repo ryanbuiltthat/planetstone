@@ -1,0 +1,66 @@
+<head>
+  <title>cropuploader demo</title>
+</head>
+
+<body>
+  {{> UI.dynamic template=template}}
+</body>
+
+<template name="hello">
+	<h1>Welcome to Meteor &amp; Slingshot with CropUploader! {{>loginButtons}} </h1>
+
+	{{>images}}
+</template>
+
+<template name="images">
+	{{>cropUploader thumbnailWidth=200 thumbnailHeight=200 mycollection="funny pics"}}
+
+	<div class="images" id="images">
+		{{#if Template.subscriptionsReady}}
+		  {{#each images}}
+		  	<div class="thumbnail">
+		  		{{#if derivatives.thumbnail}}
+			  	<img src="{{derivatives.thumbnail}}" id="{{_id}}">
+		  		{{else}}
+		  		<img src="{{url}}" width="100" height="100" id="{{_id}}">
+		  		{{/if}}
+			  	<h6 class="id">{{_id}}</h6>
+		  	</div>
+		  {{/each}}
+		{{else}}
+			Loading ...
+		{{/if}}
+		  <div class="preview thumbnail">
+			  <canvas id="thumbnail_canvas"></canvas>
+			  <h6 class="id">Preview</h6>
+		  </div>
+	</div>
+</template>
+
+<template name="image">
+	{{#if Template.subscriptionsReady}}
+		{{image}}
+		<button class="back">Back</button>
+		{{#if canEditImage}}
+		<button class="btn btn-danger delete" imageid="{{imageid}}">Delete</button>
+		<button class="btn btn-info crop" imageid="{{imageid}}">Crop</button>
+		{{/if}}
+	{{else}}
+		Loading ...
+	{{/if}}
+</template>
+
+<template name="cropper">
+	{{#if Template.subscriptionsReady}}
+		{{>cropUploaderCropper imageid=imageid url=url thumbnailWidth=200 thumbnailHeight=200}}
+		<div class="buttons">
+			<button class="btn rotate">Rotate</button>
+			{{#if canSaveDerivative}}
+			<button class="btn btn-success save" imageid="{{imageid}}">Save</button>
+			{{/if}}
+			<button class="back">Back</button>
+		</div>
+	{{else}}
+		Loading
+	{{/if}}
+</template>

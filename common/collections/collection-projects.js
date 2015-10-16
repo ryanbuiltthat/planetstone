@@ -20,6 +20,9 @@ Schemas.Project = new SimpleSchema({
             }
         }
     },
+    assettype: {
+        type: String
+    },
     name:{
         type: String,
         label: "Project Title"

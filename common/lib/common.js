@@ -9,7 +9,7 @@ makeMenuThumb = function(fileObj, readStream, writeStream) {
     var wsize = '280';
     var hsize = '210';
     try {
-        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(45).stream().pipe(writeStream);
+        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(75).stream().pipe(writeStream);
 
     }catch(e){
         throw new Meteor.Error(e);
@@ -27,7 +27,7 @@ makeGalleryThumb = function(fileObj, readStream, writeStream) {
 makeThumb = function(fileObj, readStream, writeStream) {
     var size = '150';
     try {
-        gm(readStream, fileObj.name()).resize(size, size + '^').gravity('SouthEast').extent(size, size).quality(30).stream().pipe(writeStream);
+        gm(readStream, fileObj.name()).resize(size, size + '^').gravity('SouthEast').extent(size, size).quality(50).stream().pipe(writeStream);
     }catch(e){
         throw new Meteor.Error(e);
     }
@@ -89,5 +89,5 @@ Colors = new Mongo.Collection("colors");
 Types = new Mongo.Collection("types");
 Categories = new Mongo.Collection("categories");
 Teams = new Mongo.Collection("teams");
-Faqs = new Mongo.Collection("faqs");
+//Faqs = new Mongo.Collection("faqs");
 Leads = new Mongo.Collection("leads");
