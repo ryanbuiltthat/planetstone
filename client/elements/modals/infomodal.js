@@ -45,7 +45,8 @@ Template.infoModal.events({
         // Set our data object
         var info = {
             customer : t.find("[name='infoReqText']").value,
-            interest : t.find("[id='targetProduct']").innerText
+            interest : t.find("[id='targetProduct']").innerText,
+            route: FlowRouter.getRouteName()
         };
 
         // Set our session variable for potential future quick requests
@@ -58,6 +59,13 @@ Template.infoModal.events({
             }else {
                 // Show success message, re-enable input, hide modal
                 toastr.success("Thank you. We will be in touch shortly.", "");
+
+                // Track this event
+                analytics.track("Submitted Quick Request: ", {
+                    eventName:  "Lead Captured: "+info.route
+                });
+
+
                 $('#infoModal').modal('toggle');
                 $(customerInput).prop('disabled', function(i, v) { return !v; });
 

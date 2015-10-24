@@ -6,4 +6,4 @@ Template.logo.helpers({
         var lindexPath = FlowRouter.path("index");
         return lindexPath;
     }
-})
+});

@@ -54,7 +54,7 @@ Template.frontProductsIndex.onRendered(function(){
             $("#products").lightGallery({
                 //appendSubHtmlTo: '.lg-item',
                 preload: 2,
-                //showAfterLoad: false,
+                showAfterLoad: false,
                 selector: '.btn-magnify',
                 currentPagePosition: 'left',
                 exThumbImage: 'data-exthumbimage',
@@ -139,26 +139,5 @@ Template.frontProductsIndex.helpers({
 });
 
 Template.frontProductsIndex.events({
-    //'change input[type="checkbox"]':function(e){
-    //var self = $(e.currentTarget);
-    //filters = [];
-    // get checked checkboxes values
-    /**
-     * TODO: exclusionary filter setup for types
-     */
-    //    $("input:checked").each(function () {
-    //        var id = $(this).attr("id").toString();
-    //        filters.push( id );
-    //    });
-    //    console.log("post push filters: "+JSON.stringify(filters));
-    //    //console.log(typeof filters);
-    //    var out = {};
-    //    out["color"] = filters;
-    //Session.set('applyFilters', out);
-    //},
 
-    //'change .sort-select':function(e){
-    //    var sortValue = e.currentTarget.value;
-    //    //$("#products").isotope({ sortBy: sortValue });
-    //},
 });

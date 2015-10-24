@@ -31,6 +31,13 @@ Template.inlinePgForm.events({
             }else {
                 // Show success message, re-enable input, hide modal
                 toastr.success("Thank you. We will be in touch shortly.", "Success!");
+
+                // Track this event
+                analytics.track("Submitted Form From: "+lead.route, {
+                    eventName:  lead.item
+                });
+
+                // Clear form fields
                 t.find("[id='name']").value = '';
                 t.find("[id='email']").value = '';
                 t.find("[id='phone']").value = '';

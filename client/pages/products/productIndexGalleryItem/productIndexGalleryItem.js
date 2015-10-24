@@ -57,12 +57,12 @@ Template.productIndexGalleryItem.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("//planetstone-52463.onmodulus.net//products/");
+        return encodeURIComponent("//planetstonemarbleandgranite.com/products/");
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
         var img = ProductImages.findOne({ _id: id});
-        return encodeURIComponent("//planetstone-52463.onmodulus.net/"+img.url({store:"galleryThumb",auth:false}));
+        return encodeURIComponent("//planetstonemarbleandgranite.com/"+img.url({store:"galleryThumb",auth:false}));
     }
 });
 

@@ -13,17 +13,7 @@ Template.featuredSlider.onCreated(function(){
 Template.featuredSlider.onRendered(function(){
     // featured slider
     Meteor.setTimeout(function(){
-        $("#featuredSlider").lightSlider({
-            item:1,
-            keyPress: true,
-            gallery: false,
-            pager: false,
-            loop: true,
-            prevHtml: 'PREVIOUS',
-            nextHtml: 'NEXT',
-            adaptiveHeight: false,
 
-        });
     }, 850);
 });
 
@@ -59,6 +49,6 @@ Template.featuredSlider.helpers({
 
 Template.featuredSlider.events({
    'load img':function(){
-       console.log('loaded!');
+
    }
 });

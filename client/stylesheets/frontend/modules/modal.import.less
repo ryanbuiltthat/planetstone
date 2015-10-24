@@ -33,18 +33,23 @@
     .translate(0, -25%);
     .transition-transform(~"0.3s ease-out");
   }
-  &.in .modal-dialog { .translate(0, 0) }
+  &.in .modal-dialog {
+    .translate(-50%, -50%)
+  }
 }
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 999999;
 }
 
 // Shell div to position the modal with bottom padding
 .modal-dialog {
-  position: relative;
+  position: absolute;
   width: auto;
   margin: 10px;
+  top: 50%;
+  left: 50%;
 }
 
 // Actual modal
@@ -58,6 +63,7 @@
   background-clip: padding-box;
   // Remove focus outline from opened modal
   outline: 0;
+  padding: 1.375em;
 }
 
 // Modal background
@@ -101,7 +107,7 @@
 
 // Footer (for actions)
 .modal-footer {
-  padding: @modal-inner-padding;
+  padding: @modal-inner-padding !important;
   text-align: right; // right align buttons
   border-top: 1px solid @modal-footer-border-color;
   &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
@@ -139,6 +145,7 @@
   }
   .modal-content {
     .box-shadow(0 5px 15px rgba(0,0,0,.5));
+    padding: 1.375em !important;
   }
 
   // Modal sizes

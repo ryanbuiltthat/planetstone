@@ -12,16 +12,22 @@ Template.home.onRendered(function(){
         planet_stone.load();
         // Get the effects running
 
-
-
         new WOW().init();
+
+        // Analytics.js misses the first page load so let's trigger it manually
+        analytics.page('index')
     }, 350);
 });
 
 Template.home.events({
     'click #heroCTAab': function(e){
         toggleBottomDrawer( 'bdProductInquire' );
-        return false;
-    },
 
+        // Track this event
+        analytics.track("Drawer Triggered", {
+            eventName:  "Contact Drawer Toggled"
+        });
+
+        return false;
+    }
 });

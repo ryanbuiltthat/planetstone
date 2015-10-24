@@ -196,3 +196,37 @@ concatVal = function( obj ) {
     console.log("[concatVal] "+value);
     return value;
 };
+/**
+ * Need to monitor some routes
+ */
+Meteor.startup(function () {
+    Tracker.autorun(function() {
+        FlowRouter.watchPathChange();
+        // get to the top of the page
+        window.scrollTo(0,0);
+        var context = FlowRouter.current();
+        console.log("current route: "+context.path);
+        // use context to access the URL state
+        Meteor.setTimeout(function(){
+            //if(!$('#jetmenu').jetmenu()){
+            //    return $('#jetmenu').jetmenu()
+            //}
+        },170);
+        if(context.path === '/'){
+            Meteor.setTimeout(function(){
+                // Light slider
+                $("#featuredSlider").lightSlider({
+                    item:1,
+                    keyPress: true,
+                    gallery: false,
+                    pager: false,
+                    loop: true,
+                    prevHtml: 'PREVIOUS',
+                    nextHtml: 'NEXT',
+                    adaptiveHeight: false,
+
+                });
+            },180);
+        }
+    });
+});

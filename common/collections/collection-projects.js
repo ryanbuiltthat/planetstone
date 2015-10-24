@@ -21,7 +21,9 @@ Schemas.Project = new SimpleSchema({
         }
     },
     assettype: {
-        type: String
+        type: String,
+        optional: true,
+        //blackbox: true
     },
     name:{
         type: String,

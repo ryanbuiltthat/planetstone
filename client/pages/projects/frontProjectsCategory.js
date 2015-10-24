@@ -40,7 +40,8 @@ Template.frontProjectsCategory.helpers({
         return Projects.find({ active: true });
     },
     getImages: function (id) {
-        return ProjectImages.find({ _id: { $in: id }}, { limit: 1 });
+        //return ProjectImages.find({ _id: { $in: id }}, { sort:{createdAt: -1 }, limit: 1 });
+        return ProjectImages.findOne({ _id: { $in: id }}, { sort:{_id: -1 } });
     },
     'getTitle':function(){
         var parent = Template.parentData(1);
@@ -69,12 +70,14 @@ Template.frontProjectsCategory.helpers({
     },
     'getSharePageURL': function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("//planetstone-50636.onmodulus.net/projects/"+parent._id);
+        //return encodeURIComponent("//planetstonemarbleandgranite.com/projects/"+parent._id);
+        return encodeURIComponent(process.env.ROOT_URL+"/projects/"+parent._id);
     },
     'getShareImageURL': function(id, name){
         var parent = Template.parentData(1);
         var img = ProjectImages.findOne({ _id: id});
-        return encodeURIComponent("//planetstone-50636.onmodulus.net"+img.url({store:"galleryThumb",auth:false}));
+        //return encodeURIComponent("//planetstonemarbleandgranite.com"+img.url({store:"galleryThumb",auth:false}));
+        return encodeURIComponent(process.env.ROOT_URL+"/"+img.url({store:"galleryThumb",auth:false}));
     },
     'shortText': function(txt){
         return s.truncate(txt, 200);

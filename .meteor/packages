@@ -43,7 +43,6 @@ biasport:facebook-sdk
 msavin:jetsetter
 meteorhacks:aggregate
 donchess:autoform-froala
-meteorhacks:kadira@2.23.0
 standard-minifiers
 meteor-base
 mobile-experience
@@ -62,3 +61,4 @@ themeteorchef:jquery-validation
 chrismbeckett:toastr
 msavin:mongol
 dburles:mongo-collection-instances
+okgrow:analytics

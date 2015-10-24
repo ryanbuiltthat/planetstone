@@ -2,7 +2,11 @@
  * Created by Ryan on 8/14/2015.
  */
 Template.nav.onRendered(function(){
-    $().jetmenu();
+    //
+
+    Meteor.setTimeout(function(){
+        $().jetmenu();
+    }, 200);
 
     // Get datepicker moving
     //$('#startDate').datepicker();
@@ -31,8 +35,36 @@ Template.nav.events({
     },
     'submit form': function (e,t){
         e.preventDefault();
+        var customer = t.find("[id='name']").value;
+        var emailphone = t.find("[id='emailphone']").value;
+        var helpwith = t.find("[id='helpwith']").value;
+        var startdate = t.find("[id='startdate']").value;
+        var lead = {
+            name: customer,
+            emailphone: emailphone,
+            helpwith: helpwith,
+            startdate: startdate
+        };
+        Meteor.call('drawer', lead, function(error,result){
+            if(error){
+                toastr.error(" :( We hit a snag with this request. Please try again later or call our showroom.\n"+error);
+            }else {
+                // Show success message, re-enable input, hide modal
+                toastr.success("Thank you. We will be in touch shortly.", "Success!");
 
-        return false;
+                // Track this event
+                analytics.track("Lead Captured", {
+                    eventName:  "Homepage Drawer Capture"
+                });
+
+                // Clear Form
+                t.find("[id='name']").value = '';
+                t.find("[id='emailphone']").value = '';
+                t.find("[id='helpwith']").selectedIndex = 0;
+                t.find("[id='startdate']").value = '';
+            }
+        })
+
     }
 
 

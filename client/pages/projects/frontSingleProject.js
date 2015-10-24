@@ -41,7 +41,7 @@ Template.frontSingleProject.helpers({
         var nxtProject = NextProject.findOne();
         var nxtCat = NextCategory.findOne();
         var out = '/projects/'+nxtCat.slug+'/'+nxtProject.slug;
-        return out;
+        return out || "#";
     },
     prevProject:function(){
         var prvProject = PreviousProject.findOne();
@@ -66,12 +66,14 @@ Template.frontSingleProject.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        return encodeURIComponent("//planetstone-52463.onmodulus.net/projects/"+parent.slug);
+        //return encodeURIComponent("//planetstone-52463.onmodulus.net/projects/"+parent.slug);
+        return encodeURIComponent(process.env.ROOT_URL+"/projects/"+parent.slug);
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
         var img = ProjectImages.findOne({ _id: id});
-        return encodeURIComponent("//planetstone-52463.onmodulus.net/"+img.url({store:"galleryThumb",auth:false}));
+        //return encodeURIComponent("//planetstone-52463.onmodulus.net/"+img.url({store:"galleryThumb",auth:false}));
+        return encodeURIComponent(process.env.ROOT_URL+"/"+img.url({store:"galleryThumb",auth:false}));
     },
     //shareData: function(project){
     //    //console.log(project);
@@ -102,7 +104,7 @@ Template.frontSingleProject.helpers({
 });
 
 Template.frontSingleProject.events({
-    'click a':function(e,t){
+    'click a.btn-heart':function(e,t){
         //e.preventDefault();
     },
     'click .tabs>a': function(e,t){

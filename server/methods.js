@@ -195,6 +195,8 @@ if(Meteor.isServer){
         quickSend: function(contact){
             var customer = contact.customer;
             var interest = contact.interest;
+            var subroute = contact.route;
+            check(subroute, String);
             check(customer, String);
             check(interest, String);
             contact.type = "quicksend";
@@ -230,13 +232,27 @@ if(Meteor.isServer){
                 subject: "NEW Contact Received",
                 html: SSR.render( 'newlead', pgForm )
             });
+        },
+        drawer: function(lead){
+            check(lead,{
+                name: String,
+                emailphone: String,
+                helpwith: Match.Optional(String),
+                startdate: Match.Optional(String)
+            });
+            lead.createdAt = new Date();
+            lead.type = "quickdrawer";
+            this.unblock();
+            Leads.insert(lead);
+            SSR.compileTemplate( 'drawerlead', Assets.getText( 'drawerlead.html' ) );
+            Email.send({
+                to: "info@ryanbuiltthat.com",
+                cc: "rharris@condronandcosgrove.com",
+                from: "Planet Stone Web <noreply@planetstone.com>",
+                subject: "NEW Contact Received",
+                html: SSR.render( 'drawerlead', lead )
+            });
+
         }
     });
-
-    // try cfs filesystem on modulus hack
-    //Meteor.methods({
-    //    'config/filesystem/path': function() {
-    //        return process.env.FILES_DIR;
-    //    }
-    //});
 }
