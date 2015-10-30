@@ -193,7 +193,7 @@ concatVal = function( obj ) {
         //value.replace(/(^,)|(,$)/g, "")
         //value = value.join(', ');
     }
-    console.log("[concatVal] "+value);
+    //console.log("[concatVal] "+value);
     return value;
 };
 /**
@@ -205,7 +205,7 @@ Meteor.startup(function () {
         // get to the top of the page
         window.scrollTo(0,0);
         var context = FlowRouter.current();
-        console.log("current route: "+context.path);
+        //console.log("current route: "+context.path);
         // use context to access the URL state
         Meteor.setTimeout(function(){
             //if(!$('#jetmenu').jetmenu()){

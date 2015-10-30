@@ -227,7 +227,9 @@ if(Meteor.isServer){
             Leads.insert(pgForm);
             SSR.compileTemplate( 'newlead', Assets.getText( 'newlead.html' ) );
             Email.send({
-                to: "info@ryanbuiltthat.com",
+                to: "brooke.keck@gmail.com",
+                cc: "planetstone1@gmail.com",
+                bcc: "risforryan@gmail.com",
                 from: "Planet Stone Web <noreply@planetstone.com>",
                 subject: "NEW Contact Received",
                 html: SSR.render( 'newlead', pgForm )
