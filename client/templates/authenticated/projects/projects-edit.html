@@ -1,0 +1,80 @@
+<template name="projectsedit">
+    <div class="row">
+        <div class="col-md-9">
+            {{#if Template.subscriptionsReady }}
+                {{#with project }}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-btns">
+                                <!--<a href="" class="panel-close">×</a>-->
+                                <a href="" class="minimize">−</a>
+                            </div>
+                            <h4 class="panel-title"><span class="text-primary">{{ name }}</span></h4>
+                            <p>This is an example of form with block styled label.</p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Name</label>
+                                        <input type="text" name="name" class="form-control" value="{{ name }}" >
+                                    </div>
+                                </div><!-- col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Slug</label>
+                                        <input type="text" name="slug" class="form-control" value="{{ slug }}">
+                                    </div>
+                                </div><!-- col-sm-6 -->
+                            </div><!-- row -->
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Associated Product</label>
+                                        <!--<input type="email" name="email" class="form-control" value="{{ asscprod }}">-->
+                                        {{ getProductList }}
+                                        <select class="select2">
+                                            <option value="{{ asscprod }}" selected="selected">{{ getProductName asscprod }}</option>
+                                        </select>
+                                    </div>
+                                </div><!-- col-sm-4 -->
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Associated Colors</label>
+                                        <input type="url" name="website" class="form-control" value="{{ assccolor }}">
+                                    </div>
+                                </div><!-- col-sm-4 -->
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <input type="url" name="website" class="form-control" value="{{ category }}">
+                                    </div>
+                                </div><!-- col-sm-4 -->
+                            </div><!-- row -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Description</label>
+                                        <textarea name="desc" rows="8" class="form-control">{{ desc }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- row -->
+
+                        </div><!-- panel-body -->
+                        <div class="panel-footer">
+                            <button class="btn btn-white btn-primary-alt">Save</button>
+                            <button class="btn btn-white btn-danger-alt" disabled aria-disabled="true">Remove</button>
+                        </div>
+                    </div>
+                {{/with}}
+            {{/if}}
+        </div>
+        <!-- end main content -->
+        <div class="col-md-3">
+
+        </div>
+        <!-- end right col -->
+    </div>
+</template>

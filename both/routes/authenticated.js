@@ -76,8 +76,19 @@ assetsRoute.route('/:group', {
 /**
  * Asset Action View
  * Action route for assets. EG Add/Edit/Remove asset
+ * Usage: FlowRouter.go("/assets/projects/edit/projectId");
  */
+
+// Add asset
 assetsRoute.route('/:group/:action', {
+    triggersEnter: [ blockUnauthorizedAdmin ],
+    action( params, queryParams){
+        BlazeLayout.render( 'default', { yield: params.group+params.action });
+    }
+});
+
+// Edit asset
+assetsRoute.route('/:group/:action/:assetId', {
     triggersEnter: [ blockUnauthorizedAdmin ],
     action( params, queryParams){
         BlazeLayout.render( 'default', { yield: params.group+params.action });

@@ -17,5 +17,17 @@ Meteor.methods({
         } catch( exception ) {
             return exception;
         }
+    },
+    updateProject( options ) {
+        check (options, {
+            id: String,
+            k: String,
+            v: String
+        });
+        try {
+            return Modules.server.updateProject( options );
+        } catch ( exception ) {
+            return exception;
+        }
     }
 });

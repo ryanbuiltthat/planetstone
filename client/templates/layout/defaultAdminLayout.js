@@ -178,7 +178,7 @@ Template.default.helpers({
         if(rtname) {
             return FlowRouter.getRouteName();
         }else {
-            return FlowRouter.current().route.group.name;
+            //return FlowRouter.current().route.group.name;
         }
     }
 });
