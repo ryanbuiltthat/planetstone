@@ -46,6 +46,10 @@ Site.permit('insert').ifLoggedIn().apply();
 Site.permit('update').ifLoggedIn().apply();
 Site.permit('remove').ifHasRole('admin').apply();
 
+Meta.permit('insert').ifLoggedIn().apply();
+Meta.permit('update').ifLoggedIn().apply();
+Meta.permit('remove').ifHasRole('admin').apply();
+
 /*
 * Quick Send collection (for logging mainly)
 * */

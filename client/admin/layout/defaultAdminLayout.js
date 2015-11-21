@@ -14,6 +14,10 @@ Template.defaultAdminLayout.onCreated(function() {
     });
 });
 Template.defaultAdminLayout.onRendered(function(){
+    // Track this event
+    analytics.track("Admin", {
+        eventName:  "Layout Loaded"
+    });
 //-------------------------------------
     jQuery(document).ready(function() {
         console.log("doc ready");

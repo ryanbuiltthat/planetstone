@@ -4,3 +4,7 @@
 Meteor.publish('allColors', function(colors){
     return Colors.find({ _id: { $in: colors } });
 });
+
+Meteor.publish('colors', function(colors){
+    return Colors.find({});
+});

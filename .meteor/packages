@@ -59,8 +59,9 @@ spacebars
 check
 themeteorchef:jquery-validation
 chrismbeckett:toastr
-msavin:mongol
 dburles:mongo-collection-instances
 okgrow:analytics
 spiderable
 meteorhacks:fast-render
+kadira:dochead
+cosmos:browserify

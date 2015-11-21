@@ -91,3 +91,4 @@ Categories = new Mongo.Collection("categories");
 Teams = new Mongo.Collection("teams");
 //Faqs = new Mongo.Collection("faqs");
 Leads = new Mongo.Collection("leads");
+Meta = new Mongo.Collection("meta");

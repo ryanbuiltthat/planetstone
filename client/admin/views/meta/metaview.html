@@ -1,0 +1,14 @@
+<template name="metaindex">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{> tabular table=TabularTables.Pages class="table"}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {{> quickForm id="fields1" collection="Meta" type="insert"}}
+        </div>
+    </div>
+</template>

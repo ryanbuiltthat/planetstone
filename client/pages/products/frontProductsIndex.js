@@ -3,13 +3,20 @@
  */
 Template.frontProductsIndex.onCreated(function(){
     var self = this;
+    var cp = new ReactiveVar();
+    var routePath = FlowRouter.current().path.substring(1);
     self.ready = new ReactiveVar();
     self.productsReady = new ReactiveVar();
     self.autorun(function(){
         var handle = ProductsSub.subscribe('frontAllProducts');
+        //self.subscribe('pagebyslug', routePath);
         self.ready.set(handle.ready());
         self.subscribe('productColors');
         self.subscribe('productTypes');
+        //cp = Meta.findOne({ "pages.slug": routePath});
+        //var metaInfo = {name: "description", content: cp.pages.desc};
+        //DocHead.setTitle(cp.pages.title + " - Planet Stone Marble & Granite");
+        //DocHead.addMeta(metaInfo);
     });
 });
 Template.frontProductsIndex.onRendered(function(){

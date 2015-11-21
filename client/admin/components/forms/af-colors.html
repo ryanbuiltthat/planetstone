@@ -4,13 +4,13 @@
             <div class="panel panel-dark panel-alt widget-quick-status-post">
                 <div class="panel-heading">
                     <div class="panel-btns">
-                        <!--<a href="" class="panel-close">×</a>-->
+                        <!--<a href="" class="panel-close">ï¿½</a>-->
                         <!--<a href="" class="minimize">?</a>-->
                     </div><!-- panel-btns -->
                     <h3 class="panel-title">Add Colors</h3>
                 </div>
                 <div class="panel-body">
-                    {{#autoForm collection="Colors" id="afColorsInsert" type="insert"}}
+                    {{#autoForm collection="Colors" id="afColorsInsert" type="insert" class="form-horizontal"}}
                         {{> afFieldInput name="title" placeholder="Add Color" }}
                         <button type="submit" class="btn btn-primary btn-block mt10">Save</button>
                 {{/autoForm}}

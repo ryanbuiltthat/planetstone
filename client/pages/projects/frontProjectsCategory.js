@@ -4,9 +4,17 @@
 Template.frontProjectsCategory.onCreated(function(){
     var self = this;
     self.ready = new ReactiveVar();
+    var cp = new ReactiveVar();
+    var routePath = FlowRouter.current().path.substring(1);
+    //routePath = "/projects/"+
     self.autorun(function(){
         var handle = self.subscribe('frontProjectsCategory', FlowRouter.getParam('category'));
         self.ready.set(handle.ready());
+        self.subscribe('pagebyslug', routePath);
+        //cp = Meta.findOne({ "pages.slug": "/projects/"+routePath});
+        //var metaInfo = {name: "description", content: cp.pages.desc};
+        //DocHead.setTitle(cp.pages.title + " - Planet Stone Marble & Granite");
+        //DocHead.addMeta(metaInfo);
     })
 });
 Template.frontProjectsCategory.onRendered(function(){

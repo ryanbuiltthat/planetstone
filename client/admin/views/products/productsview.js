@@ -5,6 +5,13 @@ Template.productsindex.onCreated(function(){
    var self = this;
 });
 
+Template.productsindex.onRendered(function(){
+    // Track this event
+    analytics.track("Admin", {
+        eventName:  "Product Index Loaded"
+    });
+});
+
 Template.productsindex.helpers({
     // Get sub ready state
     prodCountReady: function() {

@@ -34,11 +34,21 @@ TabularTables.Projects = new Tabular.Table({
     scrollY: 400,
     autoWidth: false,
     columns: [
-        {data: "name", title: "Title"},
-        {data: "desc", title: "Desc"},
-        {data: "category", title: "Category"},
-    ],
-    //sub: new SubsManager()
+        {data: "active", title: "active"},
+        {data: "name", title: "Title"}
+    ]
+});
+
+TabularTables.Pages = new Tabular.Table({
+    name: "PageList",
+    collection: Meta,
+    scrollY: 400,
+    autoWidth: false,
+    columns: [
+        {data: "pages.title", title: "Title"},
+        {data: "pages.slug", title: "Slug"},
+        {data: "pages.desc", title: "Description"}
+    ]
 });
 
 TabularTables.Testimonials = new Tabular.Table({
@@ -47,10 +57,24 @@ TabularTables.Testimonials = new Tabular.Table({
     scrollY: 400,
     autoWidth: false,
     columns: [
-        {data: "title", title: "Title"},
+        //{data: "title", title: "Title"},
         {data: "author", title: "Author"},
-        {data: "category", title: "Category"},
+        //{data: "category", title: "Category"},
         {data: "body", title: "Text"}
+    ],
+    sub: new SubsManager()
+});
+
+TabularTables.Squad = new Tabular.Table({
+    name: "SquadList",
+    collection: Teams,
+    scrollY: 400,
+    autoWidth: false,
+    columns: [
+        {data: "name", title: "Name"},
+        //{data: "author", title: "Author"},
+        //{data: "category", title: "Category"},
+        //{data: "body", title: "Text"}
     ],
     sub: new SubsManager()
 });

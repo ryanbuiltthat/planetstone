@@ -20,17 +20,17 @@ Template.projectsadd.helpers({
         return Projects.find({});
     },
     colors: function(){
-        return Colors.find({}, { fields: { _id: 1, title: 1 }}).map(function (c) {
+        return Colors.find({}, { fields: { _id: 1, title: 1 }, sort: { name: 1 }}).map(function (c) {
             return {label: c.title, value: c._id};
         });
     },
     products: function(){
-        return Products.find({},{fields:{_id:1,name:1}}, { name: 1}).map(function (c) {
+        return Products.find({active: true},{fields:{_id:1,name:1}, sort: {name: 1 }}).map(function (c) {
             return {label: c.name, value: c._id};
         });
     },
     categories: function() {
-        return Categories.find({}).map(function (c){
+        return Categories.find({}, {sort: {name: 1}}).map(function (c){
             return {label: c.title, value: c._id};
         });
     },

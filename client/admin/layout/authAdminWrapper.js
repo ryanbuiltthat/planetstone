@@ -15,6 +15,10 @@ Template.authAdminWrapper.onCreated(function() {
 });
 
 Template.authAdminWrapper.onRendered(function(){
+    // Track this event
+    analytics.track("Admin", {
+        eventName:  "Layout Loaded"
+    });
     //-------------------------------------
     jQuery(document).ready(function() {
         console.log("doc ready");
