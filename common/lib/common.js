@@ -4,81 +4,144 @@
 // Constants
 Schemas = {};
 
-// Image processors
-makeMenuThumb = function(fileObj, readStream, writeStream) {
-    var wsize = '280';
-    var hsize = '210';
-    try {
-        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(75).stream().pipe(writeStream);
 
-    }catch(e){
-        throw new Meteor.Error(e);
-    }
-};
-makeGalleryThumb = function(fileObj, readStream, writeStream) {
-    var wsize = '800';
-    var hsize = '600';
-    try {
-        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(65).stream().pipe(writeStream);
-    }catch(e){
-        throw new Meteor.Error(e);
-    }
-};
-makeThumb = function(fileObj, readStream, writeStream) {
-    var size = '150';
-    try {
-        gm(readStream, fileObj.name()).resize(size, size + '^').gravity('SouthEast').extent(size, size).quality(50).stream().pipe(writeStream);
-    }catch(e){
-        throw new Meteor.Error(e);
-    }
-};
-compressFullRes = function(fileObj, readStream, writeStream) {
-    try {
-        gm(readStream, fileObj.name()).quality(50).stream().pipe(writeStream);
-    }catch(e){
-        throw new Meteor.Error(e);
-    }
-};
-
-// Medium team image
-teamMedium = function(fileObj, readStream, writeStream) {
-    var wsize = '266';
-    var hsize = '266';
-    try {
-        gm(readStream, fileObj.name()).resize(wsize, hsize + '^').gravity('SouthEast').extent(wsize, hsize).quality(45).stream().pipe(writeStream);
-
-    }catch(e){
-        throw new Meteor.Error(e);
-    }
-};
-
+//ProjectImages = new FS.Collection("projectimages", {
+//    stores: [
+//        new FS.Store.S3("fr",{
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/fr",
+//            ACL: "public-read"
+//        }),
+//        new FS.Store.S3("menuThumb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/menuThumb",
+//            ACL: "public-read",
+//            transformWrite: createMenuThumb }),
+//        new FS.Store.S3("thmb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/thmb",
+//            ACL: "public-read",
+//            transformWrite: createThumb }),
+//        new FS.Store.S3("galleryThumb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/galleryThumb",
+//            ACL: "public-read",
+//            transformWrite: createGalleryThumb })
+//    ]
+//});
 
 // FS Stores
 
+//// Thumb 160x160
+//thumbStore = new FS.Store.S3("thmb", {
+//    bucket: Meteor.settings.private.AWS.bucket,
+//    accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//    secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//    folder: Meteor.settings.private.AWS.directory + "/thmb",
+//    ACL: "public-read",
+//    transformWrite: makeThumb
+//});
+//
+//// Menu Preview 280x210
+//menuStore = new FS.Store.S3("menuThumb", {
+//    bucket: Meteor.settings.private.AWS.bucket,
+//    accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//    secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//    folder: Meteor.settings.private.AWS.directory + "/menuThumb",
+//    ACL: "public-read",
+//    transformWrite: makeMenuThumb
+//});
+//
+//// Gallery Preview 800 x 600
+//galleryStore = new FS.Store.S3("galleryThumb", {
+//    bucket: Meteor.settings.private.AWS.bucket,
+//    accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//    secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//    folder: Meteor.settings.private.AWS.directory + "/galleryThumb",
+//    ACL: "public-read",
+//    transformWrite: makeGalleryThumb
+//});
+//
+//// Fullres
+//fullStore = new FS.Store.S3("fr", {
+//    bucket: Meteor.settings.private.AWS.bucket,
+//    accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//    secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//    folder: Meteor.settings.private.AWS.directory + "/fr",
+//   // transformWrite: compressFullRes
+//});
+//
+//// Team img stores
+//teamMed = new FS.Store.S3("teamMed", {
+//    bucket: Meteor.settings.private.AWS.bucket,
+//    accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//    secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//    folder: Meteor.settings.private.AWS.directory + "/team",
+//   transformWrite: teamMedium
+//});
+
+
+
 // Thumb 160x160
-thumbStore = new FS.Store.GridFS("thmb", {
-    transformWrite: makeThumb
+thumbStore = new FS.Store.S3("thmb", {
+    bucket: "complanetstonemarbleandgranite",
+    //accessKeyId:    Meteor.settings.private.AWS.accessKey,
+    //secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+    folder: "image-assets/" + "/thmb",
+    ACL: "public-read",
+    //transformWrite: makeThumb
 });
 
 // Menu Preview 280x210
-menuStore = new FS.Store.GridFS("menuThumb", {
-    transformWrite: makeMenuThumb
+menuStore = new FS.Store.S3("menuThumb", {
+    bucket: "complanetstonemarbleandgranite",
+    //accessKeyId:    Meteor.settings.private.AWS.accessKey,
+    //secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+    folder: "image-assets/" + "/menuThumb",
+    ACL: "public-read",
+    //transformWrite: makeMenuThumb
 });
 
 // Gallery Preview 800 x 600
-galleryStore = new FS.Store.GridFS("galleryThumb", {
-    transformWrite: makeGalleryThumb
+galleryStore = new FS.Store.S3("galleryThumb", {
+    bucket: "complanetstonemarbleandgranite",
+    //accessKeyId:    Meteor.settings.private.AWS.accessKey,
+    //secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+    folder: "image-assets/" + "/galleryThumb",
+    ACL: "public-read",
+    //transformWrite: makeGalleryThumb
 });
 
 // Fullres
-fullStore = new FS.Store.GridFS("fr", {
-   // transformWrite: compressFullRes
-});
+//var fullStore = new FS.Store.S3("fr",{bucket: "complanetstonemarbleandgranite"});
 
 // Team img stores
-teamMed = new FS.Store.GridFS("teamMed", {
-   transformWrite: teamMedium
+teamMed = new FS.Store.S3("teamMed", {
+    bucket: "complanetstonemarbleandgranite",
+    //accessKeyId:    Meteor.settings.private.AWS.accessKey,
+    //secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+    folder: "image-assets/" + "/team",
+    //transformWrite: teamMedium
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // Collections
 Products = new Mongo.Collection("products");

@@ -1,6 +1,7 @@
 /**
  * Created by Ryan on 8/9/2015.
  */
+//var fullStore = new FS.Store.S3("fr",{bucket: "complanetstonemarbleandgranite"});
 Schemas.Product = new SimpleSchema({
     featured: {
         type: Boolean,
@@ -12,7 +13,8 @@ Schemas.Product = new SimpleSchema({
         }
     },
     assettype: {
-        type: String
+        type: String,
+        optional: true
     },
     name: {
         type: String,
@@ -80,28 +82,3 @@ Schemas.Product = new SimpleSchema({
 });
 
 Products.attachSchema(Schemas.Product);
-
-
-///-----------------
-
-ProductImages = new FS.Collection("productimages", {
-    stores: [
-        thumbStore,
-        menuStore,
-        galleryStore,
-        fullStore
-    ]
-});
-ProductImages.allow({
-    insert: function (userId, doc) {
-        if(userId)
-            return true;
-    },
-    update: function (userId, doc, fieldNames, modifier) {
-        if(userId)
-            return true;
-    },
-    download: function (userId) {
-            return true;
-    }
-});

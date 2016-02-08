@@ -50,6 +50,7 @@ Template.frontSingleProject.helpers({
         return out;
     },
     'projectImage': function(pics){
+        console.log(pics);
         return ProjectImages.find({ _id: { $in: pics }});
     },
     getTitle:function(){
@@ -66,14 +67,13 @@ Template.frontSingleProject.helpers({
     },
     getSharePageURL: function(){
         var parent = Template.parentData(1);
-        //return encodeURIComponent("//planetstone-52463.onmodulus.net/projects/"+parent.slug);
-        return encodeURIComponent(process.env.ROOT_URL+"/projects/"+parent.slug);
+        return encodeURIComponent(Meteor.absoluteUrl('projects/'+parent._id, {}));
     },
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
         var img = ProjectImages.findOne({ _id: id});
-        //return encodeURIComponent("//planetstone-52463.onmodulus.net/"+img.url({store:"galleryThumb",auth:false}));
-        return encodeURIComponent(process.env.ROOT_URL+"/"+img.url({store:"galleryThumb",auth:false}));
+        var img_url = img.url({store:'gallery-crop',auth:false});
+        return encodeURIComponent(Meteor.absoluteUrl(img_url));
     },
     //shareData: function(project){
     //    //console.log(project);

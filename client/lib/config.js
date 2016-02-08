@@ -62,3 +62,9 @@ PreviousProject = new Meteor.Collection("previousProject");
 NextProject = new Meteor.Collection("nextProject");
 PrevCategory = new Meteor.Collection("prevcategory");
 NextCategory = new Meteor.Collection("nextcategory");
+
+// client-side image stores
+fullResStore = new FS.Store.S3("full-res");
+galleryStore = new FS.Store.S3("gallery-crop");
+menuStore = new FS.Store.S3("menu-crop");
+thumbStore =  new FS.Store.S3("thumbnails");

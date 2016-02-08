@@ -8,6 +8,7 @@ Template.productsedit.onCreated(function(){
     self.autorun(function () {
         var handle = self.subscribe('editSingleProduct', FlowRouter.getParam('itemId'));
         self.ready.set(handle.ready());
+
     });
 });
 

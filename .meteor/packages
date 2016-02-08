@@ -40,7 +40,6 @@ underscorestring:underscore.string
 twbs:bootstrap
 aldeed:autoform
 biasport:facebook-sdk
-msavin:jetsetter
 meteorhacks:aggregate
 donchess:autoform-froala
 standard-minifiers
@@ -60,8 +59,13 @@ check
 themeteorchef:jquery-validation
 chrismbeckett:toastr
 dburles:mongo-collection-instances
-okgrow:analytics
+okgrow:analytics@1.0.4
 spiderable
 meteorhacks:fast-render
 kadira:dochead
 cosmos:browserify
+aldeed:http
+ecmascript
+msavin:mongol
+froala:editor
+mdg:validation-error

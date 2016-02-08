@@ -5,14 +5,14 @@
                 {{#each project}}
                     <figure class="one-fourth item">
                         {{#with getImages images }}
-                            <img src="{{url store='galleryThumb' }}" alt="{{name}} - Planet Stone">
+                            <img src="{{this.url store='gallery-crop' auth=false }}" alt="{{getTitle}} - Planet Stone">
                         {{/with}}
                         <figcaption>
                             <dl>
                                 <dt class="name">{{name}}</dt>
                                 <dd class="hidden-xs hidden-sm">{{  shortText desc }}</dd>
                                 <dd class="att left color"><strong>Build Type:</strong> {{ getDisplayCategory category }}</dd>
-                                {{#if getDisplayProducts asscprod }}
+                                {{#if asscprod }}
                                 <dd class="att right type"><strong>Stone Used:</strong> {{{ getDisplayProducts asscprod }}}</dd>
                                 {{/if}}
                             </dl>
@@ -28,11 +28,11 @@
                                 <li>
                                     {{#with getImages images }}
                                         <a class="houzz-share-button"
-                                           data-url="http://planetstonemarbleandgranite.com/products/{{ getId }}/"
+                                           data-url="{{getSharePageURL}}"
                                            data-hzid="33569"
                                            data-locale="en-US"
                                            data-title="{{ getTitle }}"
-                                           data-img="https://s3.amazonaws.com/com.planetstonemarblegranite/full/projectimages/{{_id}}-{{name}}" alt="{{name}}"
+                                           data-img="https://s3.amazonaws.com/complanetstonemarbleandgranite/image-assets/full-res/projectimages/{{ _id }}-{{ name }}" alt="{{getTitle}}"
                                            data-desc="{{ getDesc }}"
                                            data-category="Kitchen Countertops"
                                            data-showcount="0"

@@ -10,8 +10,8 @@
         <div class="gallery" id="gallery">
             {{#each projectImage images }}
             <!-- Item -->
-            <figure class="one-fourth" data-src="{{url store='fr' auth=false }}" data-sub-html="#share{{ _id }}">
-                <img src="{{url store='galleryThumb' auth=false }}" alt="{{name}}">
+            <figure class="one-fourth" data-src="{{this.url store='full-res' auth=false }}" data-sub-html="#share{{ _id }}">
+                <img src="{{this.url store='gallery-crop' auth=false }}" alt="{{getTitle}}">
                 <figcaption>
                     <span class="icojam_zoom_in"></span>
                     <div id="share{{_id}}" style="display:none;">
@@ -31,7 +31,7 @@
                                        data-hzid="33569"
                                        data-locale="en-US"
                                        data-title="{{ getTitle }}"
-                                       data-img="{{url store="fr" auth=false }}"
+                                       data-img="{{this.url store="full-res" auth=false }}"
                                        data-desc="{{ getDesc }}"
                                        data-category="Kitchen Countertops"
                                        data-showcount="0"

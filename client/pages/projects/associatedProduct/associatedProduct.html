@@ -5,8 +5,8 @@
         <h3><a href="#" title="{{ name }}">On Display Now: <br></a></h3>
         {{#each productThumb images }}
         <!--<a href="#">-->
-            <figure id="{{ parentId }}" data-src="{{ url store="fr" auth=false }}">
-                <img src="{{ url store="menuThumb" auth=false }}" alt="{{ getParentName }} {{ getParentType }} - Planet Stone" title="{{ getParentName }} {{ getParentType }} - Planet Stone" style="width:100%;max-width:100%;display:block;height:auto;" />
+            <figure id="{{ parentId }}" data-src="{{ url store="full-res" auth=false }}">
+                <img src="{{ this.url store="menu-crop" auth=false }}" alt="{{ getParentName }} {{ getParentType }} - Planet Stone" title="{{ getParentName }} {{ getParentType }} - Planet Stone" style="width:100%;max-width:100%;display:block;height:auto;" />
                 <figcaption>
                     <span class="icojam_zoom_in"></span>
                 </figcaption>

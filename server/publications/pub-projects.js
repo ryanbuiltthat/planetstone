@@ -72,7 +72,8 @@ Meteor.publishComposite("frontProjectsCategory", function(categorySlug) {
                     },
                     {
                         find: function(project){
-                            return ProjectImages.find();
+                            console.log(project.images);
+                            return ProjectImages.find({ _id: { $in: project.images } });
                         }
                     }
                 ]
@@ -141,4 +142,44 @@ Meteor.publishComposite("frontSingleProject", function(project) {
 });
 Meteor.publish('projectTestimonial', function(projectCategoryId){
     return Testimonials.find({ _id: projectCategoryId });
+});
+
+Meteor.publishComposite("editSingleProject", function(id){
+    return {
+        find: function () {
+            // Let's go ahead and find those ten newest articles
+            return Projects.find({_id: id}, {});
+        },
+        children: [
+            //{
+            //    collectionName: "previousProject",
+            //    find: function(project){
+            //        return Projects.find({ createdAt: { $lt: project.createdAt } }, {sort: {createdAt: -1}, limit: 1});
+            //    }
+            //},
+            //{
+            //    collectionName: "nextProject",
+            //    find: function(project){
+            //        return Projects.find({ createdAt: { $gt: project.createdAt } }, {sort: {createdAt: 1}, limit: 1});
+            //    }
+            //},
+            //{
+            //    find: function (project) {
+            //        return Colors.find({_id: {$in: project.assccolor}});
+            //        //return Colors.find();
+            //    }
+            //},
+            {
+                find: function (project) {
+                    return Categories.find({ _id: project.category  } );
+                    //return Types.find();
+                }
+            },
+            {
+                find: function(project){
+                    return ProjectImages.find({_id: {$in: project.images} });
+                }
+            }
+        ]
+    };
 });

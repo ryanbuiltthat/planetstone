@@ -1,20 +1,10 @@
 <template name="sideNavigation">
     <h5 class="sidebartitle">Navigation</h5>
+    <h6 class="muted">{{currentUser.emails.[0].address}}</h6>
     <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="{{getPathFor "dashboard" }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <!--<li class="nav-parent"><a href="#"><i class="fa fa-cogs"></i> <span>Site Settings</span></a>-->
-            <!--<ul class="children">-->
-                <!--<li><a href="#"><i class="fa fa-caret-right"></i> Meta Information</a></li>-->
-                <!--<li><a href="#"><i class="fa fa-caret-right"></i> Contact Information</a></li>-->
-                <!--<li><a href="#"><i class="fa fa-caret-right"></i> Social Accounts</a></li>-->
-            <!--</ul>-->
-        <!--</li>-->
-        <li class="nav-parent">
+        <li class="">
             <a href="{{buildPathFor "meta" ""}}"><i class="fa fa-gear"></i> <span>Page Meta</span></a>
-            <!--<ul class="children">-->
-                <!--<li><a href=""><i class="fa fa-caret-right"></i> Products</a></li>-->
-                <!--<li><a href=""><i class="fa fa-caret-right"></i> Projects</a></li>-->
-            <!--</ul>-->
         </li>
         <li class="nav-parent"><a href="{{buildPathFor "projects" "" }}"><i class="fa fa-tasks"></i> <span>Projects</span></a>
             <ul class="children">
@@ -28,7 +18,6 @@
                 <li><a href="{{buildPathFor "products" "add" }}"><i class="fa fa-caret-right"></i> Add Product</a></li>
             </ul>
         </li><!-- products -->
-        <!--<li class=""><a href="maps.html"><i class="fa fa-map-marker"></i> <span>Maps</span></a></li>-->
         <li class="t"><a href="{{buildPathFor "types" "" }}"><i class="fa fa-tasks"></i> <span>Edit Product Types</span></a></li>
         <li class=""><a href="{{buildPathFor "colors" "" }}"><i class="fa fa-th"></i> <span>Edit Product Colors</span></a></li>
         <li class="nav-parent"><a href="{{buildPathFor "testimonials" "" }}"><i class="fa fa-smile-o"></i> <span>Testimonials</span></a>
@@ -42,10 +31,5 @@
                 <li class=""><a href="{{buildPathFor "teams" "add"}}"><i class="fa fa-caret-right"></i> Add Member</a></li>
             </ul>
         </li>
-        <!--<li class="nav-parent"><a href="#"><i class="fa fa-users"></i> <span>Site Info</span></a>-->
-            <!--<ul class="children">-->
-                <!--<li class="active"><a href="{{buildPathFor "siteinfo" "add"}}"><i class="fa fa-caret-right"></i> Global</a></li>-->
-            <!--</ul>-->
-        <!--</li>-->
     </ul>
 </template>

@@ -1,7 +1,7 @@
 <template name="defaultAdminLayout">
     {{> adminPreloader }}
     <section>
-        <div class="leftpanel sticky-leftpanel">
+        <div class="leftpanel">
             <div class="logopanel">
                 {{> logo }}
             </div><!-- logopanel -->
@@ -9,18 +9,14 @@
                 <!-- This is only visible to small devices -->
                 <div class="visible-xs hidden-sm hidden-md hidden-lg">
                     <div class="media userlogged">
-                        Welcome
-                        <!--<img alt="" src="images/photos/loggeduser.png" class="media-object">-->
+                        Welcome {{currentUser.profile.name.first}}
                         <div class="media-body">
-                            <h4>{{! getUserEmail}}</h4>
-                            <span></span>
+                            <h4>{{currentUser.emails.[0].address}}</h4>
+                            <span>{{currentUser.profile.name.first}} {{currentUser.profile.name.last}}</span>
                         </div>
                     </div>
                     <h5 class="sidebartitle actitle">Account</h5>
                     <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-                        <!--<li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>-->
-                        <!--<li><a href="#"><i class="fa fa-cog"></i> <span>Site Settings</span></a></li>-->
-                        <!--<li><a href="#"><i class="fa fa-question-circle"></i> <span>Help</span></a></li>-->
                         <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                     </ul>
                 </div>
@@ -56,7 +52,7 @@
 
             <div class="headerbar">
 
-                <!--<a class="menutoggle"><i class="fa fa-bars"></i></a>-->
+                <a class="menutoggle"><i class="fa fa-bars"></i></a>
 
 
                 <div class="header-right">
@@ -109,7 +105,7 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <!--<img src="images/photos/loggeduser.png" alt="" />-->
-                                    Welcome
+                                    Welcome {{currentUser.profile.name.first}}
                                     {{! getUserEmail}}
                                     <span class="caret"></span>
                                 </button>

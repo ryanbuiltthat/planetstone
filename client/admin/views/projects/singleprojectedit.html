@@ -1,0 +1,114 @@
+<template name="projectsedit">
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="nav nav-tabs nav-dark">
+                <li class="active"><a href="#details" data-toggle="tab"><strong>Project Details</strong></a></li>
+                <li><a href="#imgs" data-toggle="tab"><strong>Attached Images <span
+                        class="badge badge-info">{{ getImgCount }}</span></strong></a></li>
+            </ul>
+            <div class="tab-content mb30">
+                <div class="tab-pane active" id="details">
+                    <!--<h4 class="dark">It has become appallingly obvious that our technology has exceeded our humanity. &nbsp;<small>- Albert Einstein</small></h4>-->
+                    {{#autoForm id="afUpdateProject" type="update" collection="Projects" doc=project}}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group {{! #if afFieldIsInvalid name='active'}}has-error{{! /if}}">
+                                    <div class="checkbox block">
+                                        {{> afQuickField name="active"}}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6">
+                                {{> afQuickField name='name'}}
+                                {{> afQuickField name='desc' }}
+                                {{! > afQuickField name="images" type="cfs-files" collection="projectimages"}}
+                            </div><!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                {{> afQuickField name='slug' }}
+                                {{> afQuickField name='category' type='select' options=categories}}
+                                {{> afQuickField name='asscprod' type='select' options=products}}
+                                {{> afQuickField name='assccolor' type='select-multiple' options=colors}}
+                            </div><!-- col-sm-6 -->
+                        </div><!-- row -->
+                        <div class="btn-toolbar pull-right align-right m40">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    {{/autoForm}}
+                </div>
+                <div class="tab-pane" id="imgs">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="filemanager-options">
+                                <li>
+                                    <div class="ckbox ckbox-default">
+                                        <input type="checkbox" id="selectall" value="1">
+                                        <label for="selectall">Select All</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="" class="itemopt disabled"><i class="fa fa-envelope-o"></i> Email</a>
+                                </li>
+                                <li>
+                                    <a href="" class="itemopt disabled"><i class="fa fa-download"></i> Download</a>
+                                </li>
+                                <li>
+                                    <a href="" class="itemopt disabled"><i class="fa fa-pencil"></i> Edit</a>
+                                </li>
+                                <li>
+                                    <a href="" class="itemopt disabled"><i class="fa fa-trash-o"></i> Delete</a>
+                                </li>
+                                <li class="filter-type">
+                                    Show:
+                                    <a href="all" class="active">All</a>
+                                    <a href="document">Documents</a>
+                                    <a href="audio">Audio</a>
+                                    <a href="image">Images</a>
+                                    <a href="video">Videos</a>
+                                </li>
+
+                            </ul>
+                            <div class="row">
+                                <!-- thumbnails here -->
+                                <div class="col-sm-12">
+                                    <div class="row filemanager">
+                                        {{#with project }}
+                                            {{#each getimages images }}
+                                                {{> imagemanagerthumbnail }}
+                                            {{/each}}
+                                        {{/with}}
+
+
+                                    </div><!-- row -->
+                                </div><!-- col-sm-9 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+    {{#with FS.GetFile "images" selectedImageId}}
+            {{> selectedImageManager }}
+    {{/with}}
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <!--<div class="col-md-2">-->
+        <!--<ul class="pagination pagination-split">-->
+            <!--{{#with prev }}-->
+        <!--<li class=""><a href="{{getPrevNxtURL _id }}"><i class="fa fa-angle-left"></i></a></li>-->
+            <!--{{/with}}-->
+            <!--{{#with nxt }}-->
+        <!--<li class=""><a href="{{getPrevNxtURL _id }}"><i class="fa fa-angle-right"></i></a></li>-->
+            <!--{{/with}}-->
+        <!--</ul>-->
+        <!--</div>-->
+        <div class="col-md-10">
+            <h1 class="page-title">{{#with product}} {{name}} {{/with}}</h1>
+        </div>
+    </div>
+</template>

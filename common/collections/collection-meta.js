@@ -13,6 +13,10 @@ Schemas.Page = new SimpleSchema({
         type: String,
         optional: true
     },
+    "pages.keywords": {
+        type: String,
+        optional: true
+    },
     "pages.desc": {
         type: String,
         optional: true

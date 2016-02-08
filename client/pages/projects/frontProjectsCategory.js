@@ -6,7 +6,6 @@ Template.frontProjectsCategory.onCreated(function(){
     self.ready = new ReactiveVar();
     var cp = new ReactiveVar();
     var routePath = FlowRouter.current().path.substring(1);
-    //routePath = "/projects/"+
     self.autorun(function(){
         var handle = self.subscribe('frontProjectsCategory', FlowRouter.getParam('category'));
         self.ready.set(handle.ready());
@@ -78,14 +77,13 @@ Template.frontProjectsCategory.helpers({
     },
     'getSharePageURL': function(){
         var parent = Template.parentData(1);
-        //return encodeURIComponent("//planetstonemarbleandgranite.com/projects/"+parent._id);
-        return encodeURIComponent(process.env.ROOT_URL+"/projects/"+parent._id);
+        return encodeURIComponent(Meteor.absoluteUrl('projects/'+parent._id, {}));
     },
     'getShareImageURL': function(id, name){
         var parent = Template.parentData(1);
         var img = ProjectImages.findOne({ _id: id});
-        //return encodeURIComponent("//planetstonemarbleandgranite.com"+img.url({store:"galleryThumb",auth:false}));
-        return encodeURIComponent(process.env.ROOT_URL+"/"+img.url({store:"galleryThumb",auth:false}));
+        var img_url = img.url({store:'gallery-crop',auth:false});
+         return encodeURIComponent(Meteor.absoluteUrl(img_url));
     },
     'shortText': function(txt){
         return s.truncate(txt, 200);

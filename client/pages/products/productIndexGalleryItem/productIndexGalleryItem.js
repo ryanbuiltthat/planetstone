@@ -11,11 +11,11 @@ Template.productIndexGalleryItem.onCreated(function(){
 Template.productIndexGalleryItem.helpers({
     getFullSrc: function(id){
         var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
-        return fullResSrc.url({store: "fr"});
+        return fullResSrc.url({store: "full-res"});
     },
     getThumbSrc: function(id){
         var fullResSrc = ProductImages.findOne({ _id: { $in: id } } );
-        return fullResSrc.url({store: "thmb"});
+        return fullResSrc.url({store: "thumbnails"});
     },
     getImages: function (id) {
         return ProductImages.findOne({ _id: { $in: id }});
@@ -62,7 +62,8 @@ Template.productIndexGalleryItem.helpers({
     getShareImageURL: function(id, name){
         var parent = Template.parentData(1);
         var img = ProductImages.findOne({ _id: id});
-        return encodeURIComponent("//planetstonemarbleandgranite.com/"+img.url({store:"galleryThumb",auth:false}));
+        return encodeURIComponent("https://s3.amazonaws.com/complanetstonemarbleandgranite/image-assets/full-res/productimages/"+img._id+"-"+img.name);
+        //return encodeURIComponent("//planetstonemarbleandgranite.com/"+img.url({store:"gallery-crop",auth:false}));
     }
 });
 

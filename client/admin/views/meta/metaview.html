@@ -1,14 +1,40 @@
-<template name="metaindex">
+<template name="metaindex" xmlns="http://www.w3.org/1999/html">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">All Meta Information</h2>
+                    <p>All pages and their meta information are listed below. Click on a row in the table to edit the
+                        meta information for that page. To add a page use the
+                    <code>META ACTIONS</code>
+                    pane in the right column.</p>
+                </div>
                 <div class="panel-body">
                     {{> tabular table=TabularTables.Pages class="table"}}
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            {{> quickForm id="fields1" collection="Meta" type="insert"}}
+        <div class="col-md-6">
+            <h5 class="subtitle mb5">Meta Actions</h5>
+
+            <p>Add pages to the manifest or edit existing entries.</p>
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>IMPORTANT!</strong> You must set the path of the page manually at this time. The path is everything after the domain extension ( <code>.com</code> ).
+                <p>Example: the path for the contact page would be "/contact"<br />( <span class="text-muted">http://planetstonemarbleandgranite.com</span><code>/contact</code> )</p>
+            </div>
+            <ul class="nav nav-tabs nav-dark">
+                <li class="active"><a href="#editMeta" data-toggle="tab">Edit Page</a></li>
+                <li><a href="#addMeta" data-toggle="tab" class="disabled">Add Page</a></li>
+            </ul>
+            <div class="tab-content mb30">
+                <div class="tab-pane active" id="editMeta">
+                    {{> quickForm id="fields1" collection="Meta" type="update" doc=getMetaEditId buttonClasses="btn-sm btn-white btn-success-alt" buttonContent="Save"}}
+                </div>
+                <div class="tab-pane" id="addMeta">
+                    {{! > quickForm id="fields1" collection="Meta" type="insert" buttonClasses="btn-sm btn-white btn-success-alt" buttonContent="Add Page"}}
+                </div>
+            </div>
         </div>
     </div>
 </template>

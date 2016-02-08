@@ -1,4 +1,10 @@
 {
   "name": "planetstone",
-  "version": "0.0.1"
+  "version": "0.0.9",
+  "description": "planet stone website",
+  "scripts": {
+    "start": "meteor --settings settings-production.json",
+    "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
+    "production": "meteor deploy pstone.meteor.com --settings settings-production.json"
+  }
 }

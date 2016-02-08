@@ -10,20 +10,14 @@ TabularTables.Products = new Tabular.Table({
     collection: Products,
     scrollY: 400,
     autoWidth: false,
-    //pub: "tabular_ProductIndex",
     allow: function(userId){
         return userId;
     },
     order: [2, 'asc'],
     sub: new SubsManager(),
     columns: [
-        //{data: "active", title: "Active"}
         {data: "active", title: "active"},
-        //{data: "active", tmpl: Meteor.isClient && Template.prductActiveCell, title: "Active"},
-        //{tmpl: Meteor.isClient && Template.productActionCell, title: "Action"},
         {data: "name", title: "Name"},
-        //{data: "type", title: "Type"},
-        //{data: "color", title: "Color"},
         {data: "desc", title: "Description"}
     ]
 });
@@ -46,7 +40,8 @@ TabularTables.Pages = new Tabular.Table({
     autoWidth: false,
     columns: [
         {data: "pages.title", title: "Title"},
-        {data: "pages.slug", title: "Slug"},
+        {data: "pages.slug", title: "Path"},
+        {data: "pages.keywords", title: "Keywords"},
         {data: "pages.desc", title: "Description"}
     ]
 });
@@ -57,9 +52,7 @@ TabularTables.Testimonials = new Tabular.Table({
     scrollY: 400,
     autoWidth: false,
     columns: [
-        //{data: "title", title: "Title"},
         {data: "author", title: "Author"},
-        //{data: "category", title: "Category"},
         {data: "body", title: "Text"}
     ],
     sub: new SubsManager()
@@ -72,9 +65,6 @@ TabularTables.Squad = new Tabular.Table({
     autoWidth: false,
     columns: [
         {data: "name", title: "Name"},
-        //{data: "author", title: "Author"},
-        //{data: "category", title: "Category"},
-        //{data: "body", title: "Text"}
     ],
     sub: new SubsManager()
 });

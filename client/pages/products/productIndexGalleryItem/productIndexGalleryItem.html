@@ -2,7 +2,7 @@
     {{#if Template.subscriptionsReady }}
     <figure class="one-fourth item {{ getClassColors color }} {{getDisplayType type}}">
         {{#with getImages images }}
-            <img class="productThumb" src="{{url store="galleryThumb" }}" alt="{{name}}">
+            <img class="productThumb" src="{{this.url store="gallery-crop" }}" alt="{{name}}">
         {{/with}}
         <figcaption>
             <dl>
@@ -29,7 +29,7 @@
                            data-hzid="33569"
                            data-locale="en-US"
                            data-title="{{ getTitle }}"
-                           data-img="https://s3.amazonaws.com/com.planetstonemarblegranite/full/productimages/{{_id}}-{{name}}" alt="{{name}}"
+                           data-img="https://s3.amazonaws.com/complanetstonemarbleandgranite/image-assets/full-res/productimages/{{_id}}-{{name}}" alt="{{name}}"
                            data-desc="{{ getDesc }}"
                            data-category="Kitchen Countertops"
                            data-showcount="0"

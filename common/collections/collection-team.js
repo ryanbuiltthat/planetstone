@@ -101,7 +101,7 @@ Teams.attachSchema(Schemas.Team);
 TeamImages = new FS.Collection("teamimages", {
     stores: [
         teamMed,
-        fullStore
+        //fullStore
     ]
 });
 TeamImages.allow({

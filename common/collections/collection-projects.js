@@ -97,32 +97,32 @@ Projects.attachSchema(Schemas.Project);
 
 //ProjectImages = new FS.Collection("projectimages", {
 //    stores: [
-//        new FS.Store.S3("project_fullRes",{
-//            bucket: "com.planetstonemarblegranite",
-//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
-//            secretAccessKey: "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",
-//            folder: "/full",
+//        new FS.Store.S3("fr",{
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/fr",
 //            ACL: "public-read"
 //        }),
-//        new FS.Store.S3("project_menuSize", {
-//            bucket: "com.planetstonemarblegranite",
-//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
-//            secretAccessKey: "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",
-//            folder: "/menuSize",
+//        new FS.Store.S3("menuThumb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/menuThumb",
 //            ACL: "public-read",
 //            transformWrite: createMenuThumb }),
-//        new FS.Store.S3("project_thumbs", {
-//            bucket: "com.planetstonemarblegranite",
-//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
-//            secretAccessKey: "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",
-//            folder: "/thumbs",
+//        new FS.Store.S3("thmb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/thmb",
 //            ACL: "public-read",
 //            transformWrite: createThumb }),
-//        new FS.Store.S3("project_galleryThumb", {
-//            bucket: "com.planetstonemarblegranite",
-//            accessKeyId:    "AKIAIFERSOLRDWGKQ2PQ",
-//            secretAccessKey: "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",
-//            folder: "/galleryThumb",
+//        new FS.Store.S3("galleryThumb", {
+//            bucket: Meteor.settings.private.AWS.bucket,
+//            accessKeyId:    Meteor.settings.private.AWS.accessKey,
+//            secretAccessKey: Meteor.settings.private.AWS.accessSecret,
+//            folder: Meteor.settings.private.AWS.directory + "/galleryThumb",
 //            ACL: "public-read",
 //            transformWrite: createGalleryThumb })
 //    ]
@@ -143,24 +143,3 @@ Projects.attachSchema(Schemas.Project);
 //        });
 //    });
 //});
-ProjectImages = new FS.Collection("projectimages", {
-    stores: [
-        thumbStore,
-        menuStore,
-        galleryStore,
-        fullStore
-    ]
-});
-ProjectImages.allow({
-    insert: function (userId, doc) {
-        if(userId)
-            return true;
-    },
-    update: function (userId, doc, fieldNames, modifier) {
-        if(userId)
-            return true;
-    },
-    download: function (userId) {
-            return true;
-    }
-});

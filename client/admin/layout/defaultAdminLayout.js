@@ -20,7 +20,7 @@ Template.defaultAdminLayout.onRendered(function(){
     });
 //-------------------------------------
     jQuery(document).ready(function() {
-        console.log("doc ready");
+        //console.log("doc ready");
         "use strict";
 
 
@@ -239,24 +239,25 @@ Template.defaultAdminLayout.onRendered(function(){
 });
 
 Template.defaultAdminLayout.events({
-    'click .menutoggle':function(e, tpl){
-        console.log("menu click");
-        var body = $('body');
+    'click .menutoggle':function(e, t){
+
+        e.preventDefault();
+        var body = jQuery('body');
         var bodypos = body.css('position');
 
         if(bodypos != 'relative') {
 
             if(!body.hasClass('leftpanel-collapsed')) {
                 body.addClass('leftpanel-collapsed');
-                $('.nav-bracket ul').attr('style','');
+                jQuery('.nav-bracket ul').attr('style','');
 
-                $(e.currentTarget).addClass('menu-collapsed');
+                jQuery(this).addClass('menu-collapsed');
 
             } else {
                 body.removeClass('leftpanel-collapsed chat-view');
-                $('.nav-bracket li.active ul').css({display: 'block'});
+                jQuery('.nav-bracket li.active ul').css({display: 'block'});
 
-                $(e.currentTarget).removeClass('menu-collapsed');
+                jQuery(this).removeClass('menu-collapsed');
 
             }
         } else {
@@ -266,8 +267,40 @@ Template.defaultAdminLayout.events({
             else
                 body.addClass('leftpanel-show');
 
-            adjustmainpanelheight();
+            //Modules.client.startup();
         }
+
+
+        //e.preventDefault();
+        //console.log("menu click");
+        //var bod = tpl.$(' body');
+        //var body = $(bod.context);
+        //console.log(body);
+        //var bodypos = $(body.context).css('position');
+        //console.log(bodypos);
+        //if(bodypos != 'relative') {
+        //
+        //    if(!body.hasClass('leftpanel-collapsed')) {
+        //        body.addClass('leftpanel-collapsed');
+        //        $('.nav-bracket ul').attr('style','');
+        //        $(e.currentTarget).addClass('menu-collapsed');
+        //
+        //    } else {
+        //        body.removeClass('leftpanel-collapsed chat-view');
+        //        $('.nav-bracket li.active ul').css({display: 'block'});
+        //
+        //        $(e.currentTarget).removeClass('menu-collapsed');
+        //
+        //    }
+        //} else {
+        //
+        //    if(body.hasClass('leftpanel-show'))
+        //        body.removeClass('leftpanel-show');
+        //    else
+        //        body.addClass('leftpanel-show');
+        //
+        //    adjustmainpanelheight();
+        //}
     },
     'click .logoutLink': function(e){
         e.preventDefault();

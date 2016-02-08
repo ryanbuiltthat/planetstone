@@ -11,16 +11,16 @@ Template.contact.onCreated(function () {
     self.ready = new ReactiveVar();
     var cp = new ReactiveVar();
     var routePath = FlowRouter.current().path.substring(1);
-    self.autorun(function(){
-        var handle = self.subscribe('pagebyslug', routePath);
-        self.ready.set(handle.ready());
-        if(handle.ready()){
-            cp = Meta.findOne({ "pages.slug": routePath});
-            var metaInfo = {name: "description", content: cp.pages.desc};
-            DocHead.setTitle(cp.pages.title + " - Planet Stone Marble & Granite");
-            DocHead.addMeta(metaInfo);
-        }
-    });
+    //self.autorun(function(){
+    //    var handle = self.subscribe('pagebyslug', routePath);
+    //    self.ready.set(handle.ready());
+    //    if(handle.ready()){
+    //        cp = Meta.findOne({ "pages.slug": routePath});
+    //        var metaInfo = {name: "description", content: cp.pages.desc};
+    //        DocHead.setTitle(cp.pages.title + " - Planet Stone Marble & Granite");
+    //        DocHead.addMeta(metaInfo);
+    //    }
+    //});
 });
 
 Template.contact.onRendered(function () {
